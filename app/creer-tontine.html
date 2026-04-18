@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Description -->
+    <meta name="description" content="Créez une nouvelle tontine sécurisée par blockchain. Définissez les règles, ajoutez les membres et protégez vos fonds avec des smart contracts immuables.">
+    <meta name="keywords" content="créer tontine, nouvelle tontine, blockchain, smart contract, Bénin">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Créer une Tontine - TontineChain">
+    <meta property="og:description" content="Créez votre tontine sécurisée en quelques clics">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo-tontinechain.jpeg">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#16a34a">
+    
+    <title>Créer une Tontine - TontineChain</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/logo.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="../index.html" class="brand">
+                <div class="logo-icon animate-continuous">
+                    <img src="../assets/images/logo-tontinechain.jpeg" alt="TontineChain Logo">
+                </div>
+                <span class="brand-name"><span class="brand-gold">Tontine</span><span class="brand-blue">Chain</span></span>
+            </a>
+
+            <!-- Mode Sombre Toggle Dashboard -->
+            <div class="sidebar-theme-toggle dark-mode-container">
+                <button id="dark-mode-toggle" class="theme-toggle" aria-label="Passer au mode sombre">
+                    <i class="fas fa-moon"></i>
+                    <span class="sun-icon"><i class="fas fa-sun"></i></span>
+                </button>
+                <span class="toggle-label">Abyssal Bloom</span>
+            </div>
+            
+            <nav>
+                <ul class="sidebar-menu">
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Tableau de bord</span></a></li>
+                    <li><a href="mes-tontines.html"><i class="fas fa-users"></i><span>Mes Tontines</span></a></li>
+                    <li><a href="creer-tontine.html" class="active"><i class="fas fa-plus-circle"></i><span>Créer une Tontine</span></a></li>
+                    <li><a href="paiement.html"><i class="fas fa-credit-card"></i><span>Paiements</span></a></li>
+                    <li><a href="#"><i class="fas fa-wallet"></i><span>Mon Wallet</span></a></li>
+                    <li><a href="profil.html"><i class="fas fa-user-circle"></i><span>Profil</span></a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i><span>Déconnexion</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <div>
+                    <h1>Créer une Nouvelle Tontine</h1>
+                    <p>Configurez votre groupe et déployez un smart contract sécurisé</p>
+                </div>
+                <a href="dashboard.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Retour</span>
+                </a>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="creation-steps">
+                <div class="step active">
+                    <div class="step-circle">1</div>
+                    <span>Informations</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <span>Membres</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <span>Règles</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">4</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="creation-container">
+                <div class="creation-form">
+                    <form id="createTontineForm">
+                        <!-- Step 1: Informations de base -->
+                        <div class="form-step active" data-step="1">
+                            <h2>Informations de Base</h2>
+                            <p class="step-description">Donnez un nom à votre tontine et décrivez son objectif</p>
+
+                            <div class="form-group">
+                                <label for="tontineName">
+                                    <i class="fas fa-users"></i>
+                                    Nom de la Tontine
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="tontineName" 
+                                    placeholder="Ex: Femmes Entrepreneures Cotonou"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tontineDescription">
+                                    <i class="fas fa-align-left"></i>
+                                    Description
+                                </label>
+                                <textarea 
+                                    id="tontineDescription" 
+                                    rows="4"
+                                    placeholder="Décrivez l'objectif de votre tontine..."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="tontineType">
+                                        <i class="fas fa-tag"></i>
+                                        Type de Tontine
+                                    </label>
+                                    <select id="tontineType" required>
+                                        <option value="">Sélectionner...</option>
+                                        <option value="rotative">Rotative (Adôgbè)</option>
+                                        <option value="mutuelle">Mutuelle</option>
+                                        <option value="commerciale">Commerciale</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tontineCategory">
+                                        <i class="fas fa-folder"></i>
+                                        Catégorie
+                                    </label>
+                                    <select id="tontineCategory" required>
+                                        <option value="">Sélectionner...</option>
+                                        <option value="femmes">Femmes Entrepreneures</option>
+                                        <option value="commercants">Commerçants</option>
+                                        <option value="artisans">Artisans</option>
+                                        <option value="quartier">Quartier</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary" onclick="nextStep()">
+                                    <span>Suivant</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Membres -->
+                        <div class="form-step" data-step="2">
+                            <h2>Ajouter les Membres</h2>
+                            <p class="step-description">Invitez les membres de votre tontine</p>
+
+                            <div class="members-list">
+                                <div class="member-item">
+                                    <div class="member-avatar">A</div>
+                                    <div class="member-info">
+                                        <div class="member-name">Adjovi Kossou (Vous)</div>
+                                        <div class="member-role">Organisateur</div>
+                                    </div>
+                                    <span class="member-status paid">Confirmé</span>
+                                </div>
+                            </div>
+
+                            <div class="add-member-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Nom du membre" id="memberName">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Email" id="memberEmail">
+                                    </div>
+                                    <button type="button" class="btn btn-outline" onclick="addMember()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" onclick="prevStep()">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Précédent</span>
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep()">
+                                    <span>Suivant</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Règles -->
+                        <div class="form-step" data-step="3">
+                            <h2>Définir les Règles</h2>
+                            <p class="step-description">Configurez les paramètres de votre tontine</p>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cotisation">
+                                        <i class="fas fa-coins"></i>
+                                        Montant de la Cotisation
+                                    </label>
+                                    <input type="number" id="cotisation" placeholder="50000" required>
+                                    <span class="input-suffix">FCFA</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="frequence">
+                                        <i class="fas fa-calendar"></i>
+                                        Fréquence
+                                    </label>
+                                    <select id="frequence" required>
+                                        <option value="hebdomadaire">Hebdomadaire</option>
+                                        <option value="mensuel" selected>Mensuel</option>
+                                        <option value="trimestriel">Trimestriel</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dateDebut">
+                                        <i class="fas fa-calendar-start"></i>
+                                        Date de Début
+                                    </label>
+                                    <input type="date" id="dateDebut" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="duree">
+                                        <i class="fas fa-hourglass-half"></i>
+                                        Durée (en tours)
+                                    </label>
+                                    <input type="number" id="duree" placeholder="12" required>
+                                </div>
+                            </div>
+
+                            <div class="info-box">
+                                <i class="fas fa-info-circle"></i>
+                                <div>
+                                    <strong>Smart Contract Immuable</strong>
+                                    <p>Ces règles seront gravées dans la blockchain et ne pourront plus être modifiées après déploiement.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" onclick="prevStep()">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Précédent</span>
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep()">
+                                    <span>Suivant</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Confirmation -->
+                        <div class="form-step" data-step="4">
+                            <h2>Confirmation et Déploiement</h2>
+                            <p class="step-description">Vérifiez les informations avant de déployer le smart contract</p>
+
+                            <div class="summary-card">
+                                <h3>Résumé de la Tontine</h3>
+                                <div class="summary-item">
+                                    <span>Nom:</span>
+                                    <strong id="summaryName">-</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Membres:</span>
+                                    <strong id="summaryMembers">1</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Cotisation:</span>
+                                    <strong id="summaryCotisation">-</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Fréquence:</span>
+                                    <strong id="summaryFrequence">-</strong>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Cagnotte totale:</span>
+                                    <strong id="summaryCagnotte" class="text-primary">-</strong>
+                                </div>
+                            </div>
+
+                            <div class="blockchain-deploy">
+                                <div class="deploy-icon">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <div class="deploy-info">
+                                    <h4>Déploiement sécurisé</h4>
+                                    <p>Un smart contract unique sera créé pour votre groupe</p>
+                                    <div class="deploy-cost">
+                                        <span>Frais de déploiement:</span>
+                                        <strong>Faibles et transparents</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" onclick="prevStep()">
+                                    <i class="fas fa-arrow-left"></i>
+                                    <span>Précédent</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-large">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Déployer le Smart Contract</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Info Sidebar -->
+                <div class="creation-info">
+                    <div class="info-card-sticky">
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Conseils</h3>
+                        <ul class="info-list">
+                            <li><i class="fas fa-check"></i> Choisissez un nom clair et descriptif</li>
+                            <li><i class="fas fa-check"></i> Invitez des membres de confiance</li>
+                            <li><i class="fas fa-check"></i> Définissez des règles équitables</li>
+                            <li><i class="fas fa-check"></i> Vérifiez tous les détails avant déploiement</li>
+                        </ul>
+
+                        <div class="info-blockchain">
+                            <i class="fas fa-shield-check"></i>
+                            <div>
+                                <strong>100% Sécurisé</strong>
+                                <p>Smart contract audité et immuable</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/premium-animations.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/create-tontine.js"></script>
+    <script src="../assets/js/logo-animation.js"></script>
+</body>
+</html>

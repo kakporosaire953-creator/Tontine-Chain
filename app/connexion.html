@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Description -->
+    <meta name="description" content="Connectez-vous à votre compte TontineChain pour accéder à vos tontines sécurisées par blockchain. Gérez vos cotisations en toute sécurité.">
+    <meta name="keywords" content="connexion, login, tontine, blockchain, Bénin, sécurité">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Connexion - TontineChain">
+    <meta property="og:description" content="Accédez à vos tontines sécurisées">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo-tontinechain.jpeg">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#16a34a">
+    
+    <title>Connexion - TontineChain</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/logo.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Floating Theme & Lang Toggle for Auth Pages -->
+        <div class="auth-theme-toggle dark-mode-container">
+            <div class="lang-toggle" aria-label="Changer de langue" style="margin-right: 1.5rem;">
+                <span class="lang-fr active">FR</span>
+                <span>|</span>
+                <span class="lang-fon">FON</span>
+            </div>
+            <button id="dark-mode-toggle" class="theme-toggle" aria-label="Passer au mode sombre">
+                <i class="fas fa-moon"></i>
+                <span class="sun-icon"><i class="fas fa-sun"></i></span>
+            </button>
+        </div>
+        <div class="auth-pattern"></div>
+        
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="../index.html" class="brand">
+                    <div class="logo-icon entrance-animation">
+                        <img src="../assets/images/logo-tontinechain.jpeg" alt="TontineChain Logo">
+                    </div>
+                    <span class="brand-name"><span class="brand-gold">Tontine</span><span class="brand-blue">Chain</span></span>
+                </a>
+                <h1 data-i18n="auth-login-title">Bon retour !</h1>
+                <p data-i18n="auth-login-subtitle">Connectez-vous pour accéder à vos tontines sécurisées</p>
+            </div>
+
+            <form id="connexionForm" class="auth-form">
+                <div class="form-group">
+                    <label for="identifier">
+                        <i class="fas fa-user"></i>
+                        <span data-i18n="auth-id-label">Email ou Téléphone</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="identifier" 
+                        name="identifier" 
+                        placeholder="votre@email.com ou +229 XX XX XX XX"
+                        data-i18n-placeholder="auth-id-placeholder"
+                        required
+                    >
+                    <span class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        <span data-i18n="auth-pass-label">Mot de passe</span>
+                    </label>
+                    <div class="password-input">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Votre mot de passe"
+                            data-i18n-placeholder="auth-pass-placeholder"
+                            required
+                        >
+                        <button type="button" class="password-toggle" aria-label="Afficher le mot de passe">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="form-error"></span>
+                </div>
+
+                <div class="form-options">
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember" data-i18n="auth-remember">Se souvenir de moi</label>
+                    </div>
+                    <a href="#" class="forgot-password" data-i18n="auth-forgot">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span data-i18n="auth-login-btn">Se connecter</span>
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span data-i18n="auth-or">ou</span>
+            </div>
+
+            <button class="btn btn-wallet btn-block" id="walletConnect">
+                <i class="fas fa-wallet"></i>
+                <span data-i18n="auth-wallet-btn">Connexion avec MetaMask</span>
+            </button>
+
+            <div class="auth-footer">
+                <p><span data-i18n="auth-no-account">Pas encore de compte ?</span> <a href="inscription.html" data-i18n="auth-signup-link">S'inscrire gratuitement</a></p>
+            </div>
+        </div>
+
+        <div class="auth-info">
+            <div class="info-card">
+                <i class="fas fa-lock"></i>
+                <h3 data-i18n="auth-info-1-title">Connexion Sécurisée</h3>
+                <p data-i18n="auth-info-1-desc">Authentification chiffrée de bout en bout</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-wallet"></i>
+                <h3 data-i18n="auth-info-2-title">Web3 Compatible</h3>
+                <p data-i18n="auth-info-2-desc">Connectez-vous avec votre wallet MetaMask</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3 data-i18n="auth-info-3-title">Multi-Plateforme</h3>
+                <p data-i18n="auth-info-3-desc">Accédez à vos tontines depuis n'importe quel appareil</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/premium-animations.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/logo-animation.js"></script>
+    <script src="../assets/js/translations.js"></script>
+    <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

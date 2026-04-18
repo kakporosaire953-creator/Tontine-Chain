@@ -1,0 +1,118 @@
+# TontineChain - Configuration Apache
+# Headers de Sécurité et Optimisation
+
+# ══════════════════════════════════════════════════════════════
+# HEADERS DE SÉCURITÉ
+# ══════════════════════════════════════════════════════════════
+
+<IfModule mod_headers.c>
+    # Content Security Policy (CSP)
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none';"
+    
+    # Protection contre le clickjacking
+    Header always set X-Frame-Options "DENY"
+    
+    # Protection contre le MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Protection XSS
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # HSTS (HTTPS uniquement - décommenter si HTTPS activé)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ══════════════════════════════════════════════════════════════
+# COMPRESSION GZIP
+# ══════════════════════════════════════════════════════════════
+
+<IfModule mod_deflate.c>
+    # Compresser HTML, CSS, JavaScript, Text, XML et fonts
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/woff
+    AddOutputFilterByType DEFLATE font/woff2
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ══════════════════════════════════════════════════════════════
+# CACHE NAVIGATEUR
+# ══════════════════════════════════════════════════════════════
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS et JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# ══════════════════════════════════════════════════════════════
+# REDIRECTIONS HTTPS (décommenter si HTTPS activé)
+# ══════════════════════════════════════════════════════════════
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# ══════════════════════════════════════════════════════════════
+# PROTECTION DES FICHIERS SENSIBLES
+# ══════════════════════════════════════════════════════════════
+
+# Bloquer l'accès aux fichiers .md
+<FilesMatch "\.(md|markdown)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Bloquer l'accès aux fichiers de configuration
+<FilesMatch "^(\.htaccess|\.htpasswd|\.env|package\.json|composer\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ══════════════════════════════════════════════════════════════
+# OPTIMISATION
+# ══════════════════════════════════════════════════════════════
+
+# Désactiver les ETags
+FileETag None
+
+# Désactiver la signature du serveur
+ServerSignature Off

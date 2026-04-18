@@ -1,0 +1,64 @@
+{
+  "name": "TontineChain - Tontines Sécurisées par Blockchain",
+  "short_name": "TontineChain",
+  "description": "Sécurisez vos tontines béninoises avec la blockchain. Fini les détournements et la Cale Sèche.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#16a34a",
+  "orientation": "portrait-primary",
+  "lang": "fr",
+  "dir": "ltr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "assets/images/logo-tontinechain.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/logo-tontinechain.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "business", "productivity"],
+  "screenshots": [
+    {
+      "src": "assets/images/dashboard.png",
+      "sizes": "800x600",
+      "type": "image/png",
+      "label": "Dashboard TontineChain"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Créer une Tontine",
+      "short_name": "Créer",
+      "description": "Créer une nouvelle tontine sécurisée",
+      "url": "/app/creer-tontine.html",
+      "icons": [
+        {
+          "src": "assets/images/logo-tontinechain.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Accéder au tableau de bord",
+      "url": "/app/dashboard.html",
+      "icons": [
+        {
+          "src": "assets/images/logo-tontinechain.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
