@@ -176,3 +176,33 @@
         display: inline-block !important;
     }
 }
+
+
+/* Fix: Augmenter la hauteur de la navbar pour éviter la coupure */
+.navbar {
+    padding: 1.25rem 0 !important;
+    min-height: 90px;
+}
+
+.navbar .container {
+    align-items: center;
+    min-height: 70px;
+}
+
+/* S'assurer que les boutons ne sont pas coupés */
+.nav-menu {
+    align-items: center;
+}
+
+.nav-menu li {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive - Ajuster sur mobile */
+@media (max-width: 968px) {
+    .navbar {
+        padding: 1rem 0 !important;
+        min-height: 80px;
+    }
+}
