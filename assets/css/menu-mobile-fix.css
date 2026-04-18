@@ -182,6 +182,8 @@
 .navbar {
     padding: 1.25rem 0 !important;
     min-height: 90px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .navbar .container {
@@ -204,5 +206,6 @@
     .navbar {
         padding: 1rem 0 !important;
         min-height: 80px;
+        border-radius: 0 0 16px 16px;
     }
 }
