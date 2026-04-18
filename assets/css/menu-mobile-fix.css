@@ -296,3 +296,31 @@
         padding-top: 110px !important;
     }
 }
+
+
+/* URGENT: Désactiver les animations sur mobile pour affichage instantané */
+@media (max-width: 968px) {
+    .reveal-up,
+    .fade-in,
+    .slide-in,
+    .stagger-container > * {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    /* Forcer l'affichage immédiat de tous les éléments */
+    * {
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Sauf pour les interactions utilisateur */
+    *:hover,
+    *:active,
+    *:focus {
+        transition-duration: 0.2s !important;
+    }
+}
