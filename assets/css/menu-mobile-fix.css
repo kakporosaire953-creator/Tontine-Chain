@@ -179,21 +179,6 @@
     .nav-menu .btn i {
         display: inline-block !important;
     }
-    
-    /* Enlever le rectangle/fond sur desktop - liens transparents */
-    .nav-menu li a {
-        background: transparent !important;
-        border: none !important;
-        padding: 8px 16px !important;
-        border-radius: 0 !important;
-    }
-    
-    .nav-menu li a:hover {
-        background: transparent !important;
-        color: #16a34a !important;
-        transform: none !important;
-        box-shadow: none !important;
-    }
 }
 
 
