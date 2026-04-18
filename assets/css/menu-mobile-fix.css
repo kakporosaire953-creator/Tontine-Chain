@@ -1,8 +1,11 @@
 /* ============================================
-   MENU MOBILE - VERSION FINALE PROPRE
+   MENU MOBILE - VERSION PROFESSIONNELLE COMPLÈTE
+   Approche Mobile-First | Accessibilité WCAG
    ============================================ */
 
-/* Bouton hamburger */
+/* ==========================================
+   1. BOUTON HAMBURGER
+   ========================================== */
 .mobile-menu-toggle {
     display: none;
     background: none;
@@ -10,95 +13,169 @@
     font-size: 1.5rem;
     color: var(--color-gray-900);
     cursor: pointer;
-    padding: 0.5rem;
-    z-index: 9999;
+    padding: 0.75rem;
+    z-index: 10001;
     position: relative;
+    transition: transform 0.2s ease;
+    /* Accessibilité */
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Afficher sur mobile */
+.mobile-menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.mobile-menu-toggle:active {
+    transform: scale(0.95);
+}
+
+.mobile-menu-toggle:focus-visible {
+    outline: 3px solid #16a34a;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* ==========================================
+   2. MENU MOBILE - SIDEBAR
+   ========================================== */
 @media (max-width: 968px) {
+    /* Afficher le bouton hamburger */
     .mobile-menu-toggle {
         display: block;
     }
     
-    /* Menu en sidebar */
+    /* Menu sidebar */
     .nav-menu {
+        /* Position et dimensions */
         position: fixed;
         top: 0;
-        left: -100%;
+        left: 0;
         bottom: 0;
         width: 300px;
-        max-width: 85%;
+        max-width: 85vw;
+        
+        /* Apparence */
         background: white;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15);
+        
+        /* Layout */
+        display: flex !important;
         flex-direction: column;
-        padding: 100px 30px 30px;
-        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);
-        transition: left 0.3s ease-in-out;
-        z-index: 9998;
-        overflow-y: auto;
         align-items: flex-start;
         gap: 0;
+        padding: 100px 24px 24px;
+        
+        /* Scroll */
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        
+        /* Animation */
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        /* Z-index */
+        z-index: 10000;
+        
+        /* Visibilité */
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     /* Menu ouvert */
     .nav-menu.active {
-        left: 0;
+        transform: translateX(0);
     }
     
-    /* Items du menu */
+    /* ==========================================
+       3. ITEMS DU MENU
+       ========================================== */
     .nav-menu li {
         width: 100%;
         margin: 0;
         padding: 0;
         list-style: none;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
-    /* Liens du menu - BIEN ALIGNÉS ET VISIBLES */
+    /* ==========================================
+       4. LIENS DU MENU - DESIGN PROFESSIONNEL
+       ========================================== */
     .nav-menu li a {
-        display: flex;
+        /* Layout */
+        display: flex !important;
         align-items: center;
         width: 100%;
         padding: 16px 20px;
+        margin-bottom: 8px;
+        
+        /* Apparence */
         color: #1f2937;
         font-size: 17px;
         font-weight: 500;
-        border-radius: 16px;
-        margin-bottom: 8px;
-        transition: all 0.2s ease;
         text-decoration: none;
-        border: 2px solid #e5e7eb;
         background: #f9fafb;
+        border: 2px solid #e5e7eb;
+        border-radius: 16px;
+        
+        /* Animation */
+        transition: all 0.2s ease;
+        
+        /* Visibilité forcée */
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
-    .nav-menu li a:hover {
+    .nav-menu li a:hover,
+    .nav-menu li a:focus {
         background: #ffffff;
         color: #16a34a;
+        border-color: #16a34a;
         transform: translateX(5px);
-        border: 2px solid #16a34a;
         box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15);
     }
     
-    /* Icônes dans les liens */
+    .nav-menu li a:focus-visible {
+        outline: 3px solid #16a34a;
+        outline-offset: 2px;
+    }
+    
+    /* ==========================================
+       5. ICÔNES DANS LES LIENS
+       ========================================== */
     .nav-menu li a i {
         margin-right: 12px;
         font-size: 18px;
         width: 24px;
         text-align: center;
+        flex-shrink: 0;
+        display: inline-block !important;
     }
     
-    /* Boutons spéciaux */
+    .nav-menu li a span {
+        flex: 1;
+    }
+    
+    /* ==========================================
+       6. BOUTONS SPÉCIAUX (Connexion, Commencer)
+       ========================================== */
     .nav-menu .btn {
         width: 100%;
         justify-content: center;
         margin-top: 12px;
-        padding: 14px 20px;
+        padding: 16px 20px !important;
         font-size: 16px;
+        border-radius: 16px !important;
+        font-weight: 600;
     }
     
     .nav-menu .btn-commencer {
-        background: #16a34a;
+        background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
         color: white;
-        font-weight: 600;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
     }
     
     .nav-menu .btn-outline-green {
@@ -107,8 +184,15 @@
         background: transparent;
     }
     
-    /* Overlay sombre */
-    body.menu-open::before {
+    .nav-menu .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+    }
+    
+    /* ==========================================
+       7. OVERLAY SOMBRE
+       ========================================== */
+    body.menu-open::after {
         content: '';
         position: fixed;
         top: 0;
@@ -116,8 +200,9 @@
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 9997;
+        z-index: 9999;
         animation: fadeIn 0.3s ease;
+        pointer-events: auto;
     }
     
     @keyframes fadeIn {
@@ -125,55 +210,64 @@
         to { opacity: 1; }
     }
     
-    /* Cacher le lang-toggle sur mobile */
+    /* ==========================================
+       8. BLOQUER LE SCROLL DU BODY
+       ========================================== */
+    body.menu-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+    
+    /* ==========================================
+       9. CACHER LANG-TOGGLE SUR MOBILE
+       ========================================== */
     .lang-toggle {
-        display: none;
+        display: none !important;
     }
 }
 
-/* Mode dark */
+/* ==========================================
+   10. MODE DARK
+   ========================================== */
 [data-theme="dark"] .mobile-menu-toggle {
     color: white;
 }
 
-[data-theme="dark"] .nav-menu {
-    background: #1f2937;
-}
-
-[data-theme="dark"] .nav-menu li a {
-    color: white;
-}
-
-[data-theme="dark"] .nav-menu li a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #4ade80;
-}
-
-/* S'assurer que le logo reste visible */
 @media (max-width: 968px) {
-    .navbar .brand {
-        z-index: 10000;
-        position: relative;
+    [data-theme="dark"] .nav-menu {
+        background: #1f2937;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
     }
     
-    .logo-icon {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+    [data-theme="dark"] .nav-menu li a {
+        color: white;
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
     }
     
-    .logo-icon img {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+    [data-theme="dark"] .nav-menu li a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #4ade80;
+        border-color: #4ade80;
+    }
+    
+    [data-theme="dark"] .nav-menu .btn-commencer {
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    }
+    
+    [data-theme="dark"] .nav-menu .btn-outline-green {
+        border-color: #22c55e;
+        color: #22c55e;
     }
 }
 
-
-/* Cacher les icônes sur desktop */
+/* ==========================================
+   11. DESKTOP - CACHER ICÔNES
+   ========================================== */
 @media (min-width: 969px) {
     .nav-menu li a i {
-        display: none;
+        display: none !important;
     }
     
     .nav-menu .btn i {
@@ -181,8 +275,9 @@
     }
 }
 
-
-/* Fix: Augmenter la hauteur de la navbar pour éviter la coupure */
+/* ==========================================
+   12. NAVBAR - HAUTEUR ET STYLE
+   ========================================== */
 .navbar {
     padding: 1.25rem 0 !important;
     min-height: 90px;
@@ -195,92 +290,30 @@
     min-height: 70px;
 }
 
-/* S'assurer que les boutons ne sont pas coupés */
-.nav-menu {
-    align-items: center;
-}
-
-.nav-menu li {
-    display: flex;
-    align-items: center;
-}
-
-/* Responsive - Ajuster sur mobile */
 @media (max-width: 968px) {
     .navbar {
         padding: 1rem 0 !important;
         min-height: 80px;
         border-radius: 0 0 16px 16px;
     }
+    
+    /* Logo toujours visible */
+    .navbar .brand {
+        z-index: 10002;
+        position: relative;
+    }
+    
+    .logo-icon,
+    .logo-icon img {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
 }
 
-
-/* Styliser les boutons du menu - Plus d'espace et meilleur design */
-.nav-menu .btn {
-    padding: 12px 24px !important;
-    border-radius: 12px !important;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.nav-menu .btn-green {
-    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-    color: white;
-    border: 2px solid transparent;
-    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-}
-
-.nav-menu .btn-green:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
-}
-
-.nav-menu .btn-outline-green {
-    background: transparent;
-    color: #16a34a;
-    border: 2px solid #16a34a;
-}
-
-.nav-menu .btn-outline-green:hover {
-    background: #16a34a;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-}
-
-/* Icônes dans les boutons */
-.nav-menu .btn i {
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-}
-
-.nav-menu .btn:hover i {
-    transform: translateX(4px);
-}
-
-/* Espacement entre les boutons */
-.nav-menu li:has(.btn) {
-    margin-left: 12px;
-}
-
-/* Mode dark */
-[data-theme="dark"] .nav-menu .btn-green {
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
-}
-
-[data-theme="dark"] .nav-menu .btn-outline-green {
-    border-color: #22c55e;
-    color: #22c55e;
-}
-
-[data-theme="dark"] .nav-menu .btn-outline-green:hover {
-    background: #22c55e;
-    color: #000;
-}
-
-
-/* Fix: Éviter que le hero-badge soit coupé par la navbar */
+/* ==========================================
+   13. HERO - PADDING TOP
+   ========================================== */
 .hero {
     padding-top: 140px !important;
 }
@@ -297,8 +330,9 @@
     }
 }
 
-
-/* URGENT: Désactiver les animations sur mobile pour affichage instantané */
+/* ==========================================
+   14. PERFORMANCE - DÉSACTIVER ANIMATIONS SUR MOBILE
+   ========================================== */
 @media (max-width: 968px) {
     .reveal-up,
     .fade-in,
@@ -307,20 +341,60 @@
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
-        transition: none !important;
     }
     
-    /* Forcer l'affichage immédiat de tous les éléments */
     * {
         animation-duration: 0s !important;
         animation-delay: 0s !important;
-        transition-duration: 0.2s !important;
     }
     
-    /* Sauf pour les interactions utilisateur */
+    /* Garder transitions pour interactions */
     *:hover,
     *:active,
-    *:focus {
+    *:focus,
+    .nav-menu,
+    .nav-menu li a {
         transition-duration: 0.2s !important;
+    }
+}
+
+/* ==========================================
+   15. ACCESSIBILITÉ - NAVIGATION CLAVIER
+   ========================================== */
+@media (max-width: 968px) {
+    .nav-menu a:focus-visible {
+        outline: 3px solid #16a34a;
+        outline-offset: 2px;
+    }
+    
+    /* Skip to content */
+    .skip-link:focus {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 10003;
+        padding: 1rem;
+        background: #16a34a;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+    }
+}
+
+/* ==========================================
+   16. SMOOTH SCROLLING
+   ========================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }
