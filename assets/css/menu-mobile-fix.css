@@ -1,0 +1,85 @@
+/* ============================================
+   FIX MENU MOBILE UNIQUEMENT
+   ============================================ */
+
+/* Afficher le bouton hamburger sur mobile */
+@media (max-width: 968px) {
+    .mobile-menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 1001;
+    }
+    
+    /* Menu mobile en sidebar */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        bottom: 0;
+        width: 280px;
+        max-width: 85%;
+        background: white;
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    /* Menu ouvert */
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    /* Liens du menu */
+    .nav-menu li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav-menu a {
+        display: block;
+        padding: 12px 16px;
+        color: #1f2937;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    
+    .nav-menu a:hover {
+        background: #f3f4f6;
+    }
+    
+    /* Boutons dans le menu */
+    .nav-menu .btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 8px;
+    }
+    
+    /* Overlay sombre */
+    .nav-menu.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 280px;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+}
+
+/* Mode dark */
+[data-theme="dark"] .nav-menu {
+    background: #1f2937;
+}
+
+[data-theme="dark"] .nav-menu a {
+    color: white;
+}
+
+[data-theme="dark"] .nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
