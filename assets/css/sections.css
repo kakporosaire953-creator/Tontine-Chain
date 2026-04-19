@@ -2,7 +2,7 @@
    Sections Développées - Problème & Solution
    ============================================ */
 
-/* Images Hero */
+/* Images Hero - RÉDUITES */
 .problem-hero-image,
 .solution-hero-image {
     position: relative;
@@ -10,11 +10,15 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-section-image {
     width: 100%;
-    height: 500px;
+    height: auto;
+    max-height: 400px;
     object-fit: cover;
     display: block;
 }
