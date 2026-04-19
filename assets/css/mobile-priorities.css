@@ -1,0 +1,244 @@
+/* ============================================
+   Mobile Fixes Priority - Surcharge CSS finale
+   À charger APRÈS tous les autres CSS
+   ============================================ */
+
+/* Force le responsive final pour éviter les conflits */
+
+/* Navigation Switcher - Cohérence mobile/desktop */
+@media (max-width: 768px) {
+    .navbar .lang-toggle {
+        display: block !important;
+        order: 2;
+        margin-right: 1rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        border-radius: 16px;
+        background: var(--color-white);
+        border: 1px solid var(--color-gray-200);
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle {
+        display: block !important;
+        order: 3;
+    }
+
+    .nav-menu {
+        display: none !important;
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .navbar .lang-toggle {
+        display: block;
+    }
+
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+
+    .nav-menu {
+        display: flex !important;
+    }
+}
+
+/* FAQ Touch Targets - 44px minimum (surcharge finale) */
+@media (max-width: 768px) {
+    .faq-question {
+        min-height: 48px !important;
+        padding: 1.25rem 1rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    .faq-item {
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* Hero Stats - Logique claire */
+@media (max-width: 479px) {
+    .hero-stats-inline {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    .stat-inline {
+        width: 100%;
+    }
+
+    .stat-divider {
+        display: none !important;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 600px) {
+    .hero-stats-inline {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.75rem !important;
+    }
+
+    .stat-inline {
+        padding: 0.75rem !important;
+    }
+
+    .stat-divider {
+        display: none !important;
+    }
+
+    .stat-text {
+        font-size: 0.75rem !important;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .hero-stats-inline {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    .stat-divider {
+        display: none !important;
+    }
+}
+
+/* Container Padding */
+@media (max-width: 380px) {
+    .container {
+        padding: 0 0.75rem !important;
+    }
+}
+
+@media (min-width: 381px) and (max-width: 768px) {
+    .container {
+        padding: 0 1rem !important;
+    }
+}
+
+/* Step Arrows - Pas de débordement */
+@media (max-width: 768px) {
+    .step-arrow {
+        transform: rotate(90deg) !important;
+        margin: 0.5rem 0 !important;
+        overflow: visible;
+        width: auto !important;
+    }
+
+    .steps-container {
+        gap: 0.5rem !important;
+    }
+}
+
+/* Grids - Cohérence finale */
+@media (max-width: 768px) {
+    .why-blockchain-grid,
+    .blockchain-grid,
+    .features-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .innovation-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .impact-projections {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .odd-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .tech-stack-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Overlays et fixed elements - Exception overflow-x */
+.nav-menu.active,
+[role='dialog'],
+[role='menu'],
+.modal,
+.dropdown,
+.popover {
+    max-width: none !important;
+    overflow-x: visible !important;
+}
+
+/* Prévention débordement - sauf positionnés */
+@media (max-width: 768px) {
+    body > :not(.nav-menu),
+    main,
+    .section,
+    .container > * {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+/* Z-index cohérence */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        z-index: 10001 !important;
+    }
+
+    .nav-menu.active {
+        z-index: 10000 !important;
+    }
+
+    body.menu-open::after {
+        z-index: 9999 !important;
+    }
+
+    .navbar {
+        z-index: 1000 !important;
+    }
+}
+
+/* Accessibility - Final pass */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .step-arrow {
+        transform: none !important;
+    }
+}
+
+/* High contrast - Final pass */
+@media (prefers-contrast: more) {
+    .btn,
+    .faq-question,
+    .nav-menu.active li a {
+        border-width: 2px !important;
+        font-weight: 600 !important;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* Print styles */
+@media print {
+    .nav-menu.active,
+    .mobile-menu-toggle,
+    body.menu-open::after {
+        display: none !important;
+    }
+}

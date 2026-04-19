@@ -25,6 +25,19 @@ img, picture, video, iframe, embed, object {
     display: block;
 }
 
+/* Exception: éléments positionnés (modals, menus déroulants, tooltips) */
+[role='dialog'],
+[role='menu'],
+[role='listbox'],
+[role='combobox'],
+.modal,
+.dropdown,
+.popover,
+.tooltip,
+.nav-menu {
+    max-width: none !important;
+}
+
 /* ============================================
    POINT 1: Navigation Mobile + Switcher FR/FON
    ============================================ */
@@ -170,10 +183,10 @@ img, picture, video, iframe, embed, object {
    POINT 4: Stats Hero Inline - Responsive
    ============================================ */
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .hero-stats-inline {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
         width: 100%;
     }
@@ -194,27 +207,24 @@ img, picture, video, iframe, embed, object {
     }
 
     .stat-text {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
     }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+/* Petit mobile: 2 colonnes si espace suffisant */
+@media (min-width: 480px) and (max-width: 599px) {
     .hero-stats-inline {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
     }
 
     .stat-inline {
-        padding: 1rem;
-        background: var(--color-gray-50);
-        border-radius: 12px;
-        text-align: center;
+        padding: 0.75rem;
     }
 
-    .stat-divider {
-        display: none;
+    .stat-text {
+        font-size: 0.75rem;
     }
 }
 
@@ -405,6 +415,17 @@ img, picture, video, iframe, embed, object {
 
     .section {
         padding: 2rem 0 !important;
+    }
+}
+
+/* Très petit écran iPhone SE (375px): padding réduit */
+@media (max-width: 380px) {
+    .container {
+        padding: 0 0.75rem !important;
+    }
+
+    .section {
+        padding: 1.5rem 0 !important;
     }
 }
 
@@ -615,7 +636,8 @@ img {
 
     .faq-question {
         width: 100%;
-        padding: 1rem;
+        padding: 1.25rem 1rem;
+        min-height: 48px;
         font-size: 1rem;
         text-align: left;
         background: white;
@@ -623,6 +645,9 @@ img {
         border: 1px solid var(--color-gray-200);
         cursor: pointer;
         transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .faq-question:hover {
