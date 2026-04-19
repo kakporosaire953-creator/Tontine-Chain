@@ -3,6 +3,13 @@
    20 Problèmes de responsive design résolus
    ============================================ */
 
+/* CLASSE UTILITAIRE: Cacher sur mobile */
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
 /* POINT 0: Prévenir scroll horizontal et débordements */
 body {
     overflow-x: hidden !important;
