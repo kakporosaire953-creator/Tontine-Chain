@@ -418,3 +418,229 @@ img, video, iframe {
         outline-offset: 2px;
     }
 }
+
+
+/* ==========================================
+   CORRECTIONS SPÉCIFIQUES TABLETTE
+   769px - 1024px (iPad, Galaxy Tab, etc.)
+   ========================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Container légèrement réduit */
+    .container {
+        max-width: 90%;
+        padding: 0 2rem;
+    }
+    
+    /* Titres ajustés */
+    h1, .hero-title {
+        font-size: 2.5rem !important;
+    }
+    
+    h2 {
+        font-size: 2rem !important;
+    }
+    
+    /* Hero en 2 colonnes équilibrées */
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    /* Stats Hero en 3 colonnes sur tablette */
+    .hero-stats-inline {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .stat-inline {
+        flex: 0 0 calc(33.333% - 1rem);
+    }
+    
+    /* Problème cards - 2 colonnes */
+    .problem-grid,
+    .problem-grid-modern {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Solution grid - 2 colonnes */
+    .solution-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Steps flow - 2×2 */
+    .steps-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .step-arrow {
+        display: none;
+    }
+    
+    /* Stats Impact - 4 colonnes sur tablette */
+    .impact-stats,
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    
+    /* ODD Cards - 3 colonnes */
+    .odd-grid,
+    .sdg-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* Footer - 2 colonnes */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Innovation cards - 2 colonnes */
+    .innovation-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Tech stack - 4 colonnes */
+    .tech-stack,
+    .stack-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    
+    /* Boutons CTA - Côte à côte sur tablette */
+    .hero-cta {
+        flex-direction: row !important;
+        gap: 1rem;
+    }
+    
+    .hero-cta .btn {
+        width: auto !important;
+        flex: 1;
+    }
+    
+    /* Badges confiance - En ligne sur tablette */
+    .hero-trust,
+    .trust-badges {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    /* FAQ - 1 colonne mais plus large */
+    .faq-container {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    /* Navbar - Espacement optimisé */
+    .navbar .container {
+        padding: 0 2rem;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    /* Cards padding optimisé */
+    .card,
+    .feature-card,
+    .solution-card {
+        padding: 2rem;
+    }
+    
+    /* Sections padding */
+    .section {
+        padding: 4rem 0;
+    }
+    
+    /* Hero padding */
+    .hero {
+        padding-top: 130px !important;
+        padding-bottom: 4rem;
+    }
+    
+    /* Images optimisées */
+    .hero-visual {
+        max-width: 100%;
+    }
+    
+    .pc-mockup {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    /* Touch targets tablette */
+    a, button, .btn {
+        min-height: 48px;
+    }
+    
+    /* Font-size body tablette */
+    body {
+        font-size: 17px;
+    }
+    
+    /* Grilles génériques - 2 colonnes par défaut */
+    [class*="grid"]:not(.hero-grid):not(.footer-grid) {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* ==========================================
+   TABLETTE PAYSAGE (Landscape)
+   1025px - 1280px
+   ========================================== */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .container {
+        max-width: 95%;
+    }
+    
+    /* Hero optimisé */
+    .hero-grid {
+        grid-template-columns: 1.2fr 1fr;
+    }
+    
+    /* Grilles 3 colonnes */
+    .problem-grid,
+    .solution-grid,
+    .blockchain-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* ==========================================
+   ORIENTATION PAYSAGE MOBILE
+   ========================================== */
+
+@media (max-width: 968px) and (orientation: landscape) {
+    /* Réduire padding vertical */
+    .hero {
+        padding-top: 100px !important;
+        padding-bottom: 2rem;
+    }
+    
+    .section {
+        padding: 2rem 0;
+    }
+    
+    /* Hero en 2 colonnes en paysage */
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    /* Réduire hauteur navbar */
+    .navbar {
+        min-height: 70px;
+    }
+    
+    /* Stats en ligne */
+    .hero-stats-inline {
+        flex-direction: row !important;
+    }
+    
+    .stat-inline {
+        flex: 1;
+    }
+}
