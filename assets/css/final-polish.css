@@ -26,12 +26,18 @@
 .problem-hero-image img,
 .solution-hero-image img,
 .hero-section-image {
-    max-width: 100%;
+    max-width: 700px !important;
     width: 100%;
     height: auto;
     margin: 0 auto;
     display: block;
     border-radius: 16px;
+}
+
+.problem-hero-image,
+.solution-hero-image {
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .problem-image img,
