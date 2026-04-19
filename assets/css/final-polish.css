@@ -7,11 +7,11 @@
    1. IMAGES DESKTOP - RÉDUIRE LA TAILLE
    ========================================== */
 
-/* Hero dashboard - 500px */
+/* Hero dashboard - RÉDUIT à 350px */
 .hero-visual,
 .hero-mockup,
 .pc-mockup {
-    max-width: 500px;
+    max-width: 350px;
     margin: 0 auto;
 }
 
@@ -22,7 +22,7 @@
     object-fit: contain;
 }
 
-/* Images sections - 500px */
+/* Images sections - RÉDUITES à 320px */
 .problem-hero-image img,
 .solution-hero-image img,
 .hero-section-image {
@@ -37,7 +37,7 @@
 .problem-image img,
 .solution-image img,
 .section-image img {
-    max-width: 500px;
+    max-width: 320px;
     height: auto;
     margin: 0 auto;
     display: block;
@@ -387,16 +387,16 @@ p {
         max-width: 1280px;
     }
     
-    /* Images desktop large - 500px */
+    /* Images desktop large - RÉDUITES */
     .hero-visual,
     .pc-mockup {
-        max-width: 500px;
+        max-width: 380px;
     }
     
     .section-image img,
     .problem-image img,
     .solution-image img {
-        max-width: 500px;
+        max-width: 350px;
     }
 }
 
