@@ -1,0 +1,105 @@
+/* ============================================
+   Images Size Control - Desktop
+   Réduire la taille des images trop grandes
+   ============================================ */
+
+/* Hero section images - Réduire sur desktop */
+@media (min-width: 1025px) {
+    .hero-section-image {
+        max-width: 90%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .problem-hero-image,
+    .solution-hero-image {
+        max-width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2rem;
+    }
+
+    /* PC Mockup - Réduire */
+    .pc-mockup {
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    .monitor-screen {
+        max-height: 400px;
+    }
+
+    /* Dashboard image */
+    .dashboard-img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Hero grid - mieux distribué */
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .hero-visual {
+        max-width: 100%;
+    }
+
+    .hero-visual img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Images dans les containers */
+    .hero-section-image {
+        height: 350px;
+        object-fit: cover;
+    }
+}
+
+/* Desktop large (> 1400px) - Un peu plus grand mais contrôlé */
+@media (min-width: 1401px) {
+    .problem-hero-image,
+    .solution-hero-image {
+        max-width: 90%;
+    }
+
+    .pc-mockup {
+        max-width: 75%;
+    }
+
+    .hero-section-image {
+        height: 380px;
+    }
+}
+
+/* Tablette et au-dessus */
+@media (min-width: 769px) {
+    /* Assurer que les images ne débordent jamais */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .hero-section-image {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+    }
+}
+
+/* Mobile - déjà géré ailleurs */
+@media (max-width: 768px) {
+    .hero-section-image {
+        height: 250px;
+    }
+
+    .pc-mockup {
+        max-width: 100%;
+    }
+
+    .monitor-screen {
+        max-height: 250px;
+    }
+}
