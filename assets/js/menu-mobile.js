@@ -98,6 +98,23 @@
         });
         
         /**
+         * Event: Clic sur les boutons de langue dans le menu mobile
+         */
+        const langButtons = menu.querySelectorAll('.lang-toggle-mobile span.lang-fr, .lang-toggle-mobile span.lang-fon');
+        langButtons.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // Déclencher le changement de langue
+                const langToggle = document.querySelector('.lang-toggle');
+                if (langToggle) {
+                    langToggle.click();
+                }
+                console.log('🌐 Langue changée:', this.textContent.trim());
+            });
+        });
+        
+        /**
          * Event: Clic sur l'overlay (en dehors du menu)
          */
         document.addEventListener('click', function(e) {
