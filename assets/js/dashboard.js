@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     function animateValue(element, start, end, duration, suffix = '') {
+        if (!element) return;
+        
         const range = end - start;
         const increment = range / (duration / 16);
         let current = start;
@@ -44,6 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.textContent = formatNumber(Math.floor(current)) + suffix;
             }
         }, 16);
+        
+        // Store timer reference for cleanup
+        if (!element.dataset.timerId) {
+            element.dataset.timerId = timer;
+        }
     }
     
     function formatNumber(num) {
@@ -62,32 +69,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Mobile Sidebar Toggle
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.querySelector('.sidebar');
-    
-    if (sidebarToggle && sidebar) {
-        sidebarToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-            const icon = this.querySelector('i');
-            if (sidebar.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
-        
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 1024 && 
-                sidebar.classList.contains('active') && 
-                !sidebar.contains(e.target) && 
-                !sidebarToggle.contains(e.target)) {
-                sidebar.classList.remove('active');
-                sidebarToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
-            }
-        });
-    }
-    
-    console.log('📊 Dashboard initialized with mobile menu support');
+    console.log('📊 Dashboard initialized');
 });

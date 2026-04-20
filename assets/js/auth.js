@@ -176,13 +176,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         method: 'eth_requestAccounts' 
                     });
                     
+                    // Validate wallet address format
+                    if (!accounts || accounts.length === 0 || !isValidEthAddress(accounts[0])) {
+                        showNotification('Adresse wallet invalide', 'error');
+                        return;
+                    }
+                    
                     showNotification('Wallet connecté : ' + accounts[0].substring(0, 10) + '...', 'success');
                     
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
                     }, 2000);
                 } catch (error) {
-                    showNotification('Erreur de connexion au wallet', 'error');
+                    console.error('Wallet connection error:', error);
+                    showNotification('Connexion au wallet refusée ou échouée', 'error');
                 }
             } else {
                 showNotification('MetaMask n\'est pas installé. Veuillez l\'installer pour continuer.', 'error');
@@ -193,13 +200,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    function isValidEthAddress(address) {
+        return /^0x[a-fA-F0-9]{40}$/.test(address);
+    }
+    
     // Helper Functions
     function showError(fieldId, message) {
         const field = document.getElementById(fieldId);
-        const errorSpan = field.parentElement.querySelector('.form-error') || 
-                         field.closest('.form-group').querySelector('.form-error');
+        if (!field) return;
         
-        if (field) field.classList.add('error');
+        const errorSpan = field.closest('.form-group')?.querySelector('.form-error');
+        
+        field.classList.add('error');
         if (errorSpan) errorSpan.textContent = message;
     }
     

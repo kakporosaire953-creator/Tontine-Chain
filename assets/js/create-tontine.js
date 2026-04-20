@@ -49,11 +49,59 @@ function prevStep() {
 
 function validateStep(step) {
     const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+    if (!currentStepElement) return false;
+    
     const inputs = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
     
     let isValid = true;
     inputs.forEach(input => {
-        if (!input.value.trim()) {
+        const value = input.value.trim();
+        let fieldValid = true;
+        
+        // Check if empty
+        if (!value) {
+            fieldValid = false;
+        }
+        
+        // Validate email fields
+        if (input.type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                fieldValid = false;
+                showNotification('Email invalide', 'error');
+            }
+        }
+        
+        // Validate phone fields
+        if (input.type === 'tel' && value) {
+            const phoneRegex = /^(\+229)?[0-9\s]{8,}$/;
+            if (!phoneRegex.test(value)) {
+                fieldValid = false;
+                showNotification('Numéro de téléphone invalide', 'error');
+            }
+        }
+        
+        // Validate numeric fields
+        if (input.type === 'number' && value) {
+            const num = parseFloat(value);
+            if (isNaN(num) || num <= 0) {
+                fieldValid = false;
+                showNotification('Valeur numérique invalide', 'error');
+            }
+        }
+        
+        // Validate date fields
+        if (input.type === 'date' && value) {
+            const selectedDate = new Date(value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate < today) {
+                fieldValid = false;
+                showNotification('La date doit être dans le futur', 'error');
+            }
+        }
+        
+        if (!fieldValid) {
             isValid = false;
             input.classList.add('error');
         } else {
@@ -61,8 +109,8 @@ function validateStep(step) {
         }
     });
     
-    if (!isValid) {
-        showNotification('Veuillez remplir tous les champs requis', 'error');
+    if (!isValid && inputs.length > 0) {
+        showNotification('Veuillez corriger les erreurs dans le formulaire', 'error');
     }
     
     return isValid;
@@ -72,11 +120,26 @@ function addMember() {
     const nameInput = document.getElementById('memberName');
     const emailInput = document.getElementById('memberEmail');
     
+    if (!nameInput || !emailInput) return;
+    
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     
     if (!name || !email) {
         showNotification('Veuillez remplir le nom et l\'email', 'error');
+        return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showNotification('Format d\'email invalide', 'error');
+        return;
+    }
+    
+    // Check for duplicate email
+    if (members.some(m => m.email.toLowerCase() === email.toLowerCase())) {
+        showNotification('Ce membre existe déjà', 'error');
         return;
     }
     
