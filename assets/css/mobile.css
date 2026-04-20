@@ -57,6 +57,11 @@
         display: block;
     }
 
+    /* Masquer les liens de navigation, garder seulement les boutons CTA */
+    .nav-menu li:not(:nth-last-child(-n+3)) {
+        display: none;
+    }
+
     .nav-menu {
         position: fixed;
         top: 0;
@@ -74,6 +79,11 @@
 
     .menu-open .nav-menu {
         right: 0;
+    }
+
+    /* Afficher tous les liens dans le drawer */
+    .menu-open .nav-menu li {
+        display: block !important;
     }
 
     .nav-menu li {
@@ -227,6 +237,22 @@
         margin: 0 auto;
     }
 
+    /* FIX CRITIQUE: Image dashboard responsive */
+    .dashboard-img,
+    .mockup-content img,
+    .hero-visual img {
+        max-width: 100% !important;
+        height: auto !important;
+        width: 100% !important;
+        object-fit: contain;
+    }
+
+    .monitor-screen,
+    .mockup-content {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
     /* Masquer les formes décoratives sur mobile */
     .hero-shapes {
         display: none;
@@ -254,11 +280,16 @@
         font-size: 1rem;
     }
 
-    /* Grilles responsive */
+    /* Grilles responsive - 1 COLONNE sur mobile */
     .problems-detailed,
     .solutions-detailed {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 1.5rem;
+    }
+
+    .problem-detail-card,
+    .solution-detail-card {
+        width: 100%;
     }
 
     .problem-context {
@@ -267,7 +298,7 @@
     }
 
     .context-stats-visual {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 1rem;
     }
 
@@ -279,21 +310,60 @@
 
     .hero-section-image {
         border-radius: 12px;
+        max-width: 100%;
+        height: auto;
     }
 
-    /* Architecture */
+    /* Architecture - VERTICAL sur mobile */
     .architecture-visual {
-        flex-direction: column;
+        flex-direction: column !important;
         gap: 1.5rem;
     }
 
     .architecture-arrow {
-        transform: rotate(90deg);
+        transform: rotate(90deg) !important;
         margin: 0;
+        font-size: 2rem;
+    }
+
+    .architecture-arrow::after {
+        content: '↓';
     }
 
     .architecture-step {
         width: 100%;
+    }
+
+    /* Flow étapes - VERTICAL */
+    .how-steps,
+    .steps-grid,
+    .process-steps {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem;
+    }
+
+    .step,
+    .how-step,
+    .process-step {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Flèches verticales entre les étapes */
+    .step::after,
+    .how-step::after {
+        content: '↓';
+        display: block;
+        text-align: center;
+        font-size: 2rem;
+        color: var(--color-primary);
+        margin: 1rem 0;
+    }
+
+    .step:last-child::after,
+    .how-step:last-child::after {
+        display: none;
     }
 }
 
