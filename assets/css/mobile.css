@@ -235,6 +235,7 @@
         max-width: 100%;
         transform: scale(0.85);
         margin: 0 auto;
+        padding: 0 1rem;
     }
 
     /* FIX CRITIQUE: Image dashboard responsive */
@@ -251,6 +252,24 @@
     .mockup-content {
         max-width: 100%;
         overflow: hidden;
+    }
+
+    /* FIX: PC mockup ne doit pas déborder */
+    .monitor-frame {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .pc-mockup,
+    .hero-visual {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    /* Réduire encore plus sur mobile */
+    .pc-mockup {
+        transform: scale(0.7) !important;
+        transform-origin: center center;
     }
 
     /* Masquer les formes décoratives sur mobile */
@@ -519,7 +538,8 @@
     }
 
     .pc-mockup {
-        transform: scale(0.75);
+        transform: scale(0.6) !important;
+        margin: -2rem 0;
     }
 
     .stat-visual-card {
@@ -553,6 +573,13 @@
 
     .section {
         padding: 40px 0;
+    }
+
+    /* Assurer que rien ne déborde */
+    * {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
 

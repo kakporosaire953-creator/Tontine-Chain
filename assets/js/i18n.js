@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLang: localStorage.getItem('tontine-lang') || 'fr',
         
         init() {
+            // Forcer le français par défaut si aucune langue n'est stockée
+            if (!localStorage.getItem('tontine-lang')) {
+                localStorage.setItem('tontine-lang', 'fr');
+                this.currentLang = 'fr';
+            }
+            
             this.captureOriginals();
             this.updateUI();
             this.setupToggle();
