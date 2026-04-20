@@ -154,21 +154,42 @@
     .hero-title {
         font-size: 2rem;
         line-height: 1.2;
+        text-align: center;
     }
 
     .hero-subtitle {
         font-size: 1rem;
-        display: none; /* Caché sur mobile pour gagner de l'espace */
+        text-align: center;
+    }
+
+    /* Afficher le subtitle sur mobile mais plus court */
+    .hero-subtitle.hide-on-mobile {
+        display: block !important;
+    }
+
+    .hero-badge {
+        justify-content: center;
+    }
+
+    .hero-tag {
+        text-align: center;
+    }
+
+    .trust-badge {
+        justify-content: center;
+        text-align: center;
     }
 
     .hero-stats-inline {
         flex-direction: column;
         gap: 1rem;
+        align-items: center;
     }
 
     .stat-inline {
         width: 100%;
         justify-content: center;
+        text-align: center;
     }
 
     .stat-divider {
@@ -187,19 +208,32 @@
     .hero-trust {
         flex-direction: column;
         gap: 0.75rem;
+        align-items: center;
     }
 
     .trust-item {
         width: 100%;
+        justify-content: center;
     }
 
     .hero-visual {
         order: -1; /* Image en premier sur mobile */
+        margin-bottom: 2rem;
     }
 
     .pc-mockup {
         max-width: 100%;
-        transform: scale(0.9);
+        transform: scale(0.85);
+        margin: 0 auto;
+    }
+
+    /* Masquer les formes décoratives sur mobile */
+    .hero-shapes {
+        display: none;
+    }
+
+    .hero-pattern {
+        opacity: 0.3;
     }
 }
 
@@ -415,7 +449,7 @@
     }
 
     .pc-mockup {
-        transform: scale(0.8);
+        transform: scale(0.75);
     }
 
     .stat-visual-card {
@@ -425,6 +459,30 @@
     .problem-detail-card,
     .solution-detail-card {
         padding: 1.5rem;
+    }
+
+    .hero-badge span {
+        font-size: 0.8125rem;
+    }
+
+    .hero-tag {
+        font-size: 0.8125rem;
+        padding: 0.625rem 0.875rem;
+    }
+
+    .trust-badge {
+        font-size: 0.8125rem;
+        padding: 0.5rem 0.875rem;
+    }
+
+    /* Réduire les marges sur très petits écrans */
+    .hero {
+        padding-top: 90px;
+        padding-bottom: 50px;
+    }
+
+    .section {
+        padding: 40px 0;
     }
 }
 
@@ -457,4 +515,265 @@ html, body {
 img {
     max-width: 100%;
     height: auto;
+}
+
+
+/* ========================================
+   OPTIMISATIONS SUPPLÉMENTAIRES MOBILE
+   ======================================== */
+
+/* Améliorer la lisibilité des textes sur mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Éviter le zoom automatique sur iOS */
+    }
+
+    /* Espacement des paragraphes */
+    p {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    /* Améliorer les listes */
+    ul, ol {
+        padding-left: 1.5rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Cartes plus compactes */
+    .card,
+    .stat-card,
+    .feature-card {
+        padding: 1.25rem;
+    }
+
+    /* Icônes plus petites */
+    .fas, .far, .fab {
+        font-size: 1.25rem;
+    }
+
+    /* Améliorer les inputs sur mobile */
+    input,
+    textarea,
+    select {
+        font-size: 16px; /* Éviter le zoom sur iOS */
+        padding: 0.875rem;
+    }
+
+    /* Boutons plus accessibles */
+    button,
+    .btn {
+        min-height: 44px; /* Taille minimale tactile recommandée */
+        padding: 0.875rem 1.5rem;
+    }
+
+    /* Améliorer l'espacement des sections */
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    /* Optimiser les images */
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Améliorer les tooltips sur mobile */
+    .tooltip .tooltip-text {
+        display: none; /* Masquer les tooltips sur mobile */
+    }
+
+    /* Améliorer le footer */
+    .footer {
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Améliorer les badges */
+    .badge,
+    .section-badge {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Améliorer les citations */
+    blockquote {
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border-left-width: 3px;
+    }
+
+    /* Améliorer les tableaux sur mobile */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Améliorer le contraste pour la lisibilité */
+    .text-muted {
+        opacity: 0.8;
+    }
+
+    /* Espacer les éléments interactifs */
+    a, button {
+        margin: 0.25rem 0;
+    }
+
+    /* Améliorer les modales sur mobile */
+    .modal {
+        padding: 1rem;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* ========================================
+   LANDSCAPE MODE (Mobile horizontal)
+   ======================================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .hero-visual {
+        order: 2;
+    }
+
+    .pc-mockup {
+        transform: scale(0.7);
+    }
+
+    .section {
+        padding: 40px 0;
+    }
+}
+
+/* ========================================
+   TOUCH OPTIMIZATIONS
+   ======================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    /* Améliorer les zones tactiles */
+    a, button, .clickable {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Désactiver les effets hover sur tactile */
+    *:hover {
+        transition: none;
+    }
+
+    /* Améliorer le feedback tactile */
+    button:active,
+    .btn:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    /* Améliorer les liens */
+    a:active {
+        opacity: 0.7;
+    }
+}
+
+/* ========================================
+   DARK MODE MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+    [data-theme="dark"] {
+        /* Améliorer le contraste en dark mode sur mobile */
+        --text-primary: #F5F5F5;
+        --text-secondary: #D4D4D4;
+    }
+
+    [data-theme="dark"] .hero-pattern {
+        opacity: 0.2;
+    }
+
+    [data-theme="dark"] .nav-menu {
+        background: var(--bg-primary);
+        border-left: 1px solid var(--border-color);
+    }
+}
+
+/* ========================================
+   PERFORMANCE MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Désactiver les animations coûteuses */
+    .animate-continuous,
+    .pulse-animation,
+    .float-animation {
+        animation: none !important;
+    }
+
+    /* Simplifier les ombres */
+    .shadow-lg,
+    .shadow-xl {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Optimiser les transformations */
+    * {
+        will-change: auto !important;
+    }
+
+    /* Réduire les effets de flou */
+    .blur,
+    .backdrop-blur {
+        backdrop-filter: none !important;
+        filter: none !important;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITÉ MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Améliorer le focus visible */
+    *:focus-visible {
+        outline: 3px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    /* Améliorer les liens skip */
+    .skip-link:focus {
+        top: 1rem;
+        left: 1rem;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Améliorer les messages d'erreur */
+    .error-message,
+    .success-message {
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
 }
