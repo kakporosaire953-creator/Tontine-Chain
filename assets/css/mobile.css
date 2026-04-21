@@ -66,17 +66,25 @@
         position: fixed;
         top: 0;
         right: -100%;
-        width: 280px;
+        width: 100%;
         height: 100vh;
-        background: var(--bg-primary);
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 80px 1.5rem 2rem;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
+        justify-content: center;
+        padding: 80px 2rem 2rem;
+        box-shadow: none;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 10000;
         overflow-y: auto;
     }
 
+    /* Dark mode override pour le nav-menu mobile si existant */
+    [data-theme="dark"] .nav-menu {
+        background: rgba(15, 23, 42, 0.85);
+    }
+    
     .menu-open .nav-menu {
         right: 0;
     }
@@ -114,21 +122,17 @@
         text-align: center;
     }
 
-    .lang-toggle {
-        display: none;
-    }
-
     .lang-toggle-mobile {
-        display: flex !important;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem 1.25rem;
-        border-radius: 12px;
-        background: var(--bg-secondary);
-        cursor: pointer;
+        display: none !important; /* Retiré du menu pour être dans la nav */
     }
 
-    /* Overlay */
+    .nav-right-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    /* Overlay pour le menu premium façon blur */
     body.menu-open::after {
         content: '';
         position: fixed;
@@ -136,9 +140,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.4);
         z-index: 9999;
-        animation: fadeIn 0.3s ease;
+        animation: fadeIn 0.4s ease;
     }
 
     body.menu-open {
@@ -248,28 +252,53 @@
         object-fit: contain;
     }
 
-    .monitor-screen,
-    .mockup-content {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    /* FIX: PC mockup ne doit pas déborder */
-    .monitor-frame {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .pc-mockup,
-    .hero-visual {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    /* Réduire encore plus sur mobile */
     .pc-mockup {
-        transform: scale(0.7) !important;
-        transform-origin: center center;
+        display: none !important; /* On cache le PC mockup sur petit mobile */
+    }
+
+    .mobile-mockup {
+        display: block !important;
+        max-width: 300px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .phone-frame {
+        background: #000;
+        border-radius: 36px;
+        padding: 10px;
+        position: relative;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        border: 2px solid #333;
+    }
+
+    .phone-notch {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 25px;
+        background: #000;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        z-index: 10;
+    }
+
+    .phone-screen {
+        background: var(--bg-primary);
+        border-radius: 26px;
+        overflow: hidden;
+        position: relative;
+        /* Force une taille verticale typique de mobile */
+        aspect-ratio: 9/19;
+    }
+
+    .phone-screen .dashboard-img-mobile {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: top center;
     }
 
     /* Masquer les formes décoratives sur mobile */
@@ -494,29 +523,30 @@
 }
 
 /* ========================================
-   ANIMATIONS MOBILE (Désactivées)
+   ANIMATIONS MOBILE INTELLIGENTES
    ======================================== */
 
 @media (max-width: 768px) {
-    .reveal-up,
-    .reveal-left,
-    .reveal-right {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
+    /* Ne désactiver que si l'utilisateur a configuré "reduced-motion" */
+    @media (prefers-reduced-motion: reduce) {
+        .reveal-up,
+        .reveal-left,
+        .reveal-right {
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+        }
+
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
     }
 
-    * {
-        animation-duration: 0s !important;
-        transition-duration: 0.2s !important;
-    }
-
-    /* Exception: garder les animations du menu */
-    .nav-menu,
-    .hamburger-icon span,
-    body.menu-open::after {
-        animation-duration: 0.3s !important;
-        transition-duration: 0.3s !important;
+    /* Par défaut, garder des animations un peu plus rapides sur mobile */
+    .reveal-up {
+        animation-duration: 0.5s !important;
     }
 }
 
@@ -679,9 +709,21 @@ img {
         height: auto;
     }
 
-    /* Améliorer les tooltips sur mobile */
+    /* Améliorer les tooltips sur mobile (Affichage click/focus via JS ou pseudo div) */
     .tooltip .tooltip-text {
-        display: none; /* Masquer les tooltips sur mobile */
+        display: none;
+    }
+    .tooltip:active .tooltip-text, 
+    .tooltip:focus .tooltip-text {
+        display: block;
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 200px;
+        white-space: normal;
+        z-index: 1000;
     }
 
     /* Améliorer le footer */
@@ -817,21 +859,65 @@ img {
 }
 
 /* ========================================
+   ASSISTANT YAO FAB (Flottant)
+   ======================================== */
+
+.fab-yao {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 168, 107, 0.4);
+    z-index: 9000;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.fab-yao:hover, .fab-yao:active {
+    transform: scale(1.1);
+}
+
+.fab-yao .fab-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    background: inherit;
+    z-index: -1;
+    animation: pulseFab 2s infinite;
+}
+
+@keyframes pulseFab {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .fab-yao {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.25rem;
+    }
+}
+
+/* ========================================
    PERFORMANCE MOBILE
    ======================================== */
 
 @media (max-width: 768px) {
-    /* Désactiver les animations coûteuses */
-    .animate-continuous,
-    .pulse-animation,
-    .float-animation {
-        animation: none !important;
-    }
-
-    /* Simplifier les ombres */
+    /* Optimiser les ombres (garder un minimum de premium) */
     .shadow-lg,
     .shadow-xl {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
     }
 
     /* Optimiser les transformations */
