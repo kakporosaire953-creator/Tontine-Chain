@@ -57,62 +57,68 @@
         display: block;
     }
 
-    /* Masquer les liens de navigation, garder seulement les boutons CTA */
-    .nav-menu li:not(:nth-last-child(-n+3)) {
-        display: none;
-    }
-
+    /* Cacher tous les liens de navigation sur mobile */
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
         width: 100%;
+        max-width: 400px;
         height: 100vh;
-        background: rgba(255, 255, 255, 0.75);
+        background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 80px 2rem 2rem;
-        box-shadow: none;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
         transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 10000;
         overflow-y: auto;
+        display: flex !important;
     }
 
-    /* Dark mode override pour le nav-menu mobile si existant */
+    /* Cacher les liens sur mobile fermé */
+    .nav-menu li {
+        display: none;
+    }
+
+    /* Dark mode override pour le nav-menu mobile */
     [data-theme="dark"] .nav-menu {
-        background: rgba(15, 23, 42, 0.85);
+        background: rgba(15, 23, 42, 0.95);
     }
     
     .menu-open .nav-menu {
         right: 0;
     }
 
-    /* Afficher tous les liens dans le drawer */
+    /* Afficher tous les liens dans le drawer ouvert */
     .menu-open .nav-menu li {
         display: block !important;
     }
 
     .nav-menu li {
         width: 100%;
-        margin: 0;
-        margin-bottom: 0.5rem;
+        margin: 0 0 0.5rem 0;
     }
 
+    /* Touch targets minimum 44px */
     .nav-menu a {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 1rem 1.25rem;
+        padding: 14px 20px;
+        min-height: 44px;
         border-radius: 12px;
         transition: all 0.3s ease;
         width: 100%;
+        font-size: 1rem;
     }
 
-    .nav-menu a:hover {
+    .nav-menu a:hover,
+    .nav-menu a:active {
         background: var(--color-primary);
-        color: var(--color-black);
+        color: white;
         transform: translateX(5px);
     }
 
@@ -120,19 +126,28 @@
         width: 100%;
         justify-content: center;
         text-align: center;
+        min-height: 44px;
     }
 
+    /* Masquer le switcher mobile dupliqué */
     .lang-toggle-mobile {
-        display: none !important; /* Retiré du menu pour être dans la nav */
+        display: none !important;
     }
 
+    /* Garder uniquement le switcher desktop visible */
     .nav-right-actions {
         display: flex;
         align-items: center;
         gap: 1rem;
+        position: relative;
+        z-index: 10002;
     }
 
-    /* Overlay pour le menu premium façon blur */
+    .nav-right-actions .lang-toggle {
+        display: flex !important;
+    }
+
+    /* Overlay pour le menu */
     body.menu-open::after {
         content: '';
         position: fixed;
@@ -140,7 +155,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.5);
         z-index: 9999;
         animation: fadeIn 0.4s ease;
     }
@@ -258,7 +273,7 @@
 
     .mobile-mockup {
         display: block !important;
-        max-width: 300px;
+        max-width: 250px;
         margin: 0 auto;
         position: relative;
     }
@@ -611,6 +626,11 @@
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
+
+    /* Masquer le nom du site sur très petits écrans pour éviter la collision avec le toggle langue */
+    .brand-name {
+        display: none !important;
+    }
 }
 
 /* ========================================
@@ -812,11 +832,31 @@ img {
    ======================================== */
 
 @media (hover: none) and (pointer: coarse) {
-    /* Améliorer les zones tactiles */
+    /* Améliorer les zones tactiles - WCAG 2.5.5 */
     a, button, .clickable {
         min-height: 44px;
         min-width: 44px;
         padding: 0.75rem 1rem;
+    }
+
+    /* Touch targets pour les liens de navigation */
+    .nav-menu a,
+    .nav-menu button {
+        min-height: 44px;
+        padding: 14px 20px;
+    }
+
+    /* Touch targets pour le hamburger */
+    .menu-toggle {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px;
+    }
+
+    /* Touch targets pour le switcher de langue */
+    .lang-toggle {
+        min-height: 44px;
+        padding: 10px 16px;
     }
 
     /* Désactiver les effets hover sur tactile */
