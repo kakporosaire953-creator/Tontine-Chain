@@ -8,7 +8,7 @@
    ======================================== */
 
 .menu-toggle {
-    display: none;
+    display: none; /* Caché par défaut sur desktop */
     background: none;
     border: none;
     cursor: pointer;
@@ -17,7 +17,6 @@
     position: relative;
     min-height: 44px;
     min-width: 44px;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -59,7 +58,7 @@
 
 @media (max-width: 968px) {
     .menu-toggle {
-        display: block;
+        display: flex !important;
     }
 
     /* Cacher tous les liens de navigation sur mobile */
@@ -703,9 +702,10 @@
         overflow-wrap: break-word;
     }
 
-    /* Masquer le nom du site sur très petits écrans pour éviter la collision avec le toggle langue */
+    /* Garder le nom du site visible sur mobile */
     .brand-name {
-        font-size: 1rem !important;
+        display: inline-flex !important;
+        font-size: 1.1rem !important;
     }
 }
 
@@ -714,9 +714,9 @@
    ======================================== */
 
 @media (max-width: 380px) {
-    /* Masquer complètement le nom sur très petits écrans */
+    /* Réduire encore plus le nom sur très petits écrans */
     .brand-name {
-        display: none !important;
+        font-size: 0.9rem !important;
     }
 
     /* Réduire encore le switcher */
