@@ -13,8 +13,13 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 10001;
+    z-index: 10003;
     position: relative;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hamburger-icon {
@@ -138,9 +143,19 @@
     .nav-right-actions {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.75rem;
         position: relative;
         z-index: 10002;
+    }
+
+    /* Rendre le switcher plus compact sur mobile */
+    .nav-right-actions .lang-toggle {
+        display: flex !important;
+        gap: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        min-height: 44px;
+        align-items: center;
     }
 
     .nav-right-actions .lang-toggle {
@@ -273,40 +288,79 @@
 
     .mobile-mockup {
         display: block !important;
-        max-width: 250px;
-        margin: 0 auto;
+        max-width: 280px;
+        margin: 0 auto 2rem;
         position: relative;
+        transform: scale(1.1);
+        animation: floatMobile 3s ease-in-out infinite;
+    }
+
+    @keyframes floatMobile {
+        0%, 100% {
+            transform: scale(1.1) translateY(0);
+        }
+        50% {
+            transform: scale(1.1) translateY(-10px);
+        }
     }
 
     .phone-frame {
-        background: #000;
-        border-radius: 36px;
-        padding: 10px;
+        background: linear-gradient(145deg, #1a1a1a, #000);
+        border-radius: 40px;
+        padding: 12px;
         position: relative;
-        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-        border: 2px solid #333;
+        box-shadow: 
+            0 30px 60px -15px rgba(0,0,0,0.4),
+            0 0 0 1px rgba(255,255,255,0.1),
+            inset 0 1px 0 rgba(255,255,255,0.1);
+        border: 3px solid #2a2a2a;
     }
 
     .phone-notch {
         position: absolute;
-        top: 10px;
+        top: 12px;
         left: 50%;
         transform: translateX(-50%);
-        width: 120px;
-        height: 25px;
+        width: 140px;
+        height: 28px;
         background: #000;
-        border-bottom-left-radius: 16px;
-        border-bottom-right-radius: 16px;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
         z-index: 10;
+        box-shadow: inset 0 -2px 5px rgba(0,0,0,0.5);
+    }
+
+    .phone-notch::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 5px;
+        background: #1a1a1a;
+        border-radius: 3px;
+    }
+
+    .phone-notch::after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        right: 20px;
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(circle, #0a4d3a 0%, #052d22 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 3px rgba(0,168,107,0.5);
     }
 
     .phone-screen {
         background: var(--bg-primary);
-        border-radius: 26px;
+        border-radius: 32px;
         overflow: hidden;
         position: relative;
-        /* Force une taille verticale typique de mobile */
-        aspect-ratio: 9/19;
+        aspect-ratio: 9/19.5;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
     }
 
     .phone-screen .dashboard-img-mobile {
@@ -314,6 +368,28 @@
         height: 100% !important;
         object-fit: cover !important;
         object-position: top center;
+    }
+
+    .phone-screen .screen-glare {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,0.1) 0%,
+            transparent 50%,
+            rgba(0,0,0,0.05) 100%
+        );
+        pointer-events: none;
+    }
+
+    .demo-caption {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
     }
 
     /* Masquer les formes décoratives sur mobile */
@@ -629,7 +705,34 @@
 
     /* Masquer le nom du site sur très petits écrans pour éviter la collision avec le toggle langue */
     .brand-name {
+        font-size: 1rem !important;
+    }
+}
+
+/* ========================================
+   TRÈS PETITS ÉCRANS (< 380px) - iPhone SE, etc.
+   ======================================== */
+
+@media (max-width: 380px) {
+    /* Masquer complètement le nom sur très petits écrans */
+    .brand-name {
         display: none !important;
+    }
+
+    /* Réduire encore le switcher */
+    .nav-right-actions .lang-toggle {
+        padding: 0.5rem;
+        font-size: 0.8125rem;
+        gap: 0.125rem;
+    }
+
+    /* Réduire l'espacement */
+    .nav-right-actions {
+        gap: 0.5rem;
+    }
+
+    .navbar .container {
+        padding: 0 0.75rem;
     }
 }
 
