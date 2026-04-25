@@ -1067,3 +1067,31 @@ img {
 }
 
 
+
+/* ========================================
+   FIX Z-INDEX POUR MENU MOBILE
+   ======================================== */
+
+/* S'assurer que le bouton hamburger est toujours cliquable */
+.menu-toggle {
+    position: relative !important;
+    z-index: 10003 !important;
+    pointer-events: auto !important;
+}
+
+/* S'assurer que nav-right-actions est au-dessus */
+.nav-right-actions {
+    position: relative !important;
+    z-index: 10002 !important;
+}
+
+/* S'assurer que l'overlay est en dessous des boutons */
+body.menu-open::after {
+    z-index: 9999 !important;
+}
+
+/* Menu drawer */
+.nav-menu {
+    z-index: 10000 !important;
+}
+
