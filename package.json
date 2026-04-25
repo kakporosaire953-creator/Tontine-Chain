@@ -1,0 +1,29 @@
+{
+    "name":  "miabe-hackathon-1",
+    "version":  "1.0.0",
+    "description":  "![TontineChain Logo](assets/images/logo.svg)",
+    "main":  "service-worker.js",
+    "scripts":  {
+                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1",
+                    "remotion:preview":  "remotion preview remotion/Root.jsx",
+                    "remotion:render":  "remotion render TontineChainPresentation out/video.mp4"
+                },
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/kakporosaire953-creator/Tontine-Chain.git"
+                   },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "module",
+    "bugs":  {
+                 "url":  "https://github.com/kakporosaire953-creator/Tontine-Chain/issues"
+             },
+    "homepage":  "https://github.com/kakporosaire953-creator/Tontine-Chain#readme",
+    "dependencies":  {
+                         "@remotion/cli":  "^4.0.451",
+                         "remotion":  "^4.0.451"
+                     }
+}
