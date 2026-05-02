@@ -10,7 +10,7 @@
     <meta name="author" content="TontineChain">
     
     <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:tyc pe" content="website">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://tontinechain.com/">
     <meta property="og:title" content="TontineChain - Tontines Sécurisées par Blockchain 🇧🇯">
     <meta property="og:description" content="Fini les détournements et la Cale Sèche. Protégez vos fonds avec des smart contracts immuables. 70% de femmes entrepreneures nous font confiance.">
@@ -41,19 +41,16 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Space Grotesk (titres) + Manrope (textes) -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Fallback Poppins/Inter pour les pages app -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/sections.css">
-    <link rel="stylesheet" href="assets/css/theme.css">
-    <link rel="stylesheet" href="assets/css/logo.css">
-    <link rel="stylesheet" href="assets/css/mobile.css">
-    <link rel="stylesheet" href="assets/css/final-polish.css">
+    <!-- Styles — 1 seul fichier bundle (remplace global/style/sections/theme/logo/mobile/final-polish/redesign) -->
+    <link rel="stylesheet" href="assets/css/redesign.css">
 </head>
 <body>
     <!-- Skip Link pour accessibilité -->
@@ -150,14 +147,13 @@
                     </div>
 
                     <div class="hero-cta reveal-up">
-                        <a href="#" class="btn btn-green btn-large btn-interactive tooltip" aria-label="Créer une nouvelle tontine sécurisée">
-                            <span data-i18n="hero-cta">Créer ma Tontine</span>
-                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                            <span class="tooltip-text" role="tooltip">Commencez votre tontine sécurisée en 2 minutes</span>
+                        <a href="app/creer-tontine.html" class="btn btn-green btn-large btn-interactive" aria-label="Créer une nouvelle tontine sécurisée">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                            <span>Créer ma Tontine</span>
                         </a>
-                        <a href="#solution" class="btn btn-outline-green btn-large btn-interactive tooltip" aria-label="Découvrir la solution TontineChain">
-                            <span data-i18n="hero-learn">Voir la solution</span>
-                            <span class="tooltip-text" role="tooltip">Découvrez comment la blockchain protège vos fonds</span>
+                        <a href="app/connexion.html" class="btn btn-outline-green btn-large btn-interactive" aria-label="Rejoindre une tontine existante">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                            <span>Rejoindre une Tontine</span>
                         </a>
                     </div>
 
@@ -239,7 +235,7 @@
 
             <!-- Grande Image Section -->
             <div class="problem-hero-image">
-                <img src="assets/images/femmes-tontine-reunion.png" alt="Femmes béninoises en réunion de tontine traditionnelle" class="hero-section-image" loading="lazy" width="1200" height="500">
+                <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=1400&q=85&fit=crop&crop=faces,center" alt="Femmes béninoises en réunion de tontine traditionnelle" class="hero-section-image" loading="lazy" width="1400" height="520">
                 <div class="image-caption">
                     <i class="fas fa-camera"></i>
                     <span>Réunion de tontine traditionnelle à Cotonou - Les femmes entrepreneures se réunissent chaque semaine</span>
@@ -374,7 +370,7 @@
 
             <!-- Grande Image Solution -->
             <div class="solution-hero-image">
-                <img src="assets/images/femmes-technologie.png" alt="Femmes entrepreneures béninoises utilisant la technologie" class="hero-section-image" loading="lazy" width="1200" height="500">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1400&q=85&fit=crop&crop=faces,center" alt="Femmes entrepreneures béninoises utilisant la technologie" class="hero-section-image" loading="lazy" width="1400" height="520">
                 <div class="image-caption">
                     <i class="fas fa-camera"></i>
                     <span>Femmes entrepreneures béninoises - L'avenir de l'épargne collective est numérique</span>
@@ -773,74 +769,75 @@
         </div>
     </section>
 
-    <!-- Comment ça marche -->
-    <section id="comment" class="section section-how">
+    <!-- Comment ça marche — 3 étapes claires -->
+    <section id="comment" class="section section-how reveal-up">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge" data-i18n="nav-how">Simple et Efficace</span>
-                <h2 data-i18n="how-title">Quatre Étapes vers l'Épargne Moderne</h2>
-                <p data-i18n="how-subtitle">4 étapes pour sécuriser votre tontine sur la blockchain</p>
+                <span class="section-badge gold">Simple et Efficace</span>
+                <h2>Comment ça marche ?</h2>
+                <p>En 3 étapes, votre tontine est sécurisée sur la blockchain. Aucune connaissance technique requise.</p>
             </div>
 
-            <div class="steps-container">
-                <div class="step-card interactive-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">
+            <div class="steps-grid">
+                <div class="step-card-new reveal-up">
+                    <div class="step-num">1</div>
+                    <div class="step-icon-wrap">
                         <i class="fas fa-users-cog"></i>
                     </div>
-                    <h3 data-i18n="how-step-1-title">Créez votre Groupe</h3>
-                    <p data-i18n="how-step-1-desc">Définissez les membres, le montant des cotisations, la fréquence et l'ordre des bénéficiaires.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 25%;"></div>
-                    </div>
+                    <h3>Créez ou Rejoignez</h3>
+                    <p>Définissez votre groupe, le montant des cotisations et invitez vos membres en 2 minutes via WhatsApp ou SMS.</p>
                 </div>
 
-                <div class="step-arrow">
-                    <i class="fas fa-arrow-right bounce-in"></i>
-                </div>
-
-                <div class="step-card interactive-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3 data-i18n="how-step-2-title">Smart Contract Déployé</h3>
-                    <p data-i18n="how-step-2-desc">Un contrat unique et immuable est créé pour votre groupe sur un réseau sécurisé et performant.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 50%;"></div>
-                    </div>
-                </div>
-
-                <div class="step-arrow">
-                    <i class="fas fa-arrow-right bounce-in"></i>
-                </div>
-
-                <div class="step-card interactive-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">
+                <div class="step-card-new reveal-up">
+                    <div class="step-num">2</div>
+                    <div class="step-icon-wrap">
                         <i class="fas fa-coins"></i>
                     </div>
-                    <h3 data-i18n="how-step-3-title">Cotisations Automatiques</h3>
-                    <p data-i18n="how-step-3-desc">Chaque membre paie sa cotisation directement dans le smart contract. Tout est tracé.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%;"></div>
-                    </div>
+                    <h3>Contribuez</h3>
+                    <p>Payez vos cotisations via Mobile Money (MTN, Moov). Chaque paiement est automatiquement enregistré et visible par tous.</p>
                 </div>
 
-                <div class="step-arrow">
-                    <i class="fas fa-arrow-right bounce-in"></i>
-                </div>
-
-                <div class="step-card interactive-card">
-                    <div class="step-number">4</div>
-                    <div class="step-icon">
+                <div class="step-card-new reveal-up">
+                    <div class="step-num">3</div>
+                    <div class="step-icon-wrap">
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    <h3 data-i18n="how-step-4-title">Cagnotte Libérée</h3>
-                    <p data-i18n="how-step-4-desc">Le bénéficiaire du tour reçoit automatiquement la cagnotte. Zéro intervention humaine.</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 100%;"></div>
+                    <h3>Suivez et Retirez</h3>
+                    <p>Suivez l'avancement en temps réel. Quand c'est votre tour, la cagnotte est libérée automatiquement. Zéro risque de détournement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Confiance -->
+    <section class="section-trust reveal-up">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge dark">Pourquoi nous faire confiance</span>
+                <h2>Votre épargne, protégée à 100%</h2>
+                <p>Trois piliers qui font de TontineChain la solution la plus sûre pour vos tontines.</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-card-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
+                    <h3>Transparence totale</h3>
+                    <p>Chaque transaction est enregistrée publiquement sur la blockchain. Impossible de falsifier, modifier ou effacer l'historique.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Sécurité absolue</h3>
+                    <p>Les fonds sont verrouillés dans un smart contract audité par OpenZeppelin. Personne ne peut y accéder, pas même nous.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Suivi en temps réel</h3>
+                    <p>Consultez l'état de votre tontine à tout moment : cotisations reçues, prochain bénéficiaire, historique complet.</p>
                 </div>
             </div>
         </div>
@@ -1031,7 +1028,7 @@
     </section>
 
     <!-- CTA Final -->
-    <section class="section section-cta">
+    <section class="section section-cta reveal-up">
         <div class="container">
             <div class="cta-content">
                 <div class="cta-flag">
@@ -1041,15 +1038,22 @@
                         <rect x="24" y="20" width="36" height="20" fill="#E8112D"/>
                     </svg>
                 </div>
-                <h2 data-i18n="cta-title">Sécurisez Votre Épargne Collective</h2>
-                <p data-i18n="cta-subtitle">Rejoignez la révolution blockchain des tontines béninoises</p>
-                <a href="#" class="btn btn-green btn-large">
-                    <i class="fas fa-rocket"></i>
-                    <span data-i18n="cta-btn">Démarrer Maintenant</span>
-                </a>
+                <h2>Prêt à sécuriser votre épargne ?</h2>
+                <p>Rejoignez des centaines de béninois qui font confiance à TontineChain pour protéger leurs tontines.</p>
+                <div class="cta-buttons">
+                    <a href="app/creer-tontine.html" class="btn btn-green btn-large">
+                        <i class="fas fa-plus-circle"></i>
+                        Créer une tontine
+                    </a>
+                    <a href="app/connexion.html" class="btn btn-outline-green btn-large">
+                        <i class="fas fa-users"></i>
+                        Rejoindre une tontine
+                    </a>
+                </div>
                 <div class="cta-trust">
-                    <span data-i18n="cta-free"><i class="fas fa-check-circle"></i> Gratuit pour commencer</span>
-                    <span data-i18n="cta-no-commit"><i class="fas fa-check-circle"></i> Sans engagement</span>
+                    <span><i class="fas fa-check-circle"></i> Gratuit pour commencer</span>
+                    <span><i class="fas fa-check-circle"></i> Sans engagement</span>
+                    <span><i class="fas fa-check-circle"></i> Support 7j/7</span>
                 </div>
             </div>
         </div>
@@ -1060,54 +1064,57 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="#" class="brand footer-brand">
+                    <div class="footer-brand">
                         <img src="assets/images/logo-tontinechain.jpeg" alt="TontineChain Logo" class="footer-logo">
-                        <span class="brand-name"><span class="brand-gold">Tontine</span><span class="brand-blue">Chain</span></span>
-                    </a>
-                    <p data-i18n="footer-tagline">La tontine, réinventée pour le Bénin</p>
+                        <span class="footer-brand-name"><span class="brand-gold">Tontine</span><span style="color:var(--c-gold)">Chain</span></span>
+                    </div>
+                    <p>La tontine béninoise, sécurisée par la blockchain. Fini les détournements et la Cale Sèche.</p>
+                    <div class="footer-flag">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cotonou, Bénin 🇧🇯</span>
+                    </div>
                 </div>
 
                 <div class="footer-col">
-                    <h4 data-i18n="footer-links-title">Liens Utiles</h4>
+                    <h4>Navigation</h4>
                     <ul>
-                        <li><a href="#probleme" data-i18n="nav-problem">Problème</a></li>
-                        <li><a href="#solution" data-i18n="nav-solution">Solution</a></li>
-                        <li><a href="#comment" data-i18n="nav-how">Comment ça marche</a></li>
+                        <li><a href="#probleme">Le Problème</a></li>
+                        <li><a href="#solution">La Solution</a></li>
+                        <li><a href="#comment">Comment ça marche</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
-                    <h4 data-i18n="footer-legal-title">Légal</h4>
+                    <h4>Application</h4>
                     <ul>
-                        <li><a href="#" data-i18n="footer-privacy">Politique de confidentialité</a></li>
-                        <li><a href="#" data-i18n="footer-terms">Conditions d'utilisation</a></li>
-                        <li><a href="#" data-i18n="footer-contact">Contact</a></li>
+                        <li><a href="app/connexion.html">Connexion</a></li>
+                        <li><a href="app/inscription.html">Inscription</a></li>
+                        <li><a href="app/creer-tontine.html">Créer une tontine</a></li>
+                        <li><a href="app/dashboard.html">Dashboard</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col footer-social">
-                    <h4>Nous Suivre</h4>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="WhatsApp" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Facebook" title="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter" title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link" aria-label="LinkedIn" title="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
+                <div class="footer-col">
+                    <h4>Légal & Contact</h4>
+                    <ul>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <div class="social-links" style="display:flex;gap:12px;margin-top:16px;">
+                        <a href="#" aria-label="WhatsApp" style="color:rgba(255,255,255,.55);font-size:1.25rem;transition:color .15s;" onmouseover="this.style.color='#FFB81C'" onmouseout="this.style.color='rgba(255,255,255,.55)'"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook" style="color:rgba(255,255,255,.55);font-size:1.25rem;transition:color .15s;" onmouseover="this.style.color='#FFB81C'" onmouseout="this.style.color='rgba(255,255,255,.55)'"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter" style="color:rgba(255,255,255,.55);font-size:1.25rem;transition:color .15s;" onmouseover="this.style.color='#FFB81C'" onmouseout="this.style.color='rgba(255,255,255,.55)'"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn" style="color:rgba(255,255,255,.55);font-size:1.25rem;transition:color .15s;" onmouseover="this.style.color='#FFB81C'" onmouseout="this.style.color='rgba(255,255,255,.55)'"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p data-i18n="footer-copy">&copy; 2026 MIABE HACKATHON. Tous droits réservés.</p>
-                <div class="footer-sources">
-                    <span data-i18n="footer-sources">Sources: ANSSFD • Journal La Nation • UN Women Benin</span>
+                <p>&copy; 2026 MIABE HACKATHON — TontineChain. Tous droits réservés.</p>
+                <div class="footer-sources" style="margin-top:8px;font-size:.8rem;opacity:.5;">
+                    Sources: ANSSFD • Journal La Nation • UN Women Benin
                 </div>
             </div>
         </div>
@@ -1179,18 +1186,12 @@
         <i class="fas fa-robot"></i>
     </a>
 
+    <!-- theme.js sans defer — doit s'exécuter avant le rendu pour éviter le flash de thème -->
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/mobile-menu.js"></script>
-    <script src="assets/js/premium-animations.js"></script>
-    <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/pc-mockup.js" defer></script>
-    <script src="assets/js/logo-animation.js" defer></script>
-    <script src="assets/js/translations.js" defer></script>
-    <script src="assets/js/i18n.js" defer></script>
-    <script src="assets/js/animations.js" defer></script>
-    <script src="assets/js/faq.js" defer></script>
-    
-    <!-- Service Worker Registration (PWA) -->
+    <!-- app.bundle.js remplace les 10 anciens fichiers JS -->
+    <script src="assets/js/app.bundle.js" defer></script>
+
+    <!-- Service Worker (PWA) -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
