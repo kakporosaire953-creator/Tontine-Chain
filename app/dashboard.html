@@ -134,8 +134,15 @@
             <div class="dashboard-header">
                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                     <div style="display: flex; align-items: center; gap: 1rem;">
-                        <button class="mobile-sidebar-toggle" id="sidebarToggle" aria-label="Menu">
-                            <i class="fas fa-bars"></i>
+                        <button 
+                            id="sidebarToggle" 
+                            class="mobile-sidebar-toggle"
+                            aria-label="Menu"
+                            aria-expanded="false"
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </button>
                         <div class="dashboard-header-text">
                             <h1 data-i18n="dash-welcome">Bienvenue, Marie Koffi ! 👋</h1>
@@ -447,6 +454,7 @@
     <script src="../assets/js/premium-animations.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/app-nav.js"></script>
     <script src="../assets/js/logo-animation.js"></script>
     <script src="../assets/js/translations.js"></script>
     <script src="../assets/js/i18n.js"></script>

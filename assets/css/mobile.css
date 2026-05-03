@@ -1,366 +1,107 @@
 /* ============================================
    TontineChain - Styles Mobile Responsive
-   Version Mobile Optimisée et Professionnelle
+   Cohérent avec redesign.css
    ============================================ */
-
-/* ========================================
-   MENU HAMBURGER
-   ======================================== */
-
-.menu-toggle {
-    display: none; /* Caché par défaut sur desktop */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 10003;
-    position: relative;
-    min-height: 44px;
-    min-width: 44px;
-    align-items: center;
-    justify-content: center;
-}
-
-.hamburger-icon {
-    width: 28px;
-    height: 20px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.hamburger-icon span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: var(--color-primary);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-/* Animation hamburger vers X */
-.menu-open .hamburger-icon span:nth-child(1) {
-    transform: translateY(8.5px) rotate(45deg);
-}
-
-.menu-open .hamburger-icon span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-open .hamburger-icon span:nth-child(3) {
-    transform: translateY(-8.5px) rotate(-45deg);
-}
-
-/* ========================================
-   NAVIGATION MOBILE
-   ======================================== */
-
-@media (max-width: 968px) {
-    .menu-toggle {
-        display: flex !important;
-    }
-
-    /* Cacher tous les liens de navigation sur mobile */
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        max-width: 400px;
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 80px 2rem 2rem;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 10000;
-        overflow-y: auto;
-        display: flex !important;
-    }
-
-    /* Cacher les liens sur mobile fermé */
-    .nav-menu li {
-        display: none;
-    }
-
-    /* Dark mode override pour le nav-menu mobile */
-    [data-theme="dark"] .nav-menu {
-        background: rgba(15, 23, 42, 0.95);
-    }
-    
-    .menu-open .nav-menu {
-        right: 0;
-    }
-
-    /* Afficher tous les liens dans le drawer ouvert */
-    .menu-open .nav-menu li {
-        display: block !important;
-    }
-
-    .nav-menu li {
-        width: 100%;
-        margin: 0 0 0.5rem 0;
-    }
-
-    /* Touch targets minimum 44px */
-    .nav-menu a {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem; /* Rapprocher du hamburger */ position: relative; z-index: 10002;
-    }
-
-    /* Rendre le switcher plus compact sur mobile */
-    .nav-right-actions .lang-toggle {
-        display: flex !important;
-        gap: 0.05rem; padding: 0.3rem 0.4rem; font-size: 0.7rem;
-        min-height: 44px;
-        align-items: center;
-    }
-
-    /* Augmenter l'espace entre le nom du site et les actions */
-    .navbar .container {
-        gap: 2rem; justify-content: space-between;
-    }
-
-    .nav-right-actions .lang-toggle {
-        display: flex !important;
-    }
-
-    /* Overlay pour le menu */
-    body.menu-open::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-        animation: fadeIn 0.4s ease;
-    }
-
-    body.menu-open {
-        overflow: hidden;
-    }
-}
 
 /* ========================================
    HERO SECTION MOBILE
    ======================================== */
 
 @media (max-width: 768px) {
-    .hero {
-        padding-top: 100px;
-        padding-bottom: 60px;
-    }
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 
-    .hero-title {
-        font-size: 2rem;
-        line-height: 1.2;
-        text-align: center;
-    }
+  .hero-visual {
+    order: -1;
+  }
 
-    .hero-subtitle {
-        font-size: 1rem;
-        text-align: center;
-    }
+  .hero-title {
+    font-size: clamp(1.75rem, 5vw, 2.4rem);
+    text-align: center;
+  }
 
-    /* Afficher le subtitle sur mobile mais plus court */
-    .hero-subtitle.hide-on-mobile {
-        display: block !important;
-    }
+  .hero-subtitle {
+    font-size: 1rem;
+    text-align: center;
+  }
 
-    .hero-badge {
-        justify-content: center;
-    }
+  .hero-badge {
+    justify-content: center;
+  }
 
-    .hero-tag {
-        text-align: center;
-    }
+  .hero-tag {
+    text-align: center;
+    justify-content: center;
+  }
 
-    .trust-badge {
-        justify-content: center;
-        text-align: center;
-    }
+  .trust-badge {
+    justify-content: center;
+  }
 
-    .hero-stats-inline {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-    }
+  .hero-stats-inline {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
 
-    .stat-inline {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-    }
+  .stat-inline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 
-    .stat-divider {
-        display: none;
-    }
+  .stat-divider {
+    width: 80%;
+    height: 1px;
+  }
 
-    .hero-cta {
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .hero-cta {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    .hero-cta .btn {
-        width: 100%;
-    }
+  .hero-cta .btn {
+    width: 100%;
+    max-width: 320px;
+  }
 
-    .hero-trust {
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: center;
-    }
+  .hero-trust {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    .trust-item {
-        width: 100%;
-        justify-content: center;
-    }
+  /* PC mockup caché sur mobile */
+  .pc-mockup {
+    display: none !important;
+  }
 
-    .hero-visual {
-        order: -1; /* Image en premier sur mobile */
-        margin-bottom: 2rem;
-    }
+  /* Mobile mockup affiché */
+  .mobile-mockup {
+    display: block !important;
+    max-width: 280px;
+    margin: 0 auto;
+  }
 
-    .pc-mockup {
-        max-width: 100%;
-        transform: scale(0.85);
-        margin: 0 auto;
-        padding: 0 1rem;
-    }
+  /* Masquer les formes décoratives sur mobile */
+  .hero-shapes {
+    display: none;
+  }
 
-    /* FIX CRITIQUE: Image dashboard responsive */
-    .dashboard-img,
-    .mockup-content img,
-    .hero-visual img {
-        max-width: 100% !important;
-        height: auto !important;
-        width: 100% !important;
-        object-fit: contain;
-    }
+  .hero-pattern {
+    opacity: 0.3;
+  }
 
-    .pc-mockup {
-        display: none !important; /* On cache le PC mockup sur petit mobile */
-    }
-
-    .mobile-mockup { display: none !important; }
-
-    @keyframes floatMobile {
-        0%, 100% {
-            transform: scale(1.1) translateY(0);
-        }
-        50% {
-            transform: scale(1.1) translateY(-10px);
-        }
-    }
-
-    .phone-frame {
-        background: linear-gradient(145deg, #1a1a1a, #000);
-        border-radius: 40px;
-        padding: 12px;
-        position: relative;
-        box-shadow: 
-            0 30px 60px -15px rgba(0,0,0,0.4),
-            0 0 0 1px rgba(255,255,255,0.1),
-            inset 0 1px 0 rgba(255,255,255,0.1);
-        border: 3px solid #2a2a2a;
-    }
-
-    .phone-notch {
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 140px;
-        height: 28px;
-        background: #000;
-        border-bottom-left-radius: 18px;
-        border-bottom-right-radius: 18px;
-        z-index: 10;
-        box-shadow: inset 0 -2px 5px rgba(0,0,0,0.5);
-    }
-
-    .phone-notch::before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 5px;
-        background: #1a1a1a;
-        border-radius: 3px;
-    }
-
-    .phone-notch::after {
-        content: '';
-        position: absolute;
-        top: 8px;
-        right: 20px;
-        width: 8px;
-        height: 8px;
-        background: radial-gradient(circle, #0a4d3a 0%, #052d22 100%);
-        border-radius: 50%;
-        box-shadow: 0 0 3px rgba(0,168,107,0.5);
-    }
-
-    .phone-screen {
-        background: var(--bg-primary);
-        border-radius: 32px;
-        overflow: hidden;
-        position: relative;
-        aspect-ratio: 9/19.5;
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
-    }
-
-    .phone-screen .dashboard-img-mobile {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        object-position: top center;
-    }
-
-    .phone-screen .screen-glare {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            135deg,
-            rgba(255,255,255,0.1) 0%,
-            transparent 50%,
-            rgba(0,0,0,0.05) 100%
-        );
-        pointer-events: none;
-    }
-
-    .demo-caption {
-        margin-top: 1.5rem;
-        text-align: center;
-        font-size: 0.875rem;
-        color: var(--color-gray-600);
-    }
-
-    /* Masquer les formes décoratives sur mobile */
-    .hero-shapes {
-        display: none;
-    }
-
-    .hero-pattern {
-        opacity: 0.3;
-    }
+  .floating-card-1,
+  .floating-card-2 {
+    display: none !important;
+  }
 }
 
 /* ========================================
@@ -368,104 +109,100 @@
    ======================================== */
 
 @media (max-width: 768px) {
-    .section {
-        padding: 50px 0;
-    }
+  .section {
+    padding: 64px 0;
+  }
 
-    .section-header h2 {
-        font-size: 1.75rem;
-    }
+  .section-header h2 {
+    font-size: clamp(1.5rem, 4vw, 1.75rem);
+  }
 
-    .section-header p {
-        font-size: 1rem;
-    }
+  .section-header p {
+    font-size: 1rem;
+  }
 
-    /* Grilles responsive - 1 COLONNE sur mobile */
-    .problems-detailed,
-    .solutions-detailed {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem;
-    }
+  /* Grilles responsive - 1 COLONNE sur mobile */
+  .problems-detailed,
+  .solutions-detailed {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
 
-    .problem-detail-card,
-    .solution-detail-card {
-        width: 100%;
-    }
+  .problem-detail-card,
+  .solution-detail-card {
+    width: 100%;
+    padding: 32px 24px !important;
+  }
 
-    .problem-context {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+  .problem-context {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 
-    .context-stats-visual {
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-    }
+  .context-stats-visual {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
 
-    /* Images hero sections */
-    .problem-hero-image,
-    .solution-hero-image {
-        margin: 2rem 0;
-    }
+  /* Images hero sections */
+  .problem-hero-image,
+  .solution-hero-image {
+    margin: 0 auto 48px !important;
+  }
 
-    .hero-section-image {
-        border-radius: 12px;
-        max-width: 100%;
-        height: auto;
-    }
+  .hero-section-image {
+    border-radius: var(--r-lg, 20px) !important;
+    max-width: 100%;
+    height: auto;
+    max-height: 260px !important;
+  }
 
-    /* Architecture - VERTICAL sur mobile */
-    .architecture-visual {
-        flex-direction: column !important;
-        gap: 1.5rem;
-    }
+  /* Architecture - VERTICAL sur mobile */
+  .architecture-visual {
+    flex-direction: column !important;
+    gap: 24px;
+  }
 
-    .architecture-arrow {
-        transform: rotate(90deg) !important;
-        margin: 0;
-        font-size: 2rem;
-    }
+  .architecture-arrow {
+    transform: rotate(90deg) !important;
+    margin: 0;
+    font-size: 2rem;
+  }
 
-    .architecture-arrow::after {
-        content: '↓';
-    }
+  .architecture-step {
+    width: 100%;
+  }
 
-    .architecture-step {
-        width: 100%;
-    }
+  /* Steps grid - VERTICAL */
+  .steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
 
-    /* Flow étapes - VERTICAL */
-    .how-steps,
-    .steps-grid,
-    .process-steps {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 1.5rem;
-    }
+  .steps-grid::before {
+    display: none;
+  }
 
-    .step,
-    .how-step,
-    .process-step {
-        width: 100% !important;
-        max-width: 100% !important;
-    }
+  .step-card-new {
+    width: 100%;
+  }
 
-    /* Flèches verticales entre les étapes */
-    .step::after,
-    .how-step::after {
-        content: '↓';
-        display: block;
-        text-align: center;
-        font-size: 2rem;
-        color: var(--color-primary);
-        margin: 1rem 0;
-    }
+  /* Trust grid */
+  .trust-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
 
-    .step:last-child::after,
-    .how-step:last-child::after {
-        display: none;
-    }
+  /* Footer grid */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
 }
+
+/* ========================================
+   MENU HAMBURGER (géré par redesign.css)
+   ======================================== */
 
 /* ========================================
    FAQ MOBILE
@@ -514,28 +251,8 @@
 }
 
 /* ========================================
-   NAVBAR MOBILE
+   NAVBAR MOBILE (géré par redesign.css)
    ======================================== */
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem 0;
-        border-radius: 16px;
-    }
-
-    .navbar .container {
-        padding: 0 1rem;
-    }
-
-    .brand-name {
-        font-size: 1.25rem;
-    }
-
-    .logo-icon {
-        width: 48px;
-        height: 48px;
-    }
-}
 
 /* ========================================
    TRUST BADGE MOBILE
@@ -727,371 +444,5 @@ html, body {
 img {
     max-width: 100%;
     height: auto;
-}
-
-
-/* ========================================
-   OPTIMISATIONS SUPPLÉMENTAIRES MOBILE
-   ======================================== */
-
-/* Améliorer la lisibilité des textes sur mobile */
-@media (max-width: 768px) {
-    body {
-        font-size: 16px; /* Éviter le zoom automatique sur iOS */
-    }
-
-    /* Espacement des paragraphes */
-    p {
-        line-height: 1.6;
-        margin-bottom: 1rem;
-    }
-
-    /* Améliorer les listes */
-    ul, ol {
-        padding-left: 1.5rem;
-    }
-
-    li {
-        margin-bottom: 0.5rem;
-    }
-
-    /* Cartes plus compactes */
-    .card,
-    .stat-card,
-    .feature-card {
-        padding: 1.25rem;
-    }
-
-    /* Icônes plus petites */
-    .fas, .far, .fab {
-        font-size: 1.25rem;
-    }
-
-    /* Améliorer les inputs sur mobile */
-    input,
-    textarea,
-    select {
-        font-size: 16px; /* Éviter le zoom sur iOS */
-        padding: 0.875rem;
-    }
-
-    /* Boutons plus accessibles */
-    button,
-    .btn {
-        min-height: 44px; /* Taille minimale tactile recommandée */
-        padding: 0.875rem 1.5rem;
-    }
-
-    /* Améliorer l'espacement des sections */
-    .section-header {
-        margin-bottom: 2rem;
-    }
-
-    /* Optimiser les images */
-    img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* Améliorer les tooltips sur mobile (Affichage click/focus via JS ou pseudo div) */
-    .tooltip .tooltip-text {
-        display: none;
-    }
-    .tooltip:active .tooltip-text, 
-    .tooltip:focus .tooltip-text {
-        display: block;
-        position: absolute;
-        bottom: 120%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: max-content;
-        max-width: 200px;
-        white-space: normal;
-        z-index: 1000;
-    }
-
-    /* Améliorer le footer */
-    .footer {
-        padding: 2rem 0;
-        text-align: center;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    /* Améliorer les badges */
-    .badge,
-    .section-badge {
-        font-size: 0.875rem;
-        padding: 0.5rem 1rem;
-    }
-
-    /* Améliorer les citations */
-    blockquote {
-        padding: 1rem;
-        margin: 1.5rem 0;
-        border-left-width: 3px;
-    }
-
-    /* Améliorer les tableaux sur mobile */
-    table {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Améliorer le contraste pour la lisibilité */
-    .text-muted {
-        opacity: 0.8;
-    }
-
-    /* Espacer les éléments interactifs */
-    a, button {
-        margin: 0.25rem 0;
-    }
-
-    /* Améliorer les modales sur mobile */
-    .modal {
-        padding: 1rem;
-    }
-
-    .modal-content {
-        max-width: 100%;
-        margin: 0;
-    }
-}
-
-/* ========================================
-   LANDSCAPE MODE (Mobile horizontal)
-   ======================================== */
-
-@media (max-width: 768px) and (orientation: landscape) {
-    .hero {
-        padding-top: 80px;
-        padding-bottom: 40px;
-    }
-
-    .hero-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-
-    .hero-visual {
-        order: 2;
-    }
-
-    .pc-mockup {
-        transform: scale(0.7);
-    }
-
-    .section {
-        padding: 40px 0;
-    }
-}
-
-/* ========================================
-   TOUCH OPTIMIZATIONS
-   ======================================== */
-
-@media (hover: none) and (pointer: coarse) {
-    /* Améliorer les zones tactiles - WCAG 2.5.5 */
-    a, button, .clickable {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 0.75rem 1rem;
-    }
-
-    /* Touch targets pour les liens de navigation */
-    .nav-menu a,
-    .nav-menu button {
-        min-height: 44px;
-        padding: 14px 20px;
-    }
-
-    /* Touch targets pour le hamburger */
-    .menu-toggle {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 10px;
-    }
-
-    /* Touch targets pour le switcher de langue */
-    .lang-toggle {
-        min-height: 44px;
-        padding: 10px 16px;
-    }
-
-    /* Désactiver les effets hover sur tactile */
-    *:hover {
-        transition: none;
-    }
-
-    /* Améliorer le feedback tactile */
-    button:active,
-    .btn:active {
-        transform: scale(0.98);
-        opacity: 0.9;
-    }
-
-    /* Améliorer les liens */
-    a:active {
-        opacity: 0.7;
-    }
-}
-
-/* ========================================
-   DARK MODE MOBILE
-   ======================================== */
-
-@media (max-width: 768px) {
-    [data-theme="dark"] {
-        /* Améliorer le contraste en dark mode sur mobile */
-        --text-primary: #F5F5F5;
-        --text-secondary: #D4D4D4;
-    }
-
-    [data-theme="dark"] .hero-pattern {
-        opacity: 0.2;
-    }
-
-    [data-theme="dark"] .nav-menu {
-        background: var(--bg-primary);
-        border-left: 1px solid var(--border-color);
-    }
-}
-
-/* ========================================
-   ASSISTANT YAO FAB (Flottant)
-   ======================================== */
-
-.fab-yao {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 60px;
-    height: 60px;
-    background: var(--color-primary);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 168, 107, 0.4);
-    z-index: 9000;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.fab-yao:hover, .fab-yao:active {
-    transform: scale(1.1);
-}
-
-.fab-yao .fab-glow {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50%;
-    background: inherit;
-    z-index: -1;
-    animation: pulseFab 2s infinite;
-}
-
-@keyframes pulseFab {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(1.6); opacity: 0; }
-}
-
-@media (max-width: 768px) {
-    .fab-yao {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 55px;
-        height: 55px;
-        font-size: 1.25rem;
-    }
-}
-
-/* ========================================
-   PERFORMANCE MOBILE
-   ======================================== */
-
-@media (max-width: 768px) {
-    /* Optimiser les ombres (garder un minimum de premium) */
-    .shadow-lg,
-    .shadow-xl {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-    }
-
-    /* Optimiser les transformations */
-    * {
-        will-change: auto !important;
-    }
-
-    /* Réduire les effets de flou */
-    .blur,
-    .backdrop-blur {
-        backdrop-filter: none !important;
-        filter: none !important;
-    }
-}
-
-/* ========================================
-   ACCESSIBILITÉ MOBILE
-   ======================================== */
-
-@media (max-width: 768px) {
-    /* Améliorer le focus visible */
-    *:focus-visible {
-        outline: 3px solid var(--color-primary);
-        outline-offset: 2px;
-    }
-
-    /* Améliorer les liens skip */
-    .skip-link:focus {
-        top: 1rem;
-        left: 1rem;
-        padding: 1rem;
-        font-size: 1rem;
-    }
-
-    /* Améliorer les messages d'erreur */
-    .error-message,
-    .success-message {
-        padding: 1rem;
-        font-size: 1rem;
-        border-radius: 8px;
-    }
-}
-
-
-
-/* ========================================
-   FIX Z-INDEX POUR MENU MOBILE
-   ======================================== */
-
-/* S'assurer que le bouton hamburger est toujours cliquable */
-.menu-toggle {
-    position: relative !important;
-    z-index: 10003 !important;
-    pointer-events: auto !important;
-}
-
-/* S'assurer que nav-right-actions est au-dessus */
-.nav-right-actions {
-    position: relative !important;
-    z-index: 10002 !important;
-}
-
-/* S'assurer que l'overlay est en dessous des boutons */
-body.menu-open::after {
-    z-index: 9999 !important;
-}
-
-/* Menu drawer */
-.nav-menu {
-    z-index: 10000 !important;
 }
 
