@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes Tontines - TontineChain</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-tontinechain.jpeg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo">
+          <img src="assets/images/logo-tontinechain.jpeg" alt="TontineChain">
+          <span class="logo-text">
+            <span class="logo-gold">Tontine</span><span class="logo-blue">Chain</span>
+          </span>
+        </div>
+        
+        <div class="nav-links">
+          <a href="index.html">Accueil</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="mes-tontines.html" class="active">Mes Tontines</a>
+          <a href="assistant-yao.html">Assistant YAO</a>
+          <a href="messagerie.html">Messages</a>
+        </div>
+        
+        <div class="nav-buttons">
+          <button class="btn btn-primary" onclick="window.location.href='create-tontine.html'">
+            <i class="fas fa-plus"></i> Nouvelle Tontine
+          </button>
+          <button class="btn btn-outline" onclick="window.location.href='profil.html'">Mon Profil</button>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+      
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Accueil</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mes-tontines.html">Mes Tontines</a>
+        <a href="assistant-yao.html">Assistant YAO</a>
+        <a href="messagerie.html">Messages</a>
+        <button class="btn btn-primary btn-block" onclick="window.location.href='create-tontine.html'">Nouvelle Tontine</button>
+        <button class="btn btn-outline btn-block" onclick="window.location.href='profil.html'">Mon Profil</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mes Tontines Section -->
+  <section class="section section-white" style="padding-top: 120px;">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">
+          <i class="fas fa-users"></i> Mes Tontines
+        </h1>
+        <p class="page-subtitle">Gérez toutes vos tontines en un seul endroit</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="tontines-filters">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">
+            Toutes <span class="tab-count">3</span>
+          </button>
+          <button class="filter-tab" data-filter="active">
+            Actives <span class="tab-count">2</span>
+          </button>
+          <button class="filter-tab" data-filter="pending">
+            En attente <span class="tab-count">1</span>
+          </button>
+          <button class="filter-tab" data-filter="completed">
+            Terminées <span class="tab-count">0</span>
+          </button>
+        </div>
+
+        <div class="filter-actions">
+          <select class="form-input">
+            <option>Trier par date</option>
+            <option>Trier par montant</option>
+            <option>Trier par membres</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tontines List -->
+      <div class="tontines-detailed-list">
+        <!-- Tontine 1 - Active -->
+        <div class="tontine-detailed-card" data-status="active">
+          <div class="tontine-detailed-header">
+            <div class="tontine-detailed-info">
+              <div class="tontine-detailed-badge tontine-badge-active">
+                <i class="fas fa-circle"></i> Active
+              </div>
+              <h2>Tontine des Femmes de Dantokpa</h2>
+              <p>Groupe d'épargne pour les commerçantes du marché</p>
+            </div>
+            <div class="tontine-detailed-actions">
+              <button class="btn btn-primary">
+                <i class="fas fa-eye"></i> Voir Détails
+              </button>
+              <button class="icon-btn">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="tontine-detailed-body">
+            <div class="tontine-detailed-stats">
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">12/15</div>
+                  <div class="detailed-stat-label">Membres</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-coins"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">50,000 FCFA</div>
+                  <div class="detailed-stat-label">Cotisation/mois</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-wallet"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">750,000 FCFA</div>
+                  <div class="detailed-stat-label">Cagnotte totale</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-calendar"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">15 Mars 2026</div>
+                  <div class="detailed-stat-label">Prochaine échéance</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tontine-detailed-progress">
+              <div class="progress-header">
+                <span>Progression du cycle</span>
+                <span><strong>6/10</strong> tours complétés</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%"></div>
+              </div>
+            </div>
+
+            <div class="tontine-detailed-footer">
+              <div class="footer-item">
+                <i class="fas fa-user-check"></i>
+                <span>Créée par Marie Koffi</span>
+              </div>
+              <div class="footer-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Smart contract vérifié</span>
+              </div>
+              <div class="footer-item">
+                <i class="fas fa-clock"></i>
+                <span>Créée il y a 6 mois</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tontine 2 - Active -->
+        <div class="tontine-detailed-card" data-status="active">
+          <div class="tontine-detailed-header">
+            <div class="tontine-detailed-info">
+              <div class="tontine-detailed-badge tontine-badge-active">
+                <i class="fas fa-circle"></i> Active
+              </div>
+              <h2>Association des Artisans de Porto-Novo</h2>
+              <p>Épargne collective pour achats de matériel</p>
+            </div>
+            <div class="tontine-detailed-actions">
+              <button class="btn btn-primary">
+                <i class="fas fa-eye"></i> Voir Détails
+              </button>
+              <button class="icon-btn">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="tontine-detailed-body">
+            <div class="tontine-detailed-stats">
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">8/10</div>
+                  <div class="detailed-stat-label">Membres</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-coins"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">100,000 FCFA</div>
+                  <div class="detailed-stat-label">Cotisation/mois</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-wallet"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">1,000,000 FCFA</div>
+                  <div class="detailed-stat-label">Cagnotte totale</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-calendar"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">20 Mars 2026</div>
+                  <div class="detailed-stat-label">Prochaine échéance</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tontine-detailed-progress">
+              <div class="progress-header">
+                <span>Progression du cycle</span>
+                <span><strong>3/10</strong> tours complétés</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%"></div>
+              </div>
+            </div>
+
+            <div class="tontine-detailed-footer">
+              <div class="footer-item">
+                <i class="fas fa-user-check"></i>
+                <span>Créée par Sophie Dossou</span>
+              </div>
+              <div class="footer-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Smart contract vérifié</span>
+              </div>
+              <div class="footer-item">
+                <i class="fas fa-clock"></i>
+                <span>Créée il y a 3 mois</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tontine 3 - Pending -->
+        <div class="tontine-detailed-card" data-status="pending">
+          <div class="tontine-detailed-header">
+            <div class="tontine-detailed-info">
+              <div class="tontine-detailed-badge tontine-badge-pending">
+                <i class="fas fa-clock"></i> En attente
+              </div>
+              <h2>Famille Miabe</h2>
+              <p>Tontine familiale pour événements</p>
+            </div>
+            <div class="tontine-detailed-actions">
+              <button class="btn btn-outline">
+                <i class="fas fa-cog"></i> Gérer
+              </button>
+              <button class="icon-btn">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="tontine-detailed-body">
+            <div class="tontine-alert">
+              <i class="fas fa-info-circle"></i>
+              <span>En attente de 3 membres supplémentaires pour démarrer</span>
+            </div>
+
+            <div class="tontine-detailed-stats">
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">5/8</div>
+                  <div class="detailed-stat-label">Membres</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-coins"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">25,000 FCFA</div>
+                  <div class="detailed-stat-label">Cotisation/semaine</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-wallet"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">200,000 FCFA</div>
+                  <div class="detailed-stat-label">Cagnotte prévue</div>
+                </div>
+              </div>
+
+              <div class="detailed-stat">
+                <div class="detailed-stat-icon">
+                  <i class="fas fa-calendar"></i>
+                </div>
+                <div>
+                  <div class="detailed-stat-value">-</div>
+                  <div class="detailed-stat-label">Pas encore démarrée</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tontine-detailed-footer">
+              <button class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Inviter des membres
+              </button>
+              <button class="btn btn-outline">
+                <i class="fas fa-share-alt"></i> Partager le lien
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="controls-component.js"></script>
+  <script src="api-config.js"></script>
+  <script src="api-service.js"></script>
+  <script src="script.js"></script>
+  <script src="mes-tontines.js"></script>
+</body>
+</html>

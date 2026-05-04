@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - TontineChain</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-tontinechain.jpeg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-layout">
+  
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <img src="assets/images/logo-tontinechain.jpeg" alt="TontineChain">
+        <span class="logo-text">
+          <span class="logo-gold">Tontine</span><span class="logo-blue">Chain</span>
+        </span>
+      </div>
+      
+      <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item active">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="mes-tontines.html" class="nav-item">
+        <i class="fas fa-users"></i>
+        <span>Mes Tontines</span>
+      </a>
+      <a href="create-tontine.html" class="nav-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>Créer une Tontine</span>
+      </a>
+      <a href="join-tontine.html" class="nav-item">
+        <i class="fas fa-user-plus"></i>
+        <span>Rejoindre</span>
+      </a>
+      <a href="paiement.html" class="nav-item">
+        <i class="fas fa-credit-card"></i>
+        <span>Paiements</span>
+      </a>
+      <a href="messagerie.html" class="nav-item">
+        <i class="fas fa-comments"></i>
+        <span>Messagerie</span>
+        <span class="badge-notif">3</span>
+      </a>
+      <a href="assistant-yao.html" class="nav-item">
+        <i class="fas fa-robot"></i>
+        <span>Assistant YAO</span>
+        <span class="badge-new">NEW</span>
+      </a>
+      
+      <div class="nav-divider"></div>
+      
+      <a href="profil.html" class="nav-item">
+        <i class="fas fa-user-circle"></i>
+        <span>Mon Profil</span>
+      </a>
+      <a href="#" class="nav-item">
+        <i class="fas fa-cog"></i>
+        <span>Paramètres</span>
+      </a>
+      <a href="index.html" class="nav-item" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?')">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Déconnexion</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name">Rosaire</div>
+          <div class="user-email">rosaire@email.com</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="menu-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <div class="topbar-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Rechercher une tontine, un membre...">
+      </div>
+
+      <div class="topbar-actions">
+        <button class="topbar-btn">
+          <i class="fas fa-bell"></i>
+          <span class="badge-dot"></span>
+        </button>
+        <button class="topbar-btn">
+          <i class="fas fa-envelope"></i>
+          <span class="badge-count">5</span>
+        </button>
+        <div class="topbar-user">
+          <img src="assets/images/logo-tontinechain.jpeg" alt="User">
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <!-- Welcome Section -->
+      <div class="welcome-section">
+        <div>
+          <h1 class="page-title">Bonjour, Rosaire 👋</h1>
+          <p class="page-subtitle">Voici un aperçu de vos tontines aujourd'hui</p>
+        </div>
+        <button class="btn btn-primary" onclick="window.location.href='create-tontine.html'">
+          <i class="fas fa-plus-circle"></i> Nouvelle Tontine
+        </button>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-icon-green">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <div class="stat-trend stat-trend-up">
+              <i class="fas fa-arrow-up"></i> 12%
+            </div>
+          </div>
+          <div class="stat-value">2,450,000 FCFA</div>
+          <div class="stat-label">Total Épargné</div>
+          <div class="stat-footer">
+            <span>+250,000 FCFA ce mois</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-icon-blue">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-trend stat-trend-up">
+              <i class="fas fa-arrow-up"></i> 1
+            </div>
+          </div>
+          <div class="stat-value">3</div>
+          <div class="stat-label">Tontines Actives</div>
+          <div class="stat-footer">
+            <span>1 en attente</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-icon-gold">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-trend">
+              <i class="fas fa-clock"></i> 5j
+            </div>
+          </div>
+          <div class="stat-value">15 Mars</div>
+          <div class="stat-label">Prochaine Échéance</div>
+          <div class="stat-footer">
+            <span>50,000 FCFA à payer</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon stat-icon-green">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-trend stat-trend-up">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Taux de Paiement</div>
+          <div class="stat-footer">
+            <span>Tous les paiements à jour</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">Actions Rapides</h2>
+        </div>
+        <div class="quick-actions-grid">
+          <button class="quick-action-card" onclick="window.location.href='create-tontine.html'">
+            <div class="quick-action-icon quick-action-green">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <div class="quick-action-title">Créer une Tontine</div>
+          </button>
+
+          <button class="quick-action-card" onclick="window.location.href='join-tontine.html'">
+            <div class="quick-action-icon quick-action-blue">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="quick-action-title">Rejoindre</div>
+          </button>
+
+          <button class="quick-action-card" onclick="window.location.href='paiement.html'">
+            <div class="quick-action-icon quick-action-gold">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="quick-action-title">Payer</div>
+          </button>
+
+          <button class="quick-action-card">
+            <div class="quick-action-icon quick-action-blue">
+              <i class="fas fa-history"></i>
+            </div>
+            <div class="quick-action-title">Historique</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- My Tontines -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">Mes Tontines</h2>
+          <a href="mes-tontines.html" class="link-primary">Voir tout <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="tontines-list">
+          <!-- Tontine Card 1 -->
+          <div class="tontine-card-modern">
+            <div class="tontine-card-header">
+              <div class="tontine-badge tontine-badge-active">
+                <i class="fas fa-circle"></i> Active
+              </div>
+              <button class="tontine-menu-btn">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+            
+            <h3 class="tontine-card-title">Tontine des Femmes de Dantokpa</h3>
+            <p class="tontine-card-desc">Groupe d'épargne pour les commerçantes du marché</p>
+            
+            <div class="tontine-card-stats">
+              <div class="tontine-card-stat">
+                <i class="fas fa-users"></i>
+                <span>12/15 membres</span>
+              </div>
+              <div class="tontine-card-stat">
+                <i class="fas fa-coins"></i>
+                <span>50,000 FCFA/mois</span>
+              </div>
+            </div>
+            
+            <div class="tontine-card-progress">
+              <div class="progress-info">
+                <span>Cycle 6/10</span>
+                <span>60%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%"></div>
+              </div>
+            </div>
+            
+            <div class="tontine-card-footer">
+              <div class="tontine-card-next">
+                <i class="fas fa-calendar"></i>
+                <span>Prochain: 15 Mars 2026</span>
+              </div>
+              <button class="btn btn-primary btn-sm">Voir Détails</button>
+            </div>
+          </div>
+
+          <!-- Tontine Card 2 -->
+          <div class="tontine-card-modern">
+            <div class="tontine-card-header">
+              <div class="tontine-badge tontine-badge-active">
+                <i class="fas fa-circle"></i> Active
+              </div>
+              <button class="tontine-menu-btn">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+            
+            <h3 class="tontine-card-title">Association des Artisans</h3>
+            <p class="tontine-card-desc">Épargne collective pour projets artisanaux</p>
+            
+            <div class="tontine-card-stats">
+              <div class="tontine-card-stat">
+                <i class="fas fa-users"></i>
+                <span>8/10 membres</span>
+              </div>
+              <div class="tontine-card-stat">
+                <i class="fas fa-coins"></i>
+                <span>100,000 FCFA/mois</span>
+              </div>
+            </div>
+            
+            <div class="tontine-card-progress">
+              <div class="progress-info">
+                <span>Cycle 3/10</span>
+                <span>30%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%"></div>
+              </div>
+            </div>
+            
+            <div class="tontine-card-footer">
+              <div class="tontine-card-next">
+                <i class="fas fa-calendar"></i>
+                <span>Prochain: 20 Mars 2026</span>
+              </div>
+              <button class="btn btn-primary btn-sm">Voir Détails</button>
+            </div>
+          </div>
+
+          <!-- Tontine Card 3 -->
+          <div class="tontine-card-modern">
+            <div class="tontine-card-header">
+              <div class="tontine-badge tontine-badge-pending">
+                <i class="fas fa-clock"></i> En attente
+              </div>
+              <button class="tontine-menu-btn">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+            
+            <h3 class="tontine-card-title">Famille Miabe</h3>
+            <p class="tontine-card-desc">Tontine familiale pour événements</p>
+            
+            <div class="tontine-card-stats">
+              <div class="tontine-card-stat">
+                <i class="fas fa-users"></i>
+                <span>5/8 membres</span>
+              </div>
+              <div class="tontine-card-stat">
+                <i class="fas fa-coins"></i>
+                <span>25,000 FCFA/semaine</span>
+              </div>
+            </div>
+            
+            <div class="tontine-card-alert">
+              <i class="fas fa-info-circle"></i>
+              <span>En attente de 3 membres pour démarrer</span>
+            </div>
+            
+            <div class="tontine-card-footer">
+              <div class="tontine-card-next">
+                <i class="fas fa-user-plus"></i>
+                <span>Inviter des membres</span>
+              </div>
+              <button class="btn btn-outline btn-sm">Gérer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2 class="section-title">Activité Récente</h2>
+          <a href="#" class="link-primary">Voir tout <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="activity-timeline">
+          <div class="activity-item">
+            <div class="activity-icon activity-icon-green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Paiement reçu</div>
+              <div class="activity-desc">Marie Koffi a payé sa cotisation - Tontine des Femmes</div>
+              <div class="activity-time">Il y a 2 heures</div>
+            </div>
+            <div class="activity-amount">+50,000 FCFA</div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon activity-icon-blue">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Nouveau membre</div>
+              <div class="activity-desc">Jean Dossou a rejoint Association des Artisans</div>
+              <div class="activity-time">Il y a 5 heures</div>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon activity-icon-gold">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Distribution effectuée</div>
+              <div class="activity-desc">Cagnotte distribuée à Sophie Agbota</div>
+              <div class="activity-time">Hier</div>
+            </div>
+            <div class="activity-amount">600,000 FCFA</div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon activity-icon-green">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Paiement effectué</div>
+              <div class="activity-desc">Vous avez payé votre cotisation - Association des Artisans</div>
+              <div class="activity-time">Il y a 2 jours</div>
+            </div>
+            <div class="activity-amount">-100,000 FCFA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="controls-component.js"></script>
+  <script src="api-config.js"></script>
+  <script src="api-service.js"></script>
+  <script src="script.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

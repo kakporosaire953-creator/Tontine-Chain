@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messagerie - TontineChain</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-tontinechain.jpeg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo">
+          <img src="assets/images/logo-tontinechain.jpeg" alt="TontineChain">
+          <span class="logo-text">
+            <span class="logo-gold">Tontine</span><span class="logo-blue">Chain</span>
+          </span>
+        </div>
+        
+        <div class="nav-links">
+          <a href="index.html">Accueil</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="mes-tontines.html">Mes Tontines</a>
+          <a href="assistant-yao.html">Assistant YAO</a>
+          <a href="messagerie.html" class="active">Messages</a>
+        </div>
+        
+        <div class="nav-buttons">
+          <button class="btn btn-outline" onclick="window.location.href='profil.html'">Mon Profil</button>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+      
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Accueil</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mes-tontines.html">Mes Tontines</a>
+        <a href="assistant-yao.html">Assistant YAO</a>
+        <a href="messagerie.html">Messages</a>
+        <button class="btn btn-outline btn-block" onclick="window.location.href='profil.html'">Mon Profil</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Messagerie Section -->
+  <section class="section section-white" style="padding-top: 120px; padding-bottom: 0;">
+    <div class="container-full">
+      <div class="messagerie-container">
+        <!-- Conversations List -->
+        <div class="conversations-sidebar">
+          <div class="conversations-header">
+            <h2>Messages</h2>
+            <button class="icon-btn" title="Nouvelle conversation">
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+
+          <div class="conversations-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Rechercher une conversation...">
+          </div>
+
+          <div class="conversations-list">
+            <div class="conversation-item active">
+              <div class="conversation-avatar">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="conversation-info">
+                <div class="conversation-name">Femmes Entrepreneures</div>
+                <div class="conversation-last-message">Marie: Merci pour le paiement !</div>
+              </div>
+              <div class="conversation-meta">
+                <div class="conversation-time">10:30</div>
+                <div class="conversation-unread">2</div>
+              </div>
+            </div>
+
+            <div class="conversation-item">
+              <div class="conversation-avatar">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="conversation-info">
+                <div class="conversation-name">Artisans Porto-Novo</div>
+                <div class="conversation-last-message">Réunion demain à 15h</div>
+              </div>
+              <div class="conversation-meta">
+                <div class="conversation-time">Hier</div>
+              </div>
+            </div>
+
+            <div class="conversation-item">
+              <div class="conversation-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="conversation-info">
+                <div class="conversation-name">Sophie Dossou</div>
+                <div class="conversation-last-message">D'accord, à bientôt</div>
+              </div>
+              <div class="conversation-meta">
+                <div class="conversation-time">Mar 3</div>
+              </div>
+            </div>
+
+            <div class="conversation-item">
+              <div class="conversation-avatar">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="conversation-info">
+                <div class="conversation-name">Famille Miabe</div>
+                <div class="conversation-last-message">Invitation envoyée</div>
+              </div>
+              <div class="conversation-meta">
+                <div class="conversation-time">Mar 1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="chat-avatar">
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <div class="chat-title">Femmes Entrepreneures</div>
+                <div class="chat-subtitle">12 membres • 8 en ligne</div>
+              </div>
+            </div>
+            <div class="chat-header-actions">
+              <button class="icon-btn" title="Appel vocal">
+                <i class="fas fa-phone"></i>
+              </button>
+              <button class="icon-btn" title="Appel vidéo">
+                <i class="fas fa-video"></i>
+              </button>
+              <button class="icon-btn" title="Informations">
+                <i class="fas fa-info-circle"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-date-divider">
+              <span>Aujourd'hui</span>
+            </div>
+
+            <div class="chat-message chat-message-received">
+              <div class="message-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="message-content">
+                <div class="message-sender">Marie Koffi</div>
+                <div class="message-bubble">
+                  Bonjour à toutes ! J'ai bien reçu la notification pour la prochaine cotisation.
+                </div>
+                <div class="message-time">09:15</div>
+              </div>
+            </div>
+
+            <div class="chat-message chat-message-received">
+              <div class="message-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="message-content">
+                <div class="message-sender">Sophie Agbota</div>
+                <div class="message-bubble">
+                  Moi aussi ! C'est vraiment pratique d'avoir ces rappels automatiques 👍
+                </div>
+                <div class="message-time">09:20</div>
+              </div>
+            </div>
+
+            <div class="chat-message chat-message-sent">
+              <div class="message-content">
+                <div class="message-bubble">
+                  Parfait ! N'oubliez pas que la date limite est le 15 Mars.
+                </div>
+                <div class="message-time">09:25</div>
+              </div>
+            </div>
+
+            <div class="chat-message chat-message-received">
+              <div class="message-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="message-content">
+                <div class="message-sender">Marie Koffi</div>
+                <div class="message-bubble">
+                  Merci pour le rappel ! Je vais payer dès aujourd'hui.
+                </div>
+                <div class="message-time">10:30</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <button class="icon-btn" title="Emoji">
+              <i class="fas fa-smile"></i>
+            </button>
+            <button class="icon-btn" title="Joindre un fichier">
+              <i class="fas fa-paperclip"></i>
+            </button>
+            <input type="text" placeholder="Écrivez votre message..." id="messageInput">
+            <button class="icon-btn" title="Note vocale">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <button class="btn btn-primary" onclick="sendChatMessage()">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="translations.js"></script>
+  <script src="theme.js"></script>
+  <script src="controls-component.js"></script>
+  <script src="api-config.js"></script>
+  <script src="api-service.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function sendChatMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      const messagesContainer = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'chat-message chat-message-sent';
+      
+      const time = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      
+      messageDiv.innerHTML = `
+        <div class="message-content">
+          <div class="message-bubble">
+            ${message}
+          </div>
+          <div class="message-time">${time}</div>
+        </div>
+      `;
+      
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      
+      input.value = '';
+    }
+
+    document.getElementById('messageInput')?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    });
+  </script>
+</body>
+</html>

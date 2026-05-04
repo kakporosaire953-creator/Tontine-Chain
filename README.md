@@ -1,425 +1,208 @@
-# TontineChain - Tontines Sécurisées par Blockchain
+# TontineChain - Plateforme de Tontines Sécurisées par Blockchain 🇧🇯
 
-![TontineChain Logo](assets/images/logo.svg)
+## 📋 Description
 
-## 🇧🇯 Projet MIABE Hackathon 2026
+TontineChain est une plateforme web innovante qui sécurise les tontines béninoises grâce à la technologie blockchain. Le projet vise à résoudre les problèmes majeurs des tontines traditionnelles : détournements (Cale Sèche), carnets falsifiés, et absence de protection pour les participants (majoritairement des femmes).
 
-**TontineChain** est une plateforme blockchain qui sécurise les tontines béninoises (groupes d'épargne informels) en utilisant des smart contracts immuables. Fini les détournements, les litiges et la "Cale Sèche" - vos fonds sont protégés par la technologie blockchain.
+## ✨ Fonctionnalités Principales
 
----
+### Pages Publiques
+- **Page d'accueil** (`index.html`) - Landing page avec sections Problème, Solution, Fonctionnalités, FAQ
+- **Connexion** (`login.html`) - Authentification utilisateur
+- **Inscription** (`signup.html`) - Création de compte avec validation
 
-## 📊 Le Problème
+### Pages Application
+- **Dashboard** (`dashboard.html`) - Vue d'ensemble des tontines, statistiques, activité récente
+- **Créer une Tontine** (`create-tontine.html`) - Formulaire multi-étapes (4 étapes)
+- **Rejoindre une Tontine** (`join-tontine.html`) - Recherche et adhésion aux tontines disponibles
 
-Au Bénin, les tontines gèrent **400-600 millions USD par an**, mais souffrent de problèmes majeurs :
+### Fonctionnalités Techniques
+- ✅ Design responsive (mobile-first)
+- ✅ Formulaires multi-étapes avec validation
+- ✅ Système de filtres et recherche
+- ✅ Animations et transitions fluides
+- ✅ Indicateur de force de mot de passe
+- ✅ Toggle password visibility
+- ✅ Interface moderne et intuitive
 
-- **600 plaintes** enregistrées à Porto-Novo en 2021 (Source: ANSSFD)
-- **15-20% des tontines** connaissent des incidents majeurs chaque année
-- **Phénomène de la "Cale Sèche"** : disparition des collecteurs avec l'épargne
-- **Manque de traçabilité** : carnets physiques perdus ou falsifiés
-- **70% des participants sont des femmes** entrepreneures vulnérables
+## 🎨 Design System
 
----
-
-## ✨ Notre Solution
-
-TontineChain utilise la **blockchain** pour garantir :
-
-### 🔒 Sécurité Absolue
-- Smart contracts audités et immuables
-- Fonds isolés par groupe (architecture Factory)
-- Zéro risque de détournement ou Cale Sèche
-
-### 👁️ Transparence Totale
-- Chaque transaction tracée sur la blockchain
-- Vérification indépendante par tous les membres
-- Historique immuable et infalsifiable
-
-### 🤖 Automatisation Intelligente
-- Règles appliquées automatiquement
-- Libération automatique de la cagnotte
-- Sanctions codées pour les retards
-
----
-
-## 🎨 Design & Identité Visuelle
-
-### Palette de Couleurs "Bénin Digital Trust"
-
-**Couleurs Primaires :**
-- 🟢 **Vert Émeraude** `#00A86B` - Drapeau béninois, confiance, croissance
-- 🟡 **Or Royal** `#FFB81C` - Drapeau béninois, richesse, succès
-- 🔵 **Bleu Blockchain** `#1E40AF` - Technologie, sécurité, innovation
-
-**Couleurs Secondaires :**
-- 🔴 **Rouge Corail** `#E63946` - Alertes, retards
-- ⚪ **Blanc Pur** `#FFFFFF` - Fond principal
-- ⚫ **Gris Ardoise** `#334155` - Texte principal
+### Palette de Couleurs
+- **Or** : `#FFB81C` (Logo, accents)
+- **Bleu** : `#1E40AF` (Blockchain, technologie)
+- **Vert** : `#00A86B` (Actions principales, succès)
 
 ### Typographie
-- **Titres :** Poppins (Google Fonts)
-- **Corps :** Inter (Google Fonts)
-- **Icônes :** Font Awesome 6
+- **Titres** : Space Grotesk
+- **Corps** : Manrope
 
----
-
-## 🏗️ Architecture Technique
-
-### Stack Frontend
-- **HTML5** sémantique (performance optimale)
-- **CSS3** moderne (Flexbox, Grid, Custom Properties)
-- **JavaScript ES6+** (Vanilla JS, pas de framework lourd)
-- **Font Awesome 6** (icônes professionnelles)
-- **Google Fonts** (Poppins + Inter)
-
-### Stack Blockchain
-- **Blockchain :** Polygon PoS ou Celo (frais < 0.01 USD)
-- **Smart Contracts :** Solidity avec OpenZeppelin
-- **Architecture :** Factory Pattern (un contrat par groupe)
-- **Web3 :** Ethers.js v6
-- **Wallet :** MetaMask, WalletConnect
-
-### Composants Clés
-1. **TontineFactory** - Crée un contrat unique par groupe
-2. **Registre** - Liste des membres et ordre des bénéficiaires
-3. **Vault** - Coffre-fort numérique pour la cagnotte
-4. **Cycle Manager** - Gestion du calendrier et des tours
-5. **Chainlink Automation** - Surveillance des échéances
-
----
+### Icônes
+- Font Awesome 6.5.1
 
 ## 📁 Structure du Projet
 
 ```
-tontinechain/
-├── index.html                 # Page d'accueil (site vitrine)
+MIABE HACKATHON 1/
+├── index.html                      # Page d'accueil
+├── login.html                      # Connexion
+├── signup.html                     # Inscription
+├── dashboard.html                  # Tableau de bord
+├── create-tontine.html            # Création de tontine
+├── join-tontine.html              # Rejoindre une tontine
+├── style.css                       # Styles CSS principaux
+├── script.js                       # JavaScript général
+├── auth.js                         # Authentification
+├── create-tontine.js              # Logique création tontine
+├── join-tontine.js                # Logique rejoindre tontine
 ├── assets/
-│   ├── css/
-│   │   ├── style.css         # Styles principaux
-│   │   └── app.css           # Styles application
-│   ├── js/
-│   │   ├── main.js           # JavaScript principal
-│   │   ├── auth.js           # Authentification
-│   │   └── dashboard.js      # Dashboard
 │   └── images/
-│       ├── logo.svg          # Logo TontineChain
-│       └── hero-benin-women.jpg
-├── app/
-│   ├── inscription.html      # Page d'inscription
-│   ├── connexion.html        # Page de connexion
-│   ├── dashboard.html        # Tableau de bord
-│   ├── creer-tontine.html    # Création de tontine
-│   ├── mes-tontines.html     # Liste des tontines
-│   ├── paiement.html         # Écran de paiement
-│   └── profil.html           # Profil utilisateur
-└── README.md                 # Ce fichier
+│       ├── logo-tontinechain.jpeg
+│       ├── dashboard.png
+│       ├── femmes-tontine-reunion.png
+│       ├── femmes-technologie.png
+│       └── femmes-marche-dantokpa.png
+├── README.md
+└── DOCUMENTATION_COMPLETE_TONTINECHAIN.md
 ```
 
----
-
-## 🚀 Installation & Déploiement
+## 🚀 Installation et Utilisation
 
 ### Prérequis
-- Navigateur moderne (Chrome, Firefox, Safari, Edge)
-- Serveur web local (Live Server, Python HTTP Server, etc.)
-- MetaMask (pour tester la connexion wallet)
+Aucun ! Le projet utilise uniquement HTML, CSS et JavaScript vanilla.
 
-### Installation Locale
+### Lancement
+1. Clonez ou téléchargez le projet
+2. Ouvrez `index.html` dans votre navigateur
+3. Naviguez entre les pages
 
-1. **Cloner ou télécharger le projet**
-```bash
-git clone https://github.com/votre-repo/tontinechain.git
-cd tontinechain
-```
+### Navigation
+- **Accueil** → `index.html`
+- **Connexion** → `login.html`
+- **Inscription** → `signup.html`
+- **Dashboard** → `dashboard.html` (après connexion)
+- **Créer** → `create-tontine.html`
+- **Rejoindre** → `join-tontine.html`
 
-2. **Lancer un serveur local**
+## 🎯 Pages Détaillées
 
-**Option A : VS Code Live Server**
-- Installer l'extension "Live Server"
-- Clic droit sur `index.html` → "Open with Live Server"
+### 1. Page d'Accueil (index.html)
+- Hero avec statistiques clés
+- Section Problème (3 cartes détaillées)
+- Section Solution (Architecture smart contract)
+- Fonctionnalités (YAO Assistant IA, Messagerie)
+- Comment ça marche (4 étapes)
+- FAQ (4 catégories)
+- Footer complet
 
-**Option B : Python**
-```bash
-python -m http.server 8000
-```
-Puis ouvrir http://localhost:8000
+### 2. Dashboard (dashboard.html)
+- 4 cartes statistiques
+- Actions rapides (4 boutons)
+- Liste des tontines (3 exemples)
+- Activité récente (4 items)
 
-**Option C : Node.js**
-```bash
-npx http-server -p 8000
-```
+### 3. Créer une Tontine (create-tontine.html)
+**Formulaire multi-étapes :**
+1. Informations de base (nom, description, catégorie)
+2. Règles financières (montant, fréquence, durée)
+3. Inviter des membres
+4. Confirmation et récapitulatif
 
-3. **Ouvrir dans le navigateur**
-```
-http://localhost:8000
-```
+### 4. Rejoindre une Tontine (join-tontine.html)
+- Barre de recherche
+- Filtres par catégorie
+- Rejoindre par code d'invitation
+- Liste des tontines disponibles (4 exemples)
 
-### Déploiement Production
-
-**Option 1 : Vercel (Recommandé)**
-```bash
-npm install -g vercel
-vercel
-```
-
-**Option 2 : Netlify**
-- Glisser-déposer le dossier sur https://app.netlify.com/drop
-
-**Option 3 : GitHub Pages**
-```bash
-git add .
-git commit -m "Deploy TontineChain"
-git push origin main
-```
-Activer GitHub Pages dans Settings → Pages
-
----
-
-## 🎯 Fonctionnalités Implémentées
-
-### ✅ Site Vitrine (index.html)
-- [x] Hero section avec statistiques béninoises
-- [x] Section problème (600 plaintes, Cale Sèche, traçabilité)
-- [x] Section solution (sécurité, transparence, automatisation)
-- [x] Comment ça marche (4 étapes)
-- [x] Types de tontines (Adôgbè, Rotative)
-- [x] Tableau comparatif (Traditionnel vs Tontiigo vs TontineChain)
-- [x] Formulaire de contact fonctionnel
-- [x] Footer avec sources officielles (ANSSFD, Journal La Nation)
-
-### ✅ Pages d'Authentification
-- [x] Inscription avec validation en temps réel
-- [x] Connexion email/téléphone
-- [x] Connexion avec wallet (MetaMask)
-- [x] Indicateur de force du mot de passe
-- [x] Toggle affichage mot de passe
-- [x] Messages d'erreur en français
-
-### ✅ Dashboard (Tableau de Bord)
-- [x] Vue d'ensemble (3 tontines actives)
-- [x] Statistiques (cagnotte, prochain tour)
-- [x] Liste des tontines avec progression
-- [x] Badges de statut (Payé, En attente, Retard)
-- [x] Activité récente
-- [x] Navigation sidebar
-
-### ✅ Design System
-- [x] Palette de couleurs béninoise
-- [x] Composants réutilisables (boutons, cartes, formulaires)
-- [x] Responsive mobile-first
-- [x] Animations fluides (Framer Motion style)
-- [x] Accessibilité WCAG AA
-
----
-
-## 📱 Pages de l'Application
-
-### 1. **Page d'Accueil** (`index.html`)
-Site vitrine complet avec toutes les sections
-
-### 2. **Inscription** (`app/inscription.html`)
-- Formulaire complet (nom, email, téléphone, mot de passe)
-- Validation en temps réel
-- Connexion wallet alternative
-- Indicateur de force du mot de passe
-
-### 3. **Connexion** (`app/connexion.html`)
-- Email/téléphone + mot de passe
+### 5. Connexion (login.html)
+- Formulaire email/mot de passe
 - Option "Se souvenir de moi"
-- Connexion wallet
 - Lien mot de passe oublié
+- Connexion avec Wallet
+- Design split-screen avec visuel
 
-### 4. **Dashboard** (`app/dashboard.html`)
-- Vue d'ensemble des tontines
-- Statistiques clés
-- Tontines actives avec progression
-- Activité récente
+### 6. Inscription (signup.html)
+- Formulaire complet (prénom, nom, email, téléphone, mot de passe)
+- Indicateur de force du mot de passe
+- Validation en temps réel
+- Acceptation des CGU
+- Design split-screen avec témoignage
 
-### 5. **Créer une Tontine** (`app/creer-tontine.html`)
-- Formulaire multi-étapes
-- Définition des règles
-- Ajout des membres
-- Ordre des bénéficiaires
+## 🔧 Technologies Utilisées
 
-### 6. **Paiement** (`app/paiement.html`)
-- Montant à payer
-- Bénéficiaire du tour
-- Connexion wallet
-- Confirmation transaction
+- **HTML5** - Structure sémantique
+- **CSS3** - Variables CSS, Grid, Flexbox
+- **JavaScript ES6+** - Vanilla JS
+- **Font Awesome 6.5.1** - Icônes
+- **Google Fonts** - Space Grotesk, Manrope
 
----
+## 📱 Responsive Design
+
+Le site est entièrement responsive avec 3 breakpoints :
+- **Mobile** : < 768px
+- **Tablet** : 768px - 900px
+- **Desktop** : > 900px
 
 ## 🎨 Composants UI
 
 ### Boutons
-```html
-<button class="btn btn-primary">Bouton Principal</button>
-<button class="btn btn-outline">Bouton Outline</button>
-<button class="btn btn-wallet">Connexion Wallet</button>
-```
+- `btn-primary` - Bouton vert principal
+- `btn-outline` - Bouton bordure verte
+- `btn-large` - Taille augmentée
+- `btn-block` - Pleine largeur
 
 ### Cartes
-```html
-<div class="problem-card">
-  <div class="problem-icon"><i class="fas fa-shield"></i></div>
-  <h3>Titre</h3>
-  <p>Description</p>
-</div>
-```
+- `stat-card-dash` - Cartes statistiques dashboard
+- `tontine-card` - Cartes tontines
+- `action-card` - Cartes actions rapides
+- `tontine-item` - Items liste tontines
 
-### Badges de Statut
-```html
-<span class="member-status paid">Payé</span>
-<span class="member-status pending">En attente</span>
-<span class="member-status late">Retard</span>
-```
+### Formulaires
+- `form-input` - Input standard
+- `input-with-icon` - Input avec icône
+- `form-group` - Groupe de champs
+- `form-row` - Ligne de 2 colonnes
 
----
+## 🔐 Sécurité
 
-## 🔧 Configuration
+- Validation côté client
+- Indicateur de force de mot de passe
+- Toggle visibility mot de passe
+- Simulation d'authentification (tokens)
 
-### Variables CSS (`:root`)
-```css
---color-primary: #00A86B;        /* Vert Émeraude */
---color-accent-gold: #FFB81C;    /* Or Royal */
---color-accent-blue: #1E40AF;    /* Bleu Blockchain */
---font-heading: 'Poppins', sans-serif;
---font-body: 'Inter', sans-serif;
-```
+## 📊 Statistiques du Projet
 
-### Breakpoints Responsive
-```css
-Mobile:  320px - 767px
-Tablet:  768px - 1023px
-Desktop: 1024px - 1439px
-Large:   1440px+
-```
+- **6 pages HTML** complètes
+- **5 fichiers JavaScript** fonctionnels
+- **1 fichier CSS** (~2500+ lignes)
+- **5 images** optimisées
+- **100% responsive**
+- **0 dépendances** externes (sauf CDN fonts/icons)
 
----
+## 🚧 Fonctionnalités à Venir
 
-## 📊 Performance
-
-### Objectifs Atteints
-- ✅ **First Contentful Paint:** < 1.5s (3G)
-- ✅ **Time to Interactive:** < 3.5s (3G)
-- ✅ **Lighthouse Score:** 95+ mobile
-- ✅ **Bundle JS:** < 150KB gzipped
-- ✅ **Images:** WebP avec fallback JPEG
-
-### Optimisations
-- Lazy loading des images
-- CSS critique inline
-- Minification JS/CSS
-- Service Worker (offline)
-- Resource hints (preconnect, prefetch)
-
----
-
-## ♿ Accessibilité
-
-### WCAG 2.1 Level AA
-- ✅ Contraste 4.5:1 (texte normal)
-- ✅ Contraste 3:1 (texte large, UI)
-- ✅ Navigation clavier complète
-- ✅ ARIA labels sur éléments dynamiques
-- ✅ Focus indicators visibles
-- ✅ HTML sémantique
-
----
-
-## 📚 Sources Officielles
-
-### Données Béninoises
-- **ANSSFD** (Agence Nationale de Surveillance des SFD) - Rapport 2024
-- **Journal La Nation** (08 mars 2022) - "Collecte illégale d'épargne"
-- **Louis Biao** (DG ANSSFD) - 600 plaintes Porto-Novo 2021
-- **Lelart & Gnansounou** (JSTOR) - "Les banquiers ambulants au Bénin"
-
-### Statistiques Clés
-- 200 milliards FCFA dans la microfinance béninoise
-- 70% de femmes participent aux tontines
-- 28% du financement des équipements artisans
-- 59% des femmes entrepreneures utilisent les tontines
-
----
-
-## 🎬 Vidéo Démo (Script)
-
-### Structure (2-3 minutes)
-
-**Intro (10s)**
-- Problème : 600 plaintes, Cale Sèche, 200 milliards FCFA
-
-**Site Vitrine (30s)**
-- Navigation homepage
-- Sections problème/solution
-- Tableau comparatif
-
-**Application (60s)**
-- Inscription/Connexion
-- Dashboard avec tontines actives
-- Création de tontine
-- Paiement de cotisation
-
-**Blockchain (30s)**
-- Smart contracts immuables
-- Transparence on-chain
-- Architecture Factory
-
-**Impact (20s)**
-- Statistiques d'impact
-- Appel à l'action
-
-### Sources Vidéos Réelles
-- UN Women Benin savings groups
-- CRS Benin microfinance
-- Pexels: "African women business meeting"
-
----
-
-## 🏆 Différenciation vs Tontiigo
-
-| Aspect | Tontiigo | TontineChain |
-|--------|----------|--------------|
-| **Technologie** | App mobile classique | Blockchain réelle |
-| **Sécurité** | Base de données | Smart contracts immuables |
-| **Transparence** | Interface app | Vérifiable on-chain |
-| **Règles** | Admin peut modifier | Immuables après déploiement |
-| **Cale Sèche** | Possible | Impossible |
-| **Preuve solvabilité** | Historique app | Historique blockchain |
-| **Frais** | Variables | < 0.01 USD (Polygon) |
-
----
+- Backend API REST
+- Intégration blockchain réelle
+- Smart contracts Solidity
+- Paiements Mobile Money
+- Assistant IA YAO fonctionnel
+- Messagerie temps réel
+- Notifications push
+- Multi-langue (FR/FON)
+- Dark mode
 
 ## 👥 Équipe
 
-**Développé avec ❤️ au Bénin 🇧🇯**
-
-Pour le **MIABE Hackathon 2026** - Darollo Technologies Corporation
-
----
-
-## 📞 Contact
-
-- **Email:** contact@tontinechain.bj
-- **Site:** https://tontinechain.bj
-- **GitHub:** https://github.com/tontinechain
-
----
+Projet développé pour le **MIABE HACKATHON 1**
 
 ## 📄 Licence
 
-© 2026 TontineChain. Tous droits réservés.
+Tous droits réservés © 2026 TontineChain
+
+## 📞 Contact
+
+- Email: contact@tontinechain.bj
+- Localisation: Cotonou, Bénin 🇧🇯
 
 ---
 
-## 🙏 Remerciements
-
-- **ANSSFD** pour les données officielles
-- **Journal La Nation** pour les reportages
-- **UN Women Benin** pour les photos de groupes d'épargne
-- **CRS Benin** pour les témoignages
-- **Communauté béninoise** pour l'inspiration
-
----
-
-**Made with 💚 in Benin 🇧🇯**
+**Made with ❤️ in Benin**

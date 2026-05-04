@@ -1,0 +1,268 @@
+/* ========================================
+   LAYOUT FIX - ALIGNEMENT PARFAIT
+   ======================================== */
+
+/* Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Container principal - TOUJOURS CENTRÉ */
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.container-small {
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Sections - TOUJOURS PLEINE LARGEUR */
+.section {
+  width: 100%;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+}
+
+/* Headers de section - TOUJOURS CENTRÉS */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-title {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.section-subtitle,
+.section-description {
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Images - TOUJOURS CENTRÉES */
+.problem-image,
+.solution-image,
+.how-image {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 48px;
+}
+
+.problem-image img,
+.solution-image img,
+.how-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Grilles - TOUJOURS CENTRÉES */
+.stats-grid,
+.problems-grid,
+.architecture-grid,
+.solution-details,
+.tech-stack,
+.innovation-cards,
+.steps-grid {
+  width: 100%;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  gap: 24px;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.problems-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.architecture-grid {
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.solution-details {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tech-stack {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.innovation-cards {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 1000px;
+}
+
+.steps-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Titres de sous-section - TOUJOURS CENTRÉS */
+.subsection-title {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 32px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Source box - CENTRÉE */
+.source-box {
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CTA box - CENTRÉ */
+.cta-box {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* FAQ - CENTRÉ */
+.faq-categories {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-category {
+  width: 100%;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+  .stats-grid,
+  .problems-grid,
+  .solution-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .architecture-grid,
+  .tech-stack,
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .innovation-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  
+  .container,
+  .container-small {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .stats-grid,
+  .problems-grid,
+  .architecture-grid,
+  .solution-details,
+  .tech-stack,
+  .innovation-cards,
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 32px;
+  }
+}
+
+/* Architecture arrows - responsive */
+.architecture-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #CBD5E1;
+  font-size: 24px;
+}
+
+@media (max-width: 900px) {
+  .architecture-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .architecture-arrow {
+    display: none;
+  }
+}
+
+/* Footer - TOUJOURS BIEN ALIGNÉ */
+.footer {
+  width: 100%;
+}
+
+.footer .container {
+  max-width: 1180px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}
