@@ -463,3 +463,73 @@ html, body {
         margin-right: 0 !important;
     }
 }
+
+/* ========================================
+   HERO DESKTOP DASHBOARD MOCKUP
+   ======================================== */
+@media (min-width: 900px) {
+    .hero-content {
+        grid-template-columns: 1fr 1fr !important;
+        text-align: left !important;
+        gap: 40px;
+        align-items: center;
+    }
+    .hero-left {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    .hero-buttons, .hero-stats, .trust-items {
+        justify-content: flex-start !important;
+    }
+}
+
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.dashboard-mockup {
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    position: relative;
+    background: #1E293B; /* fake desktop frame */
+    padding-top: 35px;
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-mockup:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard-mockup::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    height: 12px;
+    width: 12px;
+    background: #FF5F56;
+    border-radius: 50%;
+    box-shadow: 20px 0 0 #FFBD2E, 40px 0 0 #27C93F;
+}
+
+.dashboard-mockup img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0 0 12px 12px;
+    border-top: 1px solid #334155;
+}
+
+@media (max-width: 899px) {
+    .hero-right {
+        margin-top: 40px;
+    }
+}
