@@ -411,3 +411,55 @@ html, body {
 .text-blue { color: var(--color-blue) !important; }
 .text-green { color: var(--color-green) !important; }
 
+
+/* ========================================
+   CORRECTIONS RESPONSIVITÉ MOBILE GLOBALES
+   ======================================== */
+@media (max-width: 768px) {
+    /* Header mobile : on cache les pilules et les boutons pour le menu hamburger */
+    .pill-nav, .nav-buttons {
+        display: none !important;
+    }
+    .menu-toggle {
+        display: block !important;
+    }
+
+    /* Grilles en 1 colonne stricte partout sur mobile */
+    .hero-content, .stats-grid, .problems-grid, .solution-details, .tech-stack, .innovation-cards, .steps-grid, .architecture-grid {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    /* Ajustement des textes */
+    h1 { font-size: 32px !important; line-height: 1.2 !important; }
+    h2 { font-size: 28px !important; line-height: 1.2 !important; }
+    
+    .hero-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    /* Espacements globaux */
+    .section {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Boutons pleine largeur sur mobile */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        margin-right: 0 !important;
+    }
+}
