@@ -74,7 +74,7 @@
         <i class="fas fa-cog"></i>
         <span>Paramètres</span>
       </a>
-      <a href="index.html" class="nav-item" onclick="return confirm('Voulez-vous vraiment vous déconnecter ?')">
+      <a href="index.html" class="nav-item" onclick="logout(event)">
         <i class="fas fa-sign-out-alt"></i>
         <span>Déconnexion</span>
       </a>
@@ -86,8 +86,8 @@
           <i class="fas fa-user"></i>
         </div>
         <div class="user-info">
-          <div class="user-name">Rosaire</div>
-          <div class="user-email">rosaire@email.com</div>
+          <div class="user-name" id="sidebarUserName">Chargement...</div>
+          <div class="user-email" id="sidebarUserEmail">...</div>
         </div>
       </div>
     </div>
@@ -128,8 +128,8 @@
     <div class="page-content">
       <!-- Welcome Section -->
       <div class="welcome-section">
-        <div>
-          <h1 class="page-title">Bonjour, Rosaire 👋</h1>
+        <div class="page-title-wrapper">
+          <h1 class="page-title" id="welcomeMsg">Bonjour 👋</h1>
           <p class="page-subtitle">Voici un aperçu de vos tontines aujourd'hui</p>
         </div>
         <button class="btn btn-primary" onclick="window.location.href='create-tontine.html'">
@@ -437,7 +437,35 @@
   </main>
 
   <script src="script.js"></script>
+  <script src="auth.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Dynamic user info from localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      const name = localStorage.getItem('userName') || sessionStorage.getItem('userName') || 'Utilisateur';
+      const email = localStorage.getItem('userId') || sessionStorage.getItem('userId') || '';
+      const nameEl = document.getElementById('sidebarUserName');
+      const emailEl = document.getElementById('sidebarUserEmail');
+      const welcomeEl = document.getElementById('welcomeMsg');
+      if (nameEl) nameEl.textContent = name;
+      if (emailEl) emailEl.textContent = email;
+      if (welcomeEl) welcomeEl.textContent = 'Bonjour, ' + name.split(' ')[0] + ' 👋';
+    });
+
+    // Logout: clear all auth tokens then redirect
+    function logout(e) {
+      e.preventDefault();
+      if (!confirm('Voulez-vous vraiment vous déconnecter ?')) return;
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('walletAddress');
+      sessionStorage.removeItem('authToken');
+      sessionStorage.removeItem('userId');
+      sessionStorage.removeItem('userName');
+      window.location.href = 'index.html';
+    }
+  </script>
 
 </body>
 </html>

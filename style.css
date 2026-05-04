@@ -6710,3 +6710,201 @@ body {
   .architecture-grid { flex-wrap: nowrap; }
   .architecture-arrow { transform: rotate(0deg); }
 }
+
+/* ================================================
+   7 COUCHES DE PROTECTION — Security Layers
+   ================================================ */
+
+.security-section {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 2px solid #E2E8F0;
+}
+
+.security-section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* 3-column grid for cards 1-6 */
+.security-layers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* Base card */
+.security-layer-card {
+  position: relative;
+  background: white;
+  border: 2px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 28px 24px 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.security-layer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green) 0%, var(--blue) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.security-layer-card:hover::before {
+  opacity: 1;
+}
+
+/* Numbered badge */
+.layer-number {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #CBD5E0;
+  letter-spacing: 1px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Icon */
+.layer-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.layer-icon-blue  { background: var(--blue-light);  color: var(--blue);  }
+.layer-icon-gold  { background: var(--gold-light);  color: var(--gold);  }
+.layer-icon-green { background: var(--green-light); color: var(--green); }
+.layer-icon-red   { background: #FEE2E2;            color: #DC2626;      }
+
+/* Text */
+.layer-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-dark);
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.layer-desc {
+  font-size: 13.5px;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Tags */
+.layer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.layer-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.layer-tag-blue  { background: var(--blue-light);  color: var(--blue);  }
+.layer-tag-green { background: var(--green-light); color: var(--green); }
+.layer-tag-gold  { background: var(--gold-light);  color: var(--gold);  }
+.layer-tag-red   { background: #FEE2E2;            color: #DC2626;      }
+
+/* ---- Layer 7 – Full-width highlight card ---- */
+.security-layer-highlight {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  border-color: var(--blue);
+  background: linear-gradient(135deg, #EFF6FF 0%, #F0FFF4 100%);
+  padding: 32px 36px;
+}
+
+.security-layer-highlight .layer-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+}
+
+.layer-highlight-content {
+  flex: 1;
+}
+
+.layer-highlight-content .layer-title {
+  font-size: 18px;
+}
+
+.layer-highlight-content .layer-desc {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.layer-highlight-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.layer-highlight-tags .layer-tag {
+  font-size: 12px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.layer-number-highlight {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--blue);
+  opacity: 0.4;
+  letter-spacing: 1px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+  .security-layers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .security-layers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .security-layer-highlight {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+
+  .layer-highlight-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+

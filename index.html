@@ -117,10 +117,10 @@
           </div>
 
           <div class="hero-buttons">
-            <button class="btn btn-primary btn-large" onclick="requireAuth('create-tontine.html')" >
+            <button class="btn btn-primary btn-large" onclick="requireAuth('create-tontine.html')">
               <i class="fas fa-plus-circle"></i> Créer ma Tontine
             </button>
-            <button class="btn btn-outline btn-large" onclick="requireAuth('join-tontine.html')" >
+            <button class="btn btn-outline btn-large" onclick="requireAuth('join-tontine.html')">
               <i class="fas fa-users"></i> Rejoindre une Tontine
             </button>
           </div>
@@ -434,6 +434,132 @@
         </div>
       </div>
 
+      <!-- ===== 7 COUCHES DE PROTECTION ===== -->
+      <div class="security-section scroll-reveal">
+        <div class="security-section-header">
+          <span class="section-badge section-badge-blue">
+            <i class="fas fa-shield-alt"></i> Infrastructure de Sécurité
+          </span>
+          <h3 class="subsection-title">7 Couches de Protection</h3>
+          <p class="section-subtitle">Chaque interaction est sécurisée par notre architecture backend multi-niveaux</p>
+        </div>
+
+        <div class="security-layers-grid">
+
+          <!-- Couche 1 -->
+          <div class="security-layer-card scroll-reveal hover-lift">
+            <div class="layer-number">01</div>
+            <div class="layer-icon layer-icon-blue">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h4 class="layer-title">Authentification OTP</h4>
+            <p class="layer-desc">Connexion sans mot de passe via un code unique envoyé par SMS et WhatsApp. Impossible de compromettre votre compte.</p>
+            <div class="layer-tags">
+              <span class="layer-tag layer-tag-blue">SMS</span>
+              <span class="layer-tag layer-tag-green">WhatsApp</span>
+              <span class="layer-tag layer-tag-gold">Infobip</span>
+            </div>
+          </div>
+
+          <!-- Couche 2 -->
+          <div class="security-layer-card scroll-reveal hover-lift animate-delay-100">
+            <div class="layer-number">02</div>
+            <div class="layer-icon layer-icon-gold">
+              <i class="fas fa-id-card"></i>
+            </div>
+            <h4 class="layer-title">Vérification KYC (NPI)</h4>
+            <p class="layer-desc">Chaque membre doit fournir son Numéro Personnel d'Identification (NPI) avant d'accéder aux fonctionnalités financières.</p>
+            <div class="layer-tags">
+              <span class="layer-tag layer-tag-gold">NPI</span>
+              <span class="layer-tag layer-tag-blue">Identité</span>
+              <span class="layer-tag layer-tag-red">Anti-fraude</span>
+            </div>
+          </div>
+
+          <!-- Couche 3 -->
+          <div class="security-layer-card scroll-reveal hover-lift animate-delay-200">
+            <div class="layer-number">03</div>
+            <div class="layer-icon layer-icon-green">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h4 class="layer-title">Score de Confiance Dynamique</h4>
+            <p class="layer-desc">Un algorithme évalue la fiabilité de chaque membre en temps réel selon sa ponctualité, son historique et son comportement.</p>
+            <div class="layer-tags">
+              <span class="layer-tag layer-tag-green">0-100 pts</span>
+              <span class="layer-tag layer-tag-blue">Temps réel</span>
+              <span class="layer-tag layer-tag-gold">Automatique</span>
+            </div>
+          </div>
+
+          <!-- Couche 4 -->
+          <div class="security-layer-card scroll-reveal hover-lift">
+            <div class="layer-number">04</div>
+            <div class="layer-icon layer-icon-blue">
+              <i class="fas fa-bell"></i>
+            </div>
+            <h4 class="layer-title">Notifications Multi-Canal</h4>
+            <p class="layer-desc">Alertes critiques envoyées simultanément par SMS, WhatsApp et Email via l'API Infobip professionnelle.</p>
+            <div class="layer-tags">
+              <span class="layer-tag layer-tag-blue">SMS</span>
+              <span class="layer-tag layer-tag-green">WhatsApp</span>
+              <span class="layer-tag layer-tag-blue">Email</span>
+            </div>
+          </div>
+
+          <!-- Couche 5 -->
+          <div class="security-layer-card scroll-reveal hover-lift animate-delay-100">
+            <div class="layer-number">05</div>
+            <div class="layer-icon layer-icon-gold">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h4 class="layer-title">Paiements Sécurisés (FedaPay)</h4>
+            <p class="layer-desc">Intégration directe avec MTN Mobile Money et Moov Money via la passerelle FedaPay certifiée.</p>
+            <div class="layer-tags">
+              <span class="layer-tag layer-tag-gold">MTN MoMo</span>
+              <span class="layer-tag layer-tag-blue">Moov</span>
+              <span class="layer-tag layer-tag-green">Webhook</span>
+            </div>
+          </div>
+
+          <!-- Couche 6 -->
+          <div class="security-layer-card scroll-reveal hover-lift animate-delay-200">
+            <div class="layer-number">06</div>
+            <div class="layer-icon layer-icon-red">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h4 class="layer-title">Analyse de Risque IA</h4>
+            <p class="layer-desc">Un moteur prédictif scanne chaque groupe pour détecter les risques de défaut et recommander des actions préventives.</p>
+            <div class="layer-tags">
+              <span class="layer-tag layer-tag-red">Prédictif</span>
+              <span class="layer-tag layer-tag-gold">Préventif</span>
+              <span class="layer-tag layer-tag-blue">ML</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Couche 7 — Pleine largeur -->
+        <div class="security-layer-card security-layer-highlight scroll-reveal hover-lift">
+          <div class="layer-number layer-number-highlight">07</div>
+          <div class="layer-icon layer-icon-blue">
+            <i class="fab fa-ethereum"></i>
+          </div>
+          <div class="layer-highlight-content">
+            <h4 class="layer-title">Blockchain & Smart Contracts</h4>
+            <p class="layer-desc">La couche finale et immuable. Chaque tontine est ancrée sur la blockchain Polygon avec des transactions gasless (EIP-2771) — zéro frais pour les utilisateurs. Les accès API sont sécurisés par Laravel Sanctum et les contrats audités par OpenZeppelin.</p>
+          </div>
+          <div class="layer-highlight-tags">
+            <span class="layer-tag layer-tag-blue"><i class="fab fa-ethereum"></i> Polygon</span>
+            <span class="layer-tag layer-tag-green"><i class="fas fa-gas-pump"></i> Gasless EIP-2771</span>
+            <span class="layer-tag layer-tag-gold"><i class="fas fa-key"></i> Laravel Sanctum</span>
+            <span class="layer-tag layer-tag-blue"><i class="fas fa-file-code"></i> Solidity</span>
+            <span class="layer-tag layer-tag-green"><i class="fas fa-shield-alt"></i> OpenZeppelin</span>
+          </div>
+        </div>
+
+      </div>
+      <!-- ===== FIN 7 COUCHES ===== -->
+
       <div class="yao-demo scroll-reveal">
         <div class="yao-demo-content">
           <div class="yao-demo-left">
@@ -578,7 +704,7 @@
       </div>
 
       <div class="cta-box scroll-reveal">
-        <button class="btn btn-primary btn-large">
+        <button class="btn btn-primary btn-large" onclick="requireAuth('create-tontine.html')">
           <i class="fas fa-rocket"></i> Créer ma première tontine
         </button>
         <p class="cta-text">
@@ -733,7 +859,7 @@
         <div class="faq-cta scroll-reveal">
           <h3 class="faq-cta-title">Prêt à sécuriser votre tontine ?</h3>
           <p class="faq-cta-text">Rejoignez les centaines de groupes qui ont choisi la sécurité blockchain</p>
-          <button class="btn btn-primary btn-large">
+          <button class="btn btn-primary btn-large" onclick="requireAuth('create-tontine.html')">
             <i class="fas fa-plus-circle"></i> Créer ma tontine maintenant
           </button>
         </div>
@@ -768,10 +894,10 @@
           <div class="footer-column">
             <h4 class="footer-title">Produit</h4>
             <ul class="footer-list">
-              <li><a href="#">Créer une Tontine</a></li>
-              <li><a href="#">Rejoindre une Tontine</a></li>
+              <li><a href="javascript:void(0)" onclick="requireAuth('create-tontine.html')">Créer une Tontine</a></li>
+              <li><a href="javascript:void(0)" onclick="requireAuth('join-tontine.html')">Rejoindre une Tontine</a></li>
               <li><a href="#comment">Comment ça marche</a></li>
-              <li><a href="#">Tarifs</a></li>
+              <li><a href="login.html">Commencer gratuitement</a></li>
             </ul>
           </div>
 
@@ -826,8 +952,8 @@
 
   <!-- JavaScript Files -->
   <script src="js/animations.js"></script>
-
   <script src="script.js"></script>
+  <script src="auth.js"></script>
 
 </body>
 
