@@ -65,7 +65,7 @@ function toggleFaq(id) {
 // ===== ANIMATIONS DE SLIDE ET COMPTEUR =====
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Slide Animations
-    const slideElements = document.querySelectorAll('.scroll-reveal, .card, .stat-box, .problem-card, .solution-card, .step-card, .feature-card, .architecture-card, .hero-left');
+    const slideElements = document.querySelectorAll('.scroll-reveal, .card, .stat-box, .problem-card, .solution-card, .step-card, .feature-card, .architecture-card, .hero-left, .hero-right');
     
     slideElements.forEach(el => {
         el.classList.add('slide-up');
@@ -119,3 +119,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     counters.forEach(counter => counterObserver.observe(counter));
 });
+
