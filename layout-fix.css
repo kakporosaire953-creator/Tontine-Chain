@@ -245,3 +245,70 @@ html, body {
     width: 100%;
     max-width: 250px;
 }
+
+/* === NOUVEAU HEADER STYLE (INSPIRATION IMAGE) === */
+.navbar .nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.pill-nav {
+    background: #F8FAFC;
+    border-radius: 50px;
+    padding: 5px;
+    display: flex;
+    gap: 5px;
+    border: 1px solid #E2E8F0;
+}
+.pill-nav a {
+    padding: 8px 16px;
+    border-radius: 50px;
+    color: #64748B;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.pill-nav a:hover {
+    color: #0F172A;
+}
+.pill-nav a.active {
+    background: white;
+    color: #0F172A;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.nav-link-bold {
+    color: #334155;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.3s;
+}
+.nav-link-bold:hover {
+    color: #0F172A;
+}
+.btn-dark-pill {
+    background: #0F172A;
+    color: white;
+    border-radius: 50px;
+    padding: 10px 24px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+.btn-dark-pill:hover {
+    background: #1E293B;
+}
+
+/* === ANIMATIONS (SLIDE & COUNTER) === */
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -61,3 +61,61 @@ function toggleFaq(id) {
   icon.classList.toggle('rotate');
 }
 
+
+// ===== ANIMATIONS DE SLIDE ET COMPTEUR =====
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Slide Animations
+    const slideElements = document.querySelectorAll('.scroll-reveal, .card, .stat-box, .problem-card, .solution-card, .step-card, .feature-card, .architecture-card, .hero-left');
+    
+    slideElements.forEach(el => {
+        el.classList.add('slide-up');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Animer une seule fois
+            }
+        });
+    }, { threshold: 0.1 });
+
+    slideElements.forEach(el => observer.observe(el));
+
+    // 2. Compteur Animé (Numbers Counter)
+    const counters = document.querySelectorAll('.stat-number, .stat-box-number');
+    const speed = 100; // Plus c'est bas, plus c'est rapide
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                if(counter.classList.contains('counted')) return;
+                
+                counter.classList.add('counted');
+                const text = counter.innerText;
+                const target = parseInt(text.replace(/[^0-9]/g, '')); // Extraire le nombre
+                const prefix = text.match(/^[^0-9]*/) ? text.match(/^[^0-9]*/)[0] : '';
+                const suffix = text.replace(/^[^0-9]*[0-9]+/, ''); // Extraire le suffixe (Mds, +, etc)
+
+                if(target > 0) {
+                    const inc = target / speed;
+                    let count = 0;
+                    
+                    const updateCount = () => {
+                        count += inc;
+                        if (count < target) {
+                            counter.innerText = prefix + Math.ceil(count) + suffix;
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = prefix + target + suffix;
+                        }
+                    };
+                    updateCount();
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+});
