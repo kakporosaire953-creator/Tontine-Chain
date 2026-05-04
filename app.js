@@ -46,3 +46,4 @@ if (topbarSearch) {
     this.parentElement.classList.remove('focused');
   });
 }
+

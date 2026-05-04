@@ -110,10 +110,7 @@ html, body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.architecture-grid {
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-}
+.architecture-grid { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 
 .solution-details {
   grid-template-columns: repeat(3, 1fr);
@@ -168,18 +165,7 @@ html, body {
 }
 
 /* Responsive - Tablet */
-@media (max-width: 900px) {
-  .stats-grid,
-  .problems-grid,
-  .solution-details {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .architecture-grid,
-  .tech-stack,
-  .steps-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 900px) { .stats-grid, .problems-grid, .solution-details { grid-template-columns: repeat(2, 1fr); } .tech-stack, .steps-grid { grid-template-columns: repeat(2, 1fr); } .innovation-cards { grid-template-columns: 1fr; } }
   
   .innovation-cards {
     grid-template-columns: 1fr;
@@ -187,27 +173,7 @@ html, body {
 }
 
 /* Responsive - Mobile */
-@media (max-width: 768px) {
-  .section {
-    padding-top: 64px;
-    padding-bottom: 64px;
-  }
-  
-  .container,
-  .container-small {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  
-  .stats-grid,
-  .problems-grid,
-  .architecture-grid,
-  .solution-details,
-  .tech-stack,
-  .innovation-cards,
-  .steps-grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 768px) { .section { padding-top: 64px; padding-bottom: 64px; } .container, .container-small { padding-left: 16px; padding-right: 16px; } .stats-grid, .problems-grid, .solution-details, .tech-stack, .innovation-cards, .steps-grid { grid-template-columns: 1fr; } .section-title { font-size: 32px; } }
   
   .section-title {
     font-size: 32px;
@@ -265,4 +231,17 @@ html, body {
   .footer-links {
     grid-template-columns: 1fr;
   }
+}
+
+/* Architecture grid fix */
+@media (min-width: 900px) {
+    .architecture-grid {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+}
+.architecture-card {
+    width: 100%;
+    max-width: 250px;
 }

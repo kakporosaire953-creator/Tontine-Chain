@@ -5784,208 +5784,6 @@ html {
 }
 
 
-/* ========================================
-   DARK MODE THEME
-   ======================================== */
-
-:root[data-theme="dark"] {
-  /* Colors */
-  --color-bg: #0F172A;
-  --color-bg-secondary: #1E293B;
-  --color-bg-tertiary: #334155;
-  --color-text: #F8FAFC;
-  --color-text-secondary: #CBD5E1;
-  --color-text-muted: #94A3B8;
-  --color-border: #334155;
-  --color-shadow: rgba(0, 0, 0, 0.3);
-  
-  /* Card backgrounds */
-  --color-card-bg: #1E293B;
-  --color-card-hover: #334155;
-  
-  /* Input backgrounds */
-  --color-input-bg: #334155;
-  --color-input-border: #475569;
-  
-  /* Keep brand colors */
-  --color-gold: #FFB81C;
-  --color-gold-dark: #E5A000;
-  --color-green: #00A86B;
-  --color-green-dark: #007A4D;
-  --color-blue: #1E40AF;
-  --color-blue-dark: #1E3A8A;
-}
-
-[data-theme="dark"] body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-
-[data-theme="dark"] .navbar {
-  background: rgba(15, 23, 42, 0.95);
-  border-bottom-color: var(--color-border);
-}
-
-[data-theme="dark"] .hero-section {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-}
-
-[data-theme="dark"] .section {
-  background-color: var(--color-bg);
-}
-
-[data-theme="dark"] .section:nth-child(even) {
-  background-color: var(--color-bg-secondary);
-}
-
-[data-theme="dark"] .card,
-[data-theme="dark"] .stat-box,
-[data-theme="dark"] .tontine-card,
-[data-theme="dark"] .problem-detail-card,
-[data-theme="dark"] .solution-detail-card {
-  background-color: var(--color-card-bg);
-  border-color: var(--color-border);
-  box-shadow: 0 4px 12px var(--color-shadow);
-}
-
-[data-theme="dark"] .card:hover,
-[data-theme="dark"] .tontine-card:hover {
-  background-color: var(--color-card-hover);
-}
-
-[data-theme="dark"] input,
-[data-theme="dark"] textarea,
-[data-theme="dark"] select {
-  background-color: var(--color-input-bg);
-  border-color: var(--color-input-border);
-  color: var(--color-text);
-}
-
-[data-theme="dark"] input::placeholder,
-[data-theme="dark"] textarea::placeholder {
-  color: var(--color-text-muted);
-}
-
-[data-theme="dark"] .sidebar {
-  background-color: var(--color-bg-secondary);
-  border-right-color: var(--color-border);
-}
-
-[data-theme="dark"] .topbar {
-  background-color: var(--color-card-bg);
-  border-bottom-color: var(--color-border);
-}
-
-[data-theme="dark"] .footer {
-  background-color: var(--color-bg-secondary);
-  border-top-color: var(--color-border);
-}
-
-[data-theme="dark"] .notification {
-  background-color: var(--color-card-bg);
-  color: var(--color-text);
-}
-
-[data-theme="dark"] .modal-content {
-  background-color: var(--color-card-bg);
-}
-
-/* ========================================
-   LANGUAGE & THEME CONTROLS
-   ======================================== */
-
-.controls-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.lang-switcher {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px;
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
-}
-
-.lang-btn {
-  padding: 6px 12px;
-  border: none;
-  background: transparent;
-  color: #64748B;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Manrope', sans-serif;
-}
-
-.lang-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #0F172A;
-}
-
-.lang-btn.active {
-  background: white;
-  color: #0F172A;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] .lang-btn {
-  color: #94A3B8;
-}
-
-[data-theme="dark"] .lang-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #F8FAFC;
-}
-
-[data-theme="dark"] .lang-btn.active {
-  background: #334155;
-  color: #F8FAFC;
-}
-
-.theme-toggle {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.theme-toggle i {
-  font-size: 18px;
-  color: #FFB81C;
-  transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover i {
-  transform: rotate(20deg);
-}
-
-[data-theme="dark"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-[data-theme="dark"] .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* ========================================
    LAYOUT FIXES & IMPROVEMENTS
    ======================================== */
 
@@ -6389,43 +6187,6 @@ html {
 }
 
 /* ========================================
-   SIDEBAR CONTROLS STYLING
-   ======================================== */
-
-.sidebar-controls {
-  padding: 12px 0;
-  border-top: 1px solid #E2E8F0;
-}
-
-[data-theme="dark"] .sidebar-controls {
-  border-top-color: #334155;
-}
-
-.sidebar-controls .controls-wrapper {
-  justify-content: center;
-}
-
-/* ========================================
-   NAVBAR CONTROLS RESPONSIVE
-   ======================================== */
-
-@media (max-width: 900px) {
-  .nav-buttons .controls-wrapper {
-    display: none;
-  }
-  
-  .mobile-menu {
-    padding: 20px;
-  }
-  
-  .mobile-menu .controls-wrapper {
-    margin-bottom: 20px;
-    justify-content: center;
-  }
-}
-
-
-/* ========================================
    FOOTER CONTROLS
    ======================================== */
 
@@ -6438,19 +6199,6 @@ html {
   padding-top: 24px;
   border-top: 1px solid #E2E8F0;
   margin-top: 40px;
-}
-
-.footer-controls {
-  display: flex;
-  justify-content: center;
-}
-
-.footer-controls .controls-wrapper {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="dark"] .footer-controls .controls-wrapper {
-  background: rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 768px) {
@@ -6947,4 +6695,18 @@ body {
 .faq-container {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Modifications Rapides pour Presentation */
+.hero-content { grid-template-columns: 1fr !important; text-align: center; }
+.hero-left { margin: 0 auto; max-width: 800px; display: flex; flex-direction: column; align-items: center; }
+.hero-buttons { justify-content: center; }
+.hero-stats { justify-content: center; }
+.trust-items { justify-content: center; }
+.architecture-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.architecture-card { width: 100%; max-width: 250px; }
+.architecture-arrow { transform: rotate(90deg); }
+@media (min-width: 900px) {
+  .architecture-grid { flex-wrap: nowrap; }
+  .architecture-arrow { transform: rotate(0deg); }
 }

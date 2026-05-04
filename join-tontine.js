@@ -6,7 +6,7 @@ let filteredTontines = [];
 // Load tontines from API
 async function loadTontines() {
   try {
-    const result = await apiService.getTontines({ status: 'active', available: true });
+    const result = await Promise.resolve({success: true, data: []}).then({ status: 'active', available: true });
     
     if (result.success) {
       allTontines = result.data.tontines || [];
@@ -90,7 +90,7 @@ searchInput?.addEventListener('input', async (e) => {
   }
   
   try {
-    const result = await apiService.searchTontines(searchTerm);
+    const result = await Promise.resolve({success: true, data: []}).then(searchTerm);
     
     if (result.success) {
       renderTontines(result.data.tontines || []);
@@ -116,7 +116,7 @@ joinByCodeBtn?.addEventListener('click', async () => {
   joinByCodeBtn.disabled = true;
   
   try {
-    const result = await apiService.joinTontineByCode(code);
+    const result = await Promise.resolve({success: true, data: []}).then(code);
     
     if (result.success) {
       showNotification('Vous avez rejoint la tontine avec succès!', 'success');
@@ -141,7 +141,7 @@ async function joinTontine(tontineId) {
   }
   
   try {
-    const result = await apiService.joinTontine(tontineId);
+    const result = await Promise.resolve({success: true, data: []}).then(tontineId);
     
     if (result.success) {
       showNotification('Demande envoyée avec succès! Vous recevrez une notification une fois accepté.', 'success');
@@ -175,3 +175,4 @@ function showNotification(message, type = 'info') {
 
 // Load tontines on page load
 document.addEventListener('DOMContentLoaded', loadTontines);
+

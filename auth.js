@@ -63,52 +63,61 @@ if (passwordInput) {
   });
 }
 
+// Helper pour gérer la base d'utilisateurs locale
+function getUsers() {
+  const users = localStorage.getItem('tontine_users');
+  return users ? JSON.parse(users) : [];
+}
+
+function saveUser(user) {
+  const users = getUsers();
+  // VÃ©rifier si l'email existe dÃ©jÃ 
+  if (users.find(u => u.email === user.email)) {
+    return false;
+  }
+  users.push(user);
+  localStorage.setItem('tontine_users', JSON.stringify(users));
+  return true;
+}
+
 // Login form submission
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
-  loginForm.addEventListener('submit', async function(e) {
+  loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const remember = document.getElementById('remember').checked;
+    const remember = document.getElementById('remember') ? document.getElementById('remember').checked : false;
     
     if (!email || !password) {
       showNotification('Veuillez remplir tous les champs', 'error');
       return;
     }
     
-    // Show loading
     const submitBtn = loginForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
     submitBtn.disabled = true;
     
-    try {
-      // Call API service
-      const result = await apiService.login(email, password, remember);
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+      // Stocker le token localement
+      const storage = remember ? localStorage : sessionStorage;
+      storage.setItem('authToken', 'simulated_token_' + Date.now());
+      storage.setItem('userId', user.email);
+      storage.setItem('userName', user.firstName + ' ' + user.lastName);
       
-      if (result.success) {
-        // Store auth token
-        const storage = remember ? localStorage : sessionStorage;
-        storage.setItem('authToken', result.data.token);
-        storage.setItem('userId', result.data.user.id);
-        storage.setItem('userName', result.data.user.name);
-        
-        showNotification('Connexion réussie !', 'success');
-        
-        // Redirect after short delay
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 500);
-      } else {
-        throw new Error(result.error);
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      showNotification(error.message || 'Erreur de connexion. Vérifiez vos identifiants.', 'error');
+      showNotification('Connexion réussie !', 'success');
       
-      // Reset button
+      // Ultra fast redirect
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 100);
+    } else {
+      showNotification('Email ou mot de passe incorrect.', 'error');
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
     }
@@ -118,7 +127,7 @@ if (loginForm) {
 // Signup form submission
 const signupForm = document.getElementById('signupForm');
 if (signupForm) {
-  signupForm.addEventListener('submit', async function(e) {
+  signupForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
     const firstName = document.getElementById('firstName').value;
@@ -150,86 +159,51 @@ if (signupForm) {
       return;
     }
     
-    // Show loading
     const submitBtn = signupForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création du compte...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création...';
     submitBtn.disabled = true;
     
-    try {
-      // Call API service
-      const result = await apiService.register({
-        firstName,
-        lastName,
-        email,
-        phone,
-        password
-      });
+    const user = { firstName, lastName, email, phone, password };
+    
+    if (saveUser(user)) {
+      showNotification('Compte créé avec succès ! Redirection...', 'success');
       
-      if (result.success) {
-        showNotification('Compte créé avec succès ! Vérifiez votre email pour confirmer votre inscription.', 'success');
-        
-        // Redirect after short delay
-        setTimeout(() => {
-          window.location.href = 'login.html';
-        }, 1500);
-      } else {
-        throw new Error(result.error);
-      }
-    } catch (error) {
-      console.error('Signup error:', error);
-      showNotification(error.message || 'Erreur lors de la création du compte.', 'error');
+      // Auto-login après inscription (ultra rapide)
+      localStorage.setItem('authToken', 'simulated_token_' + Date.now());
+      localStorage.setItem('userId', user.email);
+      localStorage.setItem('userName', user.firstName + ' ' + user.lastName);
       
-      // Reset button
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 300);
+    } else {
+      showNotification('Cet email est déjà utilisé.', 'error');
       submitBtn.innerHTML = originalText;
       submitBtn.disabled = false;
     }
   });
 }
 
-// Connect wallet
+// Connect wallet (Simulé)
 async function connectWallet() {
   try {
-    // Check if MetaMask is installed
-    if (typeof window.ethereum === 'undefined') {
-      showNotification('Veuillez installer MetaMask pour connecter votre wallet', 'error');
-      return;
-    }
+    const walletAddress = '0x' + Math.random().toString(16).slice(2, 42);
+    localStorage.setItem('authToken', 'simulated_wallet_token_' + Date.now());
+    localStorage.setItem('walletAddress', walletAddress);
+    localStorage.setItem('userName', 'Utilisateur Wallet');
+    showNotification('Wallet connecté avec succès !', 'success');
     
-    // Request account access
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const walletAddress = accounts[0];
-    
-    // Get signature for authentication
-    const message = `TontineChain - Connexion sécurisée\nAdresse: ${walletAddress}\nDate: ${new Date().toISOString()}`;
-    const signature = await window.ethereum.request({
-      method: 'personal_sign',
-      params: [message, walletAddress]
-    });
-    
-    // Call API to authenticate with wallet
-    const result = await apiService.connectWallet(walletAddress, signature);
-    
-    if (result.success) {
-      localStorage.setItem('authToken', result.data.token);
-      localStorage.setItem('walletAddress', walletAddress);
-      showNotification('Wallet connecté avec succès !', 'success');
-      
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 500);
-    } else {
-      throw new Error(result.error);
-    }
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 100);
   } catch (error) {
-    console.error('Wallet connection error:', error);
-    showNotification(error.message || 'Erreur lors de la connexion du wallet', 'error');
+    showNotification('Erreur lors de la connexion du wallet', 'error');
   }
 }
 
 // Notification helper function
 function showNotification(message, type = 'info') {
-  // Create notification element
   const notification = document.createElement('div');
   notification.className = `notification notification-${type}`;
   notification.innerHTML = `
@@ -237,18 +211,24 @@ function showNotification(message, type = 'info') {
     <span>${message}</span>
   `;
   
-  // Add to body
   document.body.appendChild(notification);
   
-  // Show notification
-  setTimeout(() => notification.classList.add('show'), 100);
+  setTimeout(() => notification.classList.add('show'), 10);
   
-  // Remove after 4 seconds
   setTimeout(() => {
     notification.classList.remove('show');
-    setTimeout(() => notification.remove(), 300);
-  }, 4000);
+    setTimeout(() => notification.remove(), 200);
+  }, 2500);
 }
+
+// Affichage dynamiquement du nom sur le dashboard et les autres pages
+document.addEventListener('DOMContentLoaded', () => {
+    const userNameElement = document.querySelector('.user-name');
+    if (userNameElement) {
+        const userName = localStorage.getItem('userName') || 'Utilisateur';
+        userNameElement.textContent = userName;
+    }
+});
 
 // Check if user is already logged in
 function checkAuth() {

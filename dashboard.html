@@ -13,6 +13,7 @@
   
   <link rel="icon" type="image/jpeg" href="assets/images/logo-tontinechain.jpeg">
   <link rel="stylesheet" href="style.css">
+<script>if(!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) { window.location.href='login.html'; }</script>
 </head>
 <body class="app-layout">
   
@@ -435,12 +436,10 @@
     </div>
   </main>
 
-  <script src="translations.js"></script>
-  <script src="theme.js"></script>
-  <script src="controls-component.js"></script>
   <script src="api-config.js"></script>
   <script src="api-service.js"></script>
   <script src="script.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
+

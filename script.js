@@ -60,3 +60,4 @@ function toggleFaq(id) {
   answer.classList.toggle('active');
   icon.classList.toggle('rotate');
 }
+
