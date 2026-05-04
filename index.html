@@ -42,15 +42,15 @@
 
         <div class="nav-links pill-nav">
           <a href="#probleme" class="active">Problème</a>
-          <a href="#solution">Solution</a>
+          <a href="#solution" data-i18n="nav.solution">Solution</a>
           <a href="#fonctionnalites">Fonctionnalités</a>
           <a href="#comment">Comment ça marche</a>
-          <a href="#faq">FAQ</a>
+          <a href="#faq" data-i18n="nav.faq">FAQ</a>
         </div>
 
-        <div class="nav-buttons">
-          <a href="login.html" class="nav-link-bold">Connexion</a>
-          <button class="btn btn-dark-pill" onclick="window.location.href='signup.html'">Commencer <i class="fas fa-chevron-right" style="margin-left: 5px; font-size: 12px;"></i></button>
+        <div class="nav-buttons"><button class="btn btn-outline langToggleBtn" style="border-radius: 20px; padding: 5px 15px; font-weight: bold; margin-right: 10px; height: 35px; display: flex; align-items: center;">FON</button>
+          <a href="login.html" class="nav-link-bold" data-i18n="nav.login">Connexion</a>
+          <button class="btn btn-dark-pill" onclick="window.location.href='signup.html'"><span data-i18n="nav.start">Commencer</span> <i class="fas fa-chevron-right" style="margin-left: 5px; font-size: 12px;"></i></button>
         </div>
 
         <button class="menu-toggle" onclick="toggleMenu()">
@@ -60,10 +60,10 @@
 
       <div class="mobile-menu" id="mobileMenu">
         <a href="#probleme">Problème</a>
-        <a href="#solution">Solution</a>
+        <a href="#solution" data-i18n="nav.solution">Solution</a>
         <a href="#fonctionnalites">Fonctionnalités</a>
         <a href="#comment">Comment ça marche</a>
-        <a href="#faq">FAQ</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
         <button class="btn btn-primary btn-block" onclick="window.location.href='create-tontine.html'">Créer une
           </button>
         <button class="btn btn-outline btn-block" onclick="window.location.href='login.html'">Se connecter</button>
@@ -779,7 +779,7 @@
             <ul class="footer-list">
               <li><a href="#">Documentation</a></li>
               <li><a href="#">Blog</a></li>
-              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
               <li><a href="#">Support</a></li>
             </ul>
           </div>
@@ -827,7 +827,10 @@
   <script src="js/animations.js"></script>
 
   <script src="script.js"></script>
+<script src="translations.js"></script>
 </body>
 
 </html>
+
+
 

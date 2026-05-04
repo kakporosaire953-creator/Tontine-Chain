@@ -35,11 +35,11 @@
     <nav class="sidebar-nav">
       <a href="dashboard.html" class="nav-item active">
         <i class="fas fa-th-large"></i>
-        <span>Dashboard</span>
+        <span data-i18n="dash.home">Dashboard</span>
       </a>
       <a href="mes-tontines.html" class="nav-item">
         <i class="fas fa-users"></i>
-        <span>Mes Tontines</span>
+        <span data-i18n="dash.mytontines">Mes Tontines</span>
       </a>
       <a href="create-tontine.html" class="nav-item">
         <i class="fas fa-plus-circle"></i>
@@ -47,20 +47,20 @@
       </a>
       <a href="join-tontine.html" class="nav-item">
         <i class="fas fa-user-plus"></i>
-        <span>Rejoindre</span>
+        <span data-i18n="dash.join">Rejoindre</span>
       </a>
       <a href="paiement.html" class="nav-item">
         <i class="fas fa-credit-card"></i>
-        <span>Paiements</span>
+        <span data-i18n="dash.payments">Paiements</span>
       </a>
       <a href="messagerie.html" class="nav-item">
         <i class="fas fa-comments"></i>
-        <span>Messagerie</span>
+        <span data-i18n="dash.messages">Messagerie</span>
         <span class="badge-notif">3</span>
       </a>
       <a href="assistant-yao.html" class="nav-item">
         <i class="fas fa-robot"></i>
-        <span>Assistant YAO</span>
+        <span data-i18n="dash.assistant">Assistant YAO</span>
         <span class="badge-new">NEW</span>
       </a>
       
@@ -68,7 +68,7 @@
       
       <a href="profil.html" class="nav-item">
         <i class="fas fa-user-circle"></i>
-        <span>Mon Profil</span>
+        <span data-i18n="dash.profile">Mon Profil</span>
       </a>
       <a href="#" class="nav-item">
         <i class="fas fa-cog"></i>
@@ -109,7 +109,7 @@
         <input type="text" placeholder="Rechercher une tontine, un membre...">
       </div>
 
-      <div class="topbar-actions">
+      <div class="topbar-actions"><button class="btn btn-outline langToggleBtn" style="border-radius: 20px; padding: 5px 15px; font-weight: bold; margin-right: 10px;">FON</button>
         <button class="topbar-btn">
           <i class="fas fa-bell"></i>
           <span class="badge-dot"></span>
@@ -436,10 +436,11 @@
     </div>
   </main>
 
-  <script src="api-config.js"></script>
-  <script src="api-service.js"></script>
   <script src="script.js"></script>
   <script src="app.js"></script>
+<script src="translations.js"></script>
 </body>
 </html>
+
+
 
