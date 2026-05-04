@@ -241,3 +241,12 @@ function checkAuth() {
 
 // Run auth check on page load
 checkAuth();
+
+// Vérifie si l'utilisateur est connecté avant la redirection
+function requireAuth(targetUrl) {
+    if (!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) {
+        window.location.href = 'login.html';
+    } else {
+        window.location.href = targetUrl;
+    }
+}
