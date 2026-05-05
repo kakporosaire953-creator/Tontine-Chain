@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CrÃ©er une Tontine - TontineChain</title>
+  <title>Créer une Tontine - TontineChain</title>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
         <div class="nav-links">
           <a href="index.html">Accueil</a>
           <a href="dashboard.html">Dashboard</a>
-          <a href="create-tontine.html" class="active">CrÃ©er</a>
+          <a href="create-tontine.html" class="active">Créer</a>
           <a href="join-tontine.html">Rejoindre</a>
         </div>
         
@@ -47,7 +47,7 @@
       <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Accueil</a>
         <a href="dashboard.html">Dashboard</a>
-        <a href="create-tontine.html">CrÃ©er</a>
+        <a href="create-tontine.html">Créer</a>
         <a href="join-tontine.html">Rejoindre</a>
         <button class="btn btn-outline btn-block">Mon Profil</button>
       </div>
@@ -59,9 +59,9 @@
     <div class="container">
       <div class="page-header">
         <h1 class="page-title">
-          <i class="fas fa-plus-circle"></i> CrÃ©er une Nouvelle Tontine
+          <i class="fas fa-plus-circle"></i> Créer une Nouvelle Tontine
         </h1>
-        <p class="page-subtitle">Configurez votre tontine en quelques Ã©tapes simples</p>
+        <p class="page-subtitle">Configurez votre tontine en quelques étapes simples</p>
       </div>
 
       <div class="form-container">
@@ -73,7 +73,7 @@
           <div class="progress-line"></div>
           <div class="progress-step">
             <div class="progress-number">2</div>
-            <div class="progress-label">RÃ¨gles</div>
+            <div class="progress-label">Règles</div>
           </div>
           <div class="progress-line"></div>
           <div class="progress-step">
@@ -97,19 +97,19 @@
             <div class="form-group">
               <label for="tontineName">Nom de la Tontine *</label>
               <input type="text" id="tontineName" class="form-input" placeholder="Ex: Tontine des Femmes de Dantokpa" required>
-              <small class="form-hint">Choisissez un nom descriptif et facile Ã  retenir</small>
+              <small class="form-hint">Choisissez un nom descriptif et facile à retenir</small>
             </div>
 
             <div class="form-group">
               <label for="tontineDescription">Description</label>
-              <textarea id="tontineDescription" class="form-input" rows="4" placeholder="DÃ©crivez l'objectif de votre tontine..."></textarea>
+              <textarea id="tontineDescription" class="form-input" rows="4" placeholder="Décrivez l'objectif de votre tontine..."></textarea>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="tontineCategory">CatÃ©gorie</label>
+                <label for="tontineCategory">Catégorie</label>
                 <select id="tontineCategory" class="form-input">
-                  <option value="">SÃ©lectionnez une catÃ©gorie</option>
+                  <option value="">Sélectionnez une catégorie</option>
                   <option value="commerce">Commerce</option>
                   <option value="famille">Famille</option>
                   <option value="association">Association</option>
@@ -119,9 +119,9 @@
               </div>
 
               <div class="form-group">
-                <label for="tontinePrivacy">VisibilitÃ©</label>
+                <label for="tontinePrivacy">Visibilité</label>
                 <select id="tontinePrivacy" class="form-input">
-                  <option value="private">PrivÃ©e (sur invitation)</option>
+                  <option value="private">Privée (sur invitation)</option>
                   <option value="public">Publique (tout le monde peut rejoindre)</option>
                 </select>
               </div>
@@ -134,10 +134,10 @@
             </div>
           </div>
 
-          <!-- Step 2: RÃ¨gles financiÃ¨res -->
+          <!-- Step 2: Règles financières -->
           <div class="form-step" id="step2">
             <h2 class="form-step-title">
-              <i class="fas fa-coins"></i> RÃ¨gles FinanciÃ¨res
+              <i class="fas fa-coins"></i> Règles Financières
             </h2>
 
             <div class="form-row">
@@ -150,7 +150,7 @@
               </div>
 
               <div class="form-group">
-                <label for="contributionFrequency">FrÃ©quence *</label>
+                <label for="contributionFrequency">Fréquence *</label>
                 <select id="contributionFrequency" class="form-input">
                   <option value="weekly">Hebdomadaire</option>
                   <option value="biweekly">Bi-mensuelle</option>
@@ -167,16 +167,16 @@
               </div>
 
               <div class="form-group">
-                <label for="duration">DurÃ©e (en cycles) *</label>
+                <label for="duration">Durée (en cycles) *</label>
                 <input type="number" id="duration" class="form-input" placeholder="12" required>
                 <small class="form-hint">Nombre de tours de distribution</small>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="penaltyRate">PÃ©nalitÃ© de Retard (%)</label>
+              <label for="penaltyRate">Pénalité de Retard (%)</label>
               <input type="number" id="penaltyRate" class="form-input" placeholder="5" min="0" max="20">
-              <small class="form-hint">Pourcentage appliquÃ© en cas de retard de paiement</small>
+              <small class="form-hint">Pourcentage appliqué en cas de retard de paiement</small>
             </div>
 
             <div class="info-box">
@@ -190,7 +190,7 @@
 
             <div class="form-actions">
               <button type="button" class="btn btn-outline" onclick="prevStep(1)">
-                <i class="fas fa-arrow-left"></i> PrÃ©cÃ©dent
+                <i class="fas fa-arrow-left"></i> Précédent
               </button>
               <button type="button" class="btn btn-primary" onclick="nextStep(3)">
                 Suivant <i class="fas fa-arrow-right"></i>
@@ -208,7 +208,7 @@
               <label>Ajouter des Membres</label>
               <div class="member-input-group">
                 <input type="text" id="memberName" class="form-input" placeholder="Nom du membre">
-                <input type="email" id="memberEmail" class="form-input" placeholder="Email ou tÃ©lÃ©phone">
+                <input type="email" id="memberEmail" class="form-input" placeholder="Email ou téléphone">
                 <button type="button" class="btn btn-primary" onclick="addMember()">
                   <i class="fas fa-plus"></i> Ajouter
                 </button>
@@ -221,10 +221,10 @@
                   <i class="fas fa-user-crown"></i>
                 </div>
                 <div class="member-info">
-                  <div class="member-name">Vous (CrÃ©ateur)</div>
+                  <div class="member-name">Vous (Créateur)</div>
                   <div class="member-email">admin@tontinechain.bj</div>
                 </div>
-                <div class="member-badge">CrÃ©ateur</div>
+                <div class="member-badge">Créateur</div>
               </div>
             </div>
 
@@ -237,7 +237,7 @@
 
             <div class="form-actions">
               <button type="button" class="btn btn-outline" onclick="prevStep(2)">
-                <i class="fas fa-arrow-left"></i> PrÃ©cÃ©dent
+                <i class="fas fa-arrow-left"></i> Précédent
               </button>
               <button type="button" class="btn btn-primary" onclick="nextStep(4)">
                 Suivant <i class="fas fa-arrow-right"></i>
@@ -252,7 +252,7 @@
             </h2>
 
             <div class="summary-card">
-              <h3>RÃ©sumÃ© de votre Tontine</h3>
+              <h3>Résumé de votre Tontine</h3>
               
               <div class="summary-section">
                 <h4><i class="fas fa-info-circle"></i> Informations</h4>
@@ -261,23 +261,23 @@
                   <strong id="summaryName">-</strong>
                 </div>
                 <div class="summary-item">
-                  <span>CatÃ©gorie:</span>
+                  <span>Catégorie:</span>
                   <strong id="summaryCategory">-</strong>
                 </div>
                 <div class="summary-item">
-                  <span>VisibilitÃ©:</span>
+                  <span>Visibilité:</span>
                   <strong id="summaryPrivacy">-</strong>
                 </div>
               </div>
 
               <div class="summary-section">
-                <h4><i class="fas fa-coins"></i> RÃ¨gles FinanciÃ¨res</h4>
+                <h4><i class="fas fa-coins"></i> Règles Financières</h4>
                 <div class="summary-item">
                   <span>Cotisation:</span>
                   <strong id="summaryAmount">-</strong>
                 </div>
                 <div class="summary-item">
-                  <span>FrÃ©quence:</span>
+                  <span>Fréquence:</span>
                   <strong id="summaryFrequency">-</strong>
                 </div>
                 <div class="summary-item">
@@ -285,15 +285,15 @@
                   <strong id="summaryMembers">-</strong>
                 </div>
                 <div class="summary-item">
-                  <span>DurÃ©e:</span>
+                  <span>Durée:</span>
                   <strong id="summaryDuration">-</strong>
                 </div>
               </div>
 
               <div class="summary-section">
-                <h4><i class="fas fa-users"></i> Membres InvitÃ©s</h4>
+                <h4><i class="fas fa-users"></i> Membres Invités</h4>
                 <div id="summaryMembersList">
-                  <p>Aucun membre invitÃ© pour le moment</p>
+                  <p>Aucun membre invité pour le moment</p>
                 </div>
               </div>
             </div>
@@ -301,16 +301,16 @@
             <div class="warning-box">
               <i class="fas fa-exclamation-triangle"></i>
               <div>
-                <strong>Important:</strong> Une fois crÃ©Ã©e, certaines rÃ¨gles de la tontine ne pourront plus Ãªtre modifiÃ©es (montant, frÃ©quence, durÃ©e). VÃ©rifiez bien toutes les informations.
+                <strong>Important:</strong> Une fois créée, certaines règles de la tontine ne pourront plus être modifiées (montant, fréquence, durée). Vérifiez bien toutes les informations.
               </div>
             </div>
 
             <div class="form-actions">
               <button type="button" class="btn btn-outline" onclick="prevStep(3)">
-                <i class="fas fa-arrow-left"></i> PrÃ©cÃ©dent
+                <i class="fas fa-arrow-left"></i> Précédent
               </button>
               <button type="submit" class="btn btn-primary btn-large">
-                <i class="fas fa-rocket"></i> CrÃ©er la Tontine
+                <i class="fas fa-rocket"></i> Créer la Tontine
               </button>
             </div>
           </div>
@@ -322,8 +322,11 @@
   <script src="script.js"></script>
   <script src="create-tontine.js"></script>
 
+
+  <script src="i18n.js"></script>
 </body>
 </html>
+
 
 
 
