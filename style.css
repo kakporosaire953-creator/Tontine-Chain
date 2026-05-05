@@ -626,19 +626,20 @@ img {
 
 .problem-number {
   position: absolute;
-  top: -16px;
-  left: -16px;
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--gray-dark) 0%, #000 100%);
-  color: white;
-  border-radius: 12px;
+  top: -12px;
+  left: -12px;
+  width: 36px;
+  height: 36px;
+  background: var(--green-dark);
+  color: #fff;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 18px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0, 168, 107, 0.3);
+  z-index: 2;
 }
 
 .problem-icon {
@@ -6922,4 +6923,68 @@ body {
 }
 .lang-toggle-btn:hover {
   background: rgba(0, 168, 107, 0.2);
+}
+
+/* ===== REALISTIC LAPTOP FRAME ===== */
+.laptop-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.laptop-screen {
+  position: relative;
+  background: #000;
+  border-radius: 12px 12px 0 0;
+  padding: 10px;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.laptop-display {
+  background: #fff;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+}
+
+.laptop-display img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.laptop-bottom {
+  height: 12px;
+  background: #334155;
+  border-radius: 0 0 100px 100px / 0 0 12px 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.laptop-bottom::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 0 0 4px 4px;
+}
+
+.mockup-label {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
