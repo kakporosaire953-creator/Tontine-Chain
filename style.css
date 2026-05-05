@@ -1,4 +1,4 @@
-﻿/* ===== RESET & BASE ===== */
+/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
@@ -582,20 +582,6 @@ img {
   border-color: #F59E0B;
 }
 
-.stat-box-number {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.stat-box-red .stat-box-number { color: #DC2626; }
-.stat-box-orange .stat-box-number { color: #EA580C; }
-.stat-box-yellow .stat-box-number { color: #F59E0B; }
-
-.stat-box-text {
-  color: var(--gray-dark);
-  margin-bottom: 8px;
-}
 
 .stat-box-source {
   font-size: 12px;
@@ -6989,3 +6975,12 @@ body {
   gap: 8px;
 }
 
+
+.stat-box-white { background: #fff; border-color: #E2E8F0; }
+.stat-box-blue { background: #EFF6FF; border-color: #3B82F6; }
+.stat-box-green { background: #ECFDF5; border-color: #10B981; }
+.stat-box-white .stat-box-number { color: #1E293B; }
+.stat-box-blue .stat-box-number { color: #2563EB; }
+.stat-box-green .stat-box-number { color: #059669; }
+.stat-box-number { font-size: 32px; font-weight: 800; margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif; }
+.stat-box-text { color: #475569; margin-bottom: 8px; font-weight: 500; }
