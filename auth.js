@@ -178,14 +178,18 @@ if (loginForm) {
             // OTP validé => créer le token et rediriger
             storage.setItem('authToken', 'token_' + Date.now() + '_' + Math.random().toString(36).slice(2));
             showNotification('Connexion réussie !', 'success');
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirect') || 'dashboard.html';
             setTimeout(() => {
-              window.location.href = 'dashboard.html';
+              window.location.href = redirectUrl;
             }, 300);
           });
         } else {
           // Fallback si security-layers.js n'est pas chargé
           storage.setItem('authToken', 'token_' + Date.now() + '_' + Math.random().toString(36).slice(2));
-          window.location.href = 'dashboard.html';
+          const params = new URLSearchParams(window.location.search);
+          const redirectUrl = params.get('redirect') || 'dashboard.html';
+          window.location.href = redirectUrl;
         }
       }, 500);
     } else {
@@ -263,8 +267,11 @@ if (signupForm) {
       localStorage.setItem('userName', user.firstName + ' ' + user.lastName);
       localStorage.setItem('authToken', 'token_' + Date.now() + '_' + Math.random().toString(36).slice(2));
 
+      const params = new URLSearchParams(window.location.search);
+      const redirectUrl = params.get('redirect') || 'dashboard.html';
+
       setTimeout(() => {
-        window.location.href = 'dashboard.html';
+        window.location.href = redirectUrl;
       }, 800);
     } else {
       showNotification('Cet email est déjà utilisé.', 'error');
@@ -329,21 +336,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// --- Auth check (redirection si déjà connecté) ---
-function checkAuth() {
-  const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
-  const isAuthPage = window.location.pathname.includes('login.html') || window.location.pathname.includes('signup.html');
-
-  if (token && isAuthPage) {
-    window.location.href = 'dashboard.html';
-  }
-}
-checkAuth();
-
 // --- Require auth pour les pages protégées ---
 function requireAuth(targetUrl) {
   if (!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) {
-    window.location.href = 'login.html';
+    window.location.href = 'login.html?redirect=' + encodeURIComponent(targetUrl);
   } else {
     window.location.href = targetUrl;
   }
