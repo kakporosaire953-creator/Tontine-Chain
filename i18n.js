@@ -349,21 +349,29 @@ const I18N = {
   },
 
   applyAll() {
-    this.walkDOM(document.body);
-    document.documentElement.lang = this.currentLang === 'fon' ? 'fon' : 'fr';
+    // Only translate if on index.html or root
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '';
+    
+    if (isHomePage) {
+      this.walkDOM(document.body);
+      document.documentElement.lang = this.currentLang === 'fon' ? 'fon' : 'fr';
+    }
   },
 
   setLang(lang) {
-    // If switching to French, reload the page to restore original DOM easily
-    if (lang === 'fr' && this.currentLang === 'fon') {
-      localStorage.setItem('tc_lang', 'fr');
-      window.location.reload();
-      return;
-    }
-    
     this.currentLang = lang;
     localStorage.setItem('tc_lang', lang);
-    this.applyAll();
+    
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '';
+    
+    if (isHomePage) {
+        if (lang === 'fr') {
+            window.location.reload();
+            return;
+        }
+        this.applyAll();
+    }
+    
     this.updateToggle();
   },
 
