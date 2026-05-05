@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+﻿/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
@@ -626,19 +626,19 @@ img {
 
 .problem-number {
   position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 36px;
-  height: 36px;
-  background: var(--green-dark);
-  color: #fff;
-  border-radius: 10px;
+  top: 15px;
+  right: 15px;
+  width: 28px;
+  height: 28px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  box-shadow: 0 4px 10px rgba(0, 168, 107, 0.3);
+  font-weight: 800;
+  font-size: 12px;
+  border: 1.5px solid var(--green-dark);
   z-index: 2;
 }
 
@@ -6709,7 +6709,7 @@ body {
 }
 
 /* ================================================
-   7 COUCHES DE PROTECTION — Security Layers
+   7 COUCHES DE PROTECTION â€” Security Layers
    ================================================ */
 
 .security-section {
@@ -6826,7 +6826,7 @@ body {
 .layer-tag-gold  { background: var(--gold-light);  color: var(--gold);  }
 .layer-tag-red   { background: #FEE2E2;            color: #DC2626;      }
 
-/* ---- Layer 7 – Full-width highlight card ---- */
+/* ---- Layer 7 â€“ Full-width highlight card ---- */
 .security-layer-highlight {
   display: flex;
   align-items: center;
@@ -6988,3 +6988,4 @@ body {
   justify-content: center;
   gap: 8px;
 }
+
