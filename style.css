@@ -3977,7 +3977,7 @@ html {
   gap: 24px;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1001;
 }
 
 .menu-btn {
@@ -6076,7 +6076,7 @@ html {
   border-right: 1px solid #E2E8F0;
   padding: 24px 0;
   overflow-y: auto;
-  z-index: 100;
+  z-index: 1001;
   transition: transform 0.3s ease;
 }
 
