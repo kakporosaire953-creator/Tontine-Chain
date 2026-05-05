@@ -78,15 +78,15 @@ img {
 }
 
 .logo img {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .logo-text {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
 }
 
 .logo-gold {
@@ -3780,16 +3780,16 @@ html {
 
 /* ===== SIDEBAR ===== */
 .sidebar {
-  width: 280px;
-  background: white;
-  border-right: 1px solid #E2E8F0;
-  display: flex;
-  flex-direction: column;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: 1000;
+  width: 260px;
+  background: white;
+  border-right: 1px solid #E2E8F0;
+  padding: 24px 0;
+  overflow-y: auto;
+  z-index: 1001; /* Fix: Above the overlay (999) */
   transition: transform 0.3s ease;
 }
 

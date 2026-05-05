@@ -13,6 +13,7 @@
   
   <link rel="icon" type="image/jpeg" href="assets/images/logo-tontinechain.jpeg">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="security-layers.css">
 </head>
 <body class="auth-page">
   
@@ -60,7 +61,7 @@
               <input type="checkbox" id="remember">
               <span>Se souvenir de moi</span>
             </label>
-            <a href="#" class="link-primary">Mot de passe oublié ?</a>
+            <a href="javascript:void(0)" class="link-primary" onclick="showForgotPassword()">Mot de passe oublié ?</a>
           </div>
 
           <button type="submit" class="btn btn-primary btn-large btn-block">
@@ -151,10 +152,9 @@
     </div>
   </div>
 
+  <script src="security-layers.js"></script>
   <script src="script.js"></script>
   <script src="auth.js"></script>
 
 </body>
 </html>
-
-
