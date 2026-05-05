@@ -302,10 +302,6 @@ img {
 }
 
 .trust-badge {
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 6px;
