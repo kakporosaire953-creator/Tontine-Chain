@@ -276,7 +276,33 @@ const I18N = {
     "Cotisation": "Akwɛ́ kplé",
     "Total": "Bǐ",
     "Prochaine": "E ja é",
-    "Crée par": "È bló gbɔn"
+    "Cotisation": "Akwɛ́ kplé",
+    "Total": "Bǐ",
+    "Prochaine": "E ja é",
+    "Crée par": "È bló gbɔn",
+    
+    // Auth & Création
+    "Accédez à votre espace sécurisé": "Byɔ fí e è cyán nú we ɔ mɛ",
+    "ou": "àlǒ",
+    "Connecter Wallet": "Zán Wallet",
+    "Pas encore de compte ?": "A ko ɖó kɔ́ntì ǎ à?",
+    "Rejoignez la révolution des tontines sécurisées": "Wá asú e è cyán lɛ mɛ",
+    "J'accepte les conditions d'utilisation": "Un yí gbè nú sɛ́n lɛ",
+    "Déjà un compte ?": "A ko ɖó kɔ́ntì à?",
+    "Se connecter": "Byɔ mɛ",
+    "Nom de la tontine": "Asú sín nyikɔ",
+    "Montant de la cotisation": "Akwɛ́ kplé",
+    "Fréquence des versements": "Hwenu e è na nɔ sú xó é",
+    "Nombre de membres maximum": "Mɛ nabi e na byɔ mɛ é",
+    "Date de début": "Azǎn e bɛ̀ é",
+    "Règles et Conditions": "Sɛ́n lɛ kpó nǔ e na wà lɛ kpó",
+    "Tontine en cours": "Asú ɖò bǐbló jí",
+    "Terminée": "É ko fó",
+    "Fonds collectés": "Akwɛ́ e è kplé é",
+    "Prochaine distribution": "Mímá e ja é",
+    "Membres du groupe": "Mɛ e ɖò kplékplé ɔ mɛ lɛ",
+    "Ajouter un membre": "Gɔ́ mɛ ɖokpó",
+    "Modifier les paramètres": "Ðyɔ́ ɖiɖe lɛ"
   },
 
   translateTextNode(node) {
