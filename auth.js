@@ -337,9 +337,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Require auth pour les pages protégées ---
-function requireAuth(targetUrl) {
+function requireAuth(targetUrl, authPage = 'login.html') {
   if (!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) {
-    window.location.href = 'login.html?redirect=' + encodeURIComponent(targetUrl);
+    window.location.href = authPage + '?redirect=' + encodeURIComponent(targetUrl);
   } else {
     window.location.href = targetUrl;
   }
