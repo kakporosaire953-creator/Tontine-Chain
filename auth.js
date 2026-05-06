@@ -1,168 +1,106 @@
 // ================================================
-// TONTINECHAIN — SYSTÈME D'AUTHENTIFICATION
+// TONTINECHAIN — SYSTÈME D'AUTHENTIFICATION (OTP + API)
 // ================================================
 
-// --- Utilitaire de hashage SHA-256 (côté client) ---
-async function hashPassword(password) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+// --- Gestion des étapes OTP ---
+let currentPhone = '';
+let signupData = null;
+
+async function handleOTPRequest(event) {
+    if (event) event.preventDefault();
+    const phoneInput = document.getElementById('phone');
+    if (!phoneInput) return;
+
+    currentPhone = phoneInput.value.trim();
+    const btn = document.getElementById('sendOTPBtn');
+
+    // If signup, collect extra info
+    if (event.target.id === 'signupForm') {
+        signupData = {
+            first_name: document.getElementById('firstName').value,
+            last_name: document.getElementById('lastName').value,
+            npi: document.getElementById('npi').value,
+            profession: document.getElementById('profession') ? document.getElementById('profession').value : 'Membre'
+        };
+    }
+
+    try {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+
+        await API.auth.requestOTP(currentPhone);
+
+        // Success: Switch steps
+        const phoneForm = document.getElementById('phoneForm') || document.getElementById('signupForm');
+        phoneForm.style.display = 'none';
+        document.getElementById('otpForm').style.display = 'block';
+        document.getElementById('displayPhone').textContent = currentPhone;
+
+        alert("Code OTP envoyé avec succès !");
+    } catch (error) {
+        alert("Erreur: " + error.message);
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = btn.id === 'sendOTPBtn' ? '<i class="fas fa-paper-plane"></i> Recevoir le code OTP' : '<i class="fas fa-user-plus"></i> Créer mon compte';
+    }
 }
 
-// --- Toggle password visibility ---
+async function handleOTPVerify(event) {
+    if (event) event.preventDefault();
+    const otpInput = document.getElementById('otp');
+    if (!otpInput) return;
+
+    const code = otpInput.value.trim();
+    const btn = event.target.querySelector('button[type="submit"]');
+
+    try {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Vérification...';
+
+        const result = await API.auth.verifyOTP(currentPhone, code);
+
+        // Success: Save token
+        localStorage.setItem('authToken', result.token);
+        
+        // If we have signup data, update profile immediately
+        if (signupData) {
+            await API.user.updateProfile(signupData);
+        }
+
+        // Fetch final profile
+        const user = await API.user.getProfile();
+        localStorage.setItem('user', JSON.stringify(user));
+        
+        if (user.npi) {
+            localStorage.setItem('tc_kyc_verified', 'true');
+        }
+
+        window.location.href = 'dashboard.html';
+    } catch (error) {
+        alert("Code invalide ou expiré. Veuillez réessayer.");
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-check-circle"></i> Vérifier & Se connecter';
+    }
+}
+
+function resetLogin() {
+    document.getElementById('phoneForm').style.display = 'block';
+    document.getElementById('otpForm').style.display = 'none';
+}
+
+// --- Initialisation des formulaires ---
+document.addEventListener('DOMContentLoaded', () => {
+    const phoneForm = document.getElementById('phoneForm');
+    const otpForm = document.getElementById('otpForm');
+
+    if (phoneForm) phoneForm.addEventListener('submit', handleOTPRequest);
+    if (otpForm) otpForm.addEventListener('submit', handleOTPVerify);
+});
+
+// --- Autres fonctions utilitaires ---
 function togglePassword(inputId) {
   const input = document.getElementById(inputId);
-  const button = input.parentElement.querySelector('.toggle-password');
-  const icon = button.querySelector('i');
-
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.classList.remove('fa-eye');
-    icon.classList.add('fa-eye-slash');
-  } else {
-    input.type = 'password';
-    icon.classList.remove('fa-eye-slash');
-    icon.classList.add('fa-eye');
-  }
-}
-
-// --- Password strength checker ---
-const passwordInput = document.getElementById('password');
-if (passwordInput) {
-  passwordInput.addEventListener('input', function () {
-    const password = this.value;
-    const strengthFill = document.getElementById('strengthFill');
-    const strengthText = document.getElementById('strengthText');
-    if (!strengthFill || !strengthText) return;
-
-    let strength = 0;
-    let text = '';
-    let color = '';
-
-    if (password.length === 0) {
-      strength = 0; text = 'Entrez un mot de passe'; color = '#E2E8F0';
-    } else if (password.length < 6) {
-      strength = 25; text = 'Faible'; color = '#DC2626';
-    } else if (password.length < 8) {
-      strength = 50; text = 'Moyen'; color = '#F59E0B';
-    } else if (password.length < 12) {
-      strength = 75; text = 'Bon'; color = '#00A86B';
-    } else {
-      strength = 100; text = 'Excellent'; color = '#00A86B';
-    }
-
-    // Check for complexity
-    if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength += 10;
-    if (password.match(/[0-9]/)) strength += 10;
-    if (password.match(/[^a-zA-Z0-9]/)) strength += 10;
-    strength = Math.min(strength, 100);
-
-    strengthFill.style.width = strength + '%';
-    strengthFill.style.background = color;
-    strengthText.textContent = text;
-    strengthText.style.color = color;
-  });
-}
-
-// --- Gestion base utilisateurs locale ---
-function getUsers() {
-  const users = localStorage.getItem('tontine_users');
-  return users ? JSON.parse(users) : [];
-}
-
-async function saveUser(user) {
-  const users = getUsers();
-  // Vérifier si l'email existe déjà
-  if (users.find(u => u.email === user.email)) {
-    return false;
-  }
-  // Hasher le mot de passe avant stockage
-  user.password = await hashPassword(user.password);
-  users.push(user);
-  localStorage.setItem('tontine_users', JSON.stringify(users));
-  return true;
-}
-
-// --- Rate Limiter ---
-const loginAttempts = {
-  count: 0,
-  lastAttempt: 0,
-  maxAttempts: 5,
-  lockoutMs: 60000, // 1 minute
-
-  canAttempt() {
-    const now = Date.now();
-    // Reset après le lockout
-    if (this.count >= this.maxAttempts && (now - this.lastAttempt) > this.lockoutMs) {
-      this.count = 0;
-    }
-    return this.count < this.maxAttempts;
-  },
-
-  recordAttempt() {
-    this.count++;
-    this.lastAttempt = Date.now();
-  },
-
-  reset() {
-    this.count = 0;
-  },
-
-  getRemainingSeconds() {
-    const elapsed = Date.now() - this.lastAttempt;
-    return Math.ceil((this.lockoutMs - elapsed) / 1000);
-  }
-};
-
-// --- Validation helpers ---
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPhone(phone) {
-  return /^(\+229\s?)?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}$/.test(phone.replace(/\s/g, '').length >= 8 ? phone : '');
-}
-
-// --- Login form ---
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-  loginForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // Rate limiting check
-    if (!loginAttempts.canAttempt()) {
-      const remaining = loginAttempts.getRemainingSeconds();
-      showNotification(`Trop de tentatives. Réessayez dans ${remaining}s`, 'error');
-      return;
-    }
-
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    const remember = document.getElementById('remember') ? document.getElementById('remember').checked : false;
-
-    if (!email || !password) {
-      showNotification('Veuillez remplir tous les champs', 'error');
-      return;
-    }
-
-    const submitBtn = loginForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
-    submitBtn.disabled = true;
-
-    // Hasher le mot de passe pour comparaison
-    const hashedPassword = await hashPassword(password);
-    const users = getUsers();
-    const user = users.find(u => u.email === email && u.password === hashedPassword);
-
-    if (user) {
-      loginAttempts.reset();
-
-      // Stocker les infos utilisateur (PAS le token encore — on attend l'OTP)
-      const storage = remember ? localStorage : sessionStorage;
-      storage.setItem('userId', user.email);
       storage.setItem('userName', user.firstName + ' ' + user.lastName);
 
       showNotification('Identifiants vérifiés ! Vérification OTP...', 'success');

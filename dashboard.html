@@ -154,7 +154,7 @@
             <div class="stat-icon stat-icon-green"><i class="fas fa-wallet"></i></div>
             <div class="stat-trend stat-trend-up"><i class="fas fa-arrow-up"></i> 12%</div>
           </div>
-          <div class="stat-value counter" data-target="2450000">0 FCFA</div>
+          <div class="stat-value counter" id="totalSaved" data-target="2450000">0 FCFA</div>
           <div class="stat-label">Total Épargné</div>
           <div class="stat-footer"><span>+250,000 FCFA ce mois</span></div>
         </div>
@@ -163,7 +163,7 @@
             <div class="stat-icon stat-icon-blue"><i class="fas fa-users"></i></div>
             <div class="stat-trend stat-trend-up"><i class="fas fa-arrow-up"></i> 1</div>
           </div>
-          <div class="stat-value counter" data-target="3">0</div>
+          <div class="stat-value counter" id="activeTontines" data-target="3">0</div>
           <div class="stat-label">Tontines Actives</div>
           <div class="stat-footer"><span>1 en attente</span></div>
         </div>
@@ -181,7 +181,7 @@
             <div class="stat-icon stat-icon-green"><i class="fas fa-chart-line"></i></div>
             <div class="stat-trend stat-trend-up"><i class="fas fa-check"></i></div>
           </div>
-          <div class="stat-value counter-percent" data-target="100">0%</div>
+          <div class="stat-value counter-percent" id="payoutRate" data-target="100">0%</div>
           <div class="stat-label">Taux de Paiement</div>
           <div class="stat-footer"><span>Tous les paiements à jour</span></div>
         </div>
@@ -552,6 +552,8 @@
     }
   </script>
 
+  <script src="api.js"></script>
+  <script src="dashboard-api.js"></script>
   <script src="i18n.js"></script>
 
   <!-- Bottom Nav for Mobile -->

@@ -1,109 +1,93 @@
+// ================================================
+// TONTINECHAIN — KYC VERIFICATION (REAL BACKEND)
+// ================================================
+
 const KYC = {
-    isVerified() {
-        return localStorage.getItem('tc_kyc_verified') === 'true';
+    checkStatus() {
+        const userStr = localStorage.getItem('user');
+        const user = userStr ? JSON.parse(userStr) : null;
+        const isVerified = localStorage.getItem('tc_kyc_verified') === 'true';
+
+        if (user && user.npi) {
+            localStorage.setItem('tc_kyc_verified', 'true');
+            this.removeBlockingOverlay();
+            return true;
+        }
+
+        if (!isVerified) {
+            this.showBlockingOverlay();
+            return false;
+        }
+        return true;
     },
 
-    openModal(mandatory = false) {
-        if (this.isVerified()) return;
+    showBlockingOverlay() {
+        if (document.getElementById('kyc-overlay')) return;
 
-        const modal = document.createElement('div');
-        modal.className = 'kyc-overlay';
-        modal.id = 'kyc-modal-overlay';
-        
-        const closeBtn = mandatory ? '' : `<button class="close-btn" onclick="this.closest('.kyc-overlay').remove()">&times;</button>`;
-        
-        modal.innerHTML = `
-            <div class="kyc-modal">
-                <div class="kyc-header">
-                    <h3>${mandatory ? '⚠️ Vérification Obligatoire' : 'Vérification d\'Identité'}</h3>
-                    ${closeBtn}
+        const overlay = document.createElement('div');
+        overlay.id = 'kyc-overlay';
+        overlay.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            color: white; text-align: center; font-family: 'Manrope', sans-serif;
+        `;
+
+        overlay.innerHTML = `
+            <div style="max-width: 450px; padding: 40px; background: #1E293B; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);">
+                <div style="width: 80px; height: 80px; background: rgba(0,168,107,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border: 1px solid #00A86B;">
+                    <i class="fas fa-user-shield" style="font-size: 32px; color: #00A86B;"></i>
                 </div>
-                <div class="kyc-body">
-                    <div id="kyc-step-1">
-                        <div class="kyc-camera-sim">
-                            <i class="fas fa-id-card"></i>
-                            <div class="scan-line"></div>
-                        </div>
-                        <p class="kyc-hint">${mandatory ? '<b>Accès restreint :</b> Veuillez vérifier votre identité pour continuer.' : 'Placez votre pièce d\'identité (CIP, NPI ou Passeport) dans le cadre.'}</p>
-                        <button class="btn btn-primary btn-block" onclick="KYC.startScan()">Démarrer la Vérification</button>
-                    </div>
-                    <div id="kyc-step-2" style="display:none">
-                        <div class="kyc-loader">
-                            <div class="spinner"></div>
-                            <h4>Analyse en cours...</h4>
-                            <p>Vérification cryptographique sur Polygon POS...</p>
-                        </div>
-                        <div class="kyc-progress-bar">
-                            <div class="kyc-progress-fill" style="width:0%"></div>
-                        </div>
-                    </div>
-                    <div id="kyc-step-3" style="display:none">
-                        <div class="kyc-success">
-                            <i class="fas fa-check-circle" style="color:#00A86B"></i>
-                            <h4>Félicitations !</h4>
-                            <p>Votre identité est confirmée. Toutes les fonctionnalités sont débloquées.</p>
-                            <button class="btn btn-success btn-block" onclick="KYC.finish()">Accéder à mon Dashboard</button>
-                        </div>
-                    </div>
-                </div>
+                <h2 style="margin-bottom: 16px; font-family: 'Space Grotesk';">Vérification Obligatoire</h2>
+                <p style="color: #94A3B8; margin-bottom: 32px; line-height: 1.6;">Conformément à la réglementation MIABE 2026, vous devez renseigner votre NPI pour accéder au Dashboard.</p>
+                <button onclick="KYC.openModal()" class="btn btn-primary btn-large btn-block" style="background:#00A86B; border:none; padding:15px; border-radius:12px; cursor:pointer; color:white; font-weight:700;">
+                    Compléter mon Profil
+                </button>
             </div>
         `;
-        document.body.appendChild(modal);
-        
-        // CSS Injection (if not already injected)
-        if (!document.getElementById('kyc-styles')) {
-            const style = document.createElement('style');
-            style.id = 'kyc-styles';
-            style.innerText = `
-                .kyc-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.9); backdrop-filter:blur(8px); z-index:20000; display:flex; align-items:center; justify-content:center; animation: fadeIn 0.3s; }
-                .kyc-modal { background:white; width:95%; max-width:450px; border-radius:24px; padding:32px; box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(0,168,107,0.2); }
-                .kyc-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
-                .kyc-camera-sim { height:180px; background:#F8FAFC; border:2px dashed #E2E8F0; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:64px; color:#94A3B8; position:relative; overflow:hidden; margin-bottom:16px; }
-                .scan-line { position:absolute; top:0; left:0; width:100%; height:3px; background:#00A86B; box-shadow:0 0 15px #00A86B; animation: scan 2.5s linear infinite; }
-                .kyc-loader { text-align:center; padding:10px; }
-                .spinner { width:45px; height:45px; border:4px solid #F1F5F9; border-top-color:#00A86B; border-radius:50%; animation: spin 1s linear infinite; margin:0 auto 16px; }
-                .kyc-progress-bar { height:10px; background:#F1F5F9; border-radius:10px; overflow:hidden; margin-top:20px; }
-                .kyc-progress-fill { height:100%; background:linear-gradient(90deg, #00A86B, #00FF87); transition: width 0.3s; }
-                .kyc-success { text-align:center; padding:10px; }
-                .kyc-success i { font-size:72px; margin-bottom:16px; }
-                @keyframes scan { from { top:0 } to { top:100% } }
-                @keyframes spin { from { transform:rotate(0deg) } to { transform:rotate(360deg) } }
-                @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
-            `;
-            document.head.appendChild(style);
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+    },
+
+    removeBlockingOverlay() {
+        const overlay = document.getElementById('kyc-overlay');
+        if (overlay) {
+            overlay.remove();
+            document.body.style.overflow = 'auto';
         }
     },
 
-    startScan() {
-        document.getElementById('kyc-step-1').style.display = 'none';
-        document.getElementById('kyc-step-2').style.display = 'block';
-        
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 8;
-            if (progress > 100) progress = 100;
-            document.querySelector('.kyc-progress-fill').style.width = progress + '%';
-            if (progress >= 100) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    document.getElementById('kyc-step-2').style.display = 'none';
-                    document.getElementById('kyc-step-3').style.display = 'block';
-                }, 800);
-            }
-        }, 150);
+    openModal() {
+        const npi = prompt("Veuillez entrer votre NPI (13 chiffres) :");
+        if (npi && npi.length === 13) {
+            this.verify(npi);
+        } else {
+            alert("NPI invalide (doit contenir 13 chiffres).");
+        }
     },
 
-    finish() {
-        localStorage.setItem('tc_kyc_verified', 'true');
-        document.getElementById('kyc-modal-overlay').remove();
-        // Optionnel: rafraichir pour mettre à jour les badges
-        window.location.reload();
+    async verify(npi) {
+        try {
+            // Update profile with NPI via API
+            await API.user.updateProfile({ npi });
+            
+            // Refresh local user data
+            const user = await API.user.getProfile();
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('tc_kyc_verified', 'true');
+            
+            this.removeBlockingOverlay();
+            alert("Profil vérifié avec succès !");
+            location.reload();
+        } catch (error) {
+            alert("Erreur lors de la vérification : " + error.message);
+        }
     }
 };
 
-// Auto-trigger if mandatory on dashboard
-if (window.location.pathname.includes('dashboard.html') && !KYC.isVerified()) {
-    window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => KYC.openModal(true), 1000);
-    });
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Check status on dashboard or profile pages
+    if (window.location.pathname.includes('dashboard.html') || window.location.pathname.includes('profil.html')) {
+        KYC.checkStatus();
+    }
+});

@@ -32,50 +32,49 @@
         <!-- Header -->
         <div class="auth-header">
           <h1>Bon retour !</h1>
-          <p>Connectez-vous pour accéder à vos tontines</p>
+          <p>Connectez-vous via OTP sécurisé</p>
         </div>
 
-        <!-- Form -->
-        <form class="auth-form" id="loginForm">
+        <!-- Phone Step -->
+        <form class="auth-form" id="phoneForm">
           <div class="form-group">
-            <label for="email">Email ou Téléphone</label>
+            <label for="phone">Numéro de Téléphone</label>
             <div class="input-with-icon">
-              <i class="fas fa-envelope"></i>
-              <input type="text" id="email" class="form-input" placeholder="exemple@email.com" required>
+              <i class="fas fa-phone"></i>
+              <input type="tel" id="phone" class="form-input" placeholder="+229 97 00 00 00" required>
             </div>
+            <p class="form-hint" style="font-size: 12px; color: #64748B; margin-top: 8px;">Un code OTP vous sera envoyé par SMS ou WhatsApp.</p>
           </div>
 
-          <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <div class="input-with-icon">
-              <i class="fas fa-lock"></i>
-              <input type="password" id="password" class="form-input" placeholder="••••••••" required>
-              <button type="button" class="toggle-password" onclick="togglePassword('password')">
-                <i class="fas fa-eye"></i>
-              </button>
-            </div>
-          </div>
+          <button type="submit" class="btn btn-primary btn-large btn-block" id="sendOTPBtn">
+            <i class="fas fa-paper-plane"></i> Recevoir le code OTP
+          </button>
+        </form>
 
-          <div class="form-options">
-            <label class="checkbox-label">
-              <input type="checkbox" id="remember">
-              <span>Se souvenir de moi</span>
-            </label>
-            <a href="javascript:void(0)" class="link-primary" onclick="showForgotPassword()">Mot de passe oublié ?</a>
+        <!-- OTP Step (Hidden initially) -->
+        <form class="auth-form" id="otpForm" style="display: none;">
+          <div class="form-group">
+            <label for="otp">Code de vérification</label>
+            <div class="otp-input-container" style="display: flex; gap: 10px; justify-content: center; margin: 20px 0;">
+                <input type="text" maxlength="6" id="otp" class="form-input" style="text-align: center; font-size: 24px; letter-spacing: 10px; width: 100%;" placeholder="000000" required>
+            </div>
+            <p class="form-hint" id="otpHint" style="text-align: center; font-size: 14px; color: #64748B;">Code envoyé au <span id="displayPhone"></span></p>
           </div>
 
           <button type="submit" class="btn btn-primary btn-large btn-block">
-            <i class="fas fa-sign-in-alt"></i> Se connecter
+            <i class="fas fa-check-circle"></i> Vérifier & Se connecter
           </button>
-
-          <div class="divider">
-            <span>OU</span>
-          </div>
-
-          <button type="button" class="btn btn-outline btn-large btn-block" onclick="connectWallet()">
-            <i class="fas fa-wallet"></i> Se connecter avec Wallet
-          </button>
+          
+          <button type="button" class="btn btn-link btn-block" onclick="resetLogin()" style="margin-top: 10px;">Modifier le numéro</button>
         </form>
+
+        <div class="divider">
+          <span>OU</span>
+        </div>
+
+        <button type="button" class="btn btn-outline btn-large btn-block" onclick="connectWallet()">
+          <i class="fas fa-wallet"></i> Se connecter avec Wallet
+        </button>
 
         <!-- Footer -->
         <div class="auth-footer">
@@ -154,9 +153,8 @@
 
   <script src="security-layers.js"></script>
   <script src="script.js"></script>
+  <script src="api.js"></script>
   <script src="auth.js"></script>
-
-
   <script src="i18n.js"></script>
 </body>
 </html>
