@@ -336,3 +336,14 @@ function sendResetEmail() {
   document.getElementById('forgotModal').remove();
   showNotification(`Lien de réinitialisation envoyé à ${email} (démo)`, 'success');
 }
+
+// Bind events on load
+document.addEventListener('DOMContentLoaded', () => {
+  const phoneForm = document.getElementById('phoneForm');
+  const signupForm = document.getElementById('signupForm');
+  const otpForm = document.getElementById('otpForm');
+
+  if (phoneForm) phoneForm.addEventListener('submit', handleOTPRequest);
+  if (signupForm) signupForm.addEventListener('submit', handleOTPRequest);
+  if (otpForm) otpForm.addEventListener('submit', handleOTPVerify);
+});
