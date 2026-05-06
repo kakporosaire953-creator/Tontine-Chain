@@ -164,23 +164,18 @@ class TectonicFracture {
 const tectonicSystem = new TectonicFracture();
 
 function toggleTectonicTheme() {
-    const isDark = document.body.getAttribute('data-theme') === 'basalte';
-    const newTheme = isDark ? 'calcaire' : 'basalte';
+    // We play the animation and sound, but we don't switch the theme for now
+    // as per user request to keep the site in light mode while preserving the effect.
+    tectonicSystem.trigger(true); // Always show the "fracture" effect
     
-    // Trigger animation BEFORE switching CSS so it covers the screen
-    tectonicSystem.trigger(!isDark);
-    
-    // Slight delay so the canvas renders the solid color before DOM updates
-    setTimeout(() => {
-        document.body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('tc_theme', newTheme);
-    }, 50);
+    console.log("La Faille triggered (Visual & Audio only)");
 }
 
-// Auto-inject the FAB and restore theme
+// Auto-inject the FAB and force light theme
 (function() {
-    const savedTheme = localStorage.getItem('tc_theme') || 'calcaire';
-    document.body.setAttribute('data-theme', savedTheme);
+    // Force light mode (Calcaire) to prevent obsolete styles
+    document.body.setAttribute('data-theme', 'calcaire');
+    localStorage.setItem('tc_theme', 'calcaire');
 
     const injectFAB = () => {
         if (document.querySelector('.tectonic-fab')) return;
@@ -189,7 +184,7 @@ function toggleTectonicTheme() {
         fab.className = 'tectonic-fab';
         fab.innerHTML = `
             <div class="tectonic-label">La Faille</div>
-            <div class="tectonic-toggle" onclick="toggleTectonicTheme()" title="Basculer la Faille Géologique">
+            <div class="tectonic-toggle" onclick="toggleTectonicTheme()" title="Déclencher la Faille Géologique (Effet visuel)">
                 <div class="fault-line"></div>
             </div>
         `;
