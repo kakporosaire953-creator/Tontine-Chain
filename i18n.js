@@ -276,6 +276,9 @@ const I18N = {
     "Cotisation": "Akwɛ́ kplé",
     "Total": "Bǐ",
     "Prochaine": "E ja é",
+    "Cotisation": "Akwɛ́ kplé",
+    "Total": "Bǐ",
+    "Prochaine": "E ja é",
     "Crée par": "È bló gbɔn",
     
     // Auth & Création
@@ -299,50 +302,7 @@ const I18N = {
     "Prochaine distribution": "Mímá e ja é",
     "Membres du groupe": "Mɛ e ɖò kplékplé ɔ mɛ lɛ",
     "Ajouter un membre": "Gɔ́ mɛ ɖokpó",
-    "Modifier les paramètres": "Ðiɖe lɛ",
-
-    // Login & Signup spécifique
-    "Bon retour !": "Kú dó wǎ !",
-    "Connectez-vous pour accéder à vos tontines": "Byɔ mɛ bá mɔ asú towe lɛ",
-    "Email ou Téléphone": "Email abǐ Tɛlɛfónu",
-    "Email ou téléphone": "Email abǐ Tɛlɛfónu",
-    "Mot de passe oublié ?": "A wɔn nyǐkɔgbè towe à?",
-    "OU": "ABǏ",
-    "Vous n'avez pas de compte ?": "A ko ɖó kɔ́ntì ǎ à?",
-    "Créer un compte": "Bló kɔ́ntì ɖokpó",
-    "Utilisateurs actifs": "Mɛ e ɖò azɔ̌ wà wɛ lɛ",
-    "Tontines crées": "Asú e è bló lɛ",
-    "FCFA sécurisés": "FCFA e è cyán lɛ",
-    "Vos tontines, sécurisées par la blockchain": "Blockchain nɔ cyán asú towe lɛ",
-    "Accédez à votre dashboard, gérez vos cotisations et suivez vos tontines en temps réel.": "Byɔ táblo towe mɛ, kpé nukún dó akwɛ́ kplé towe lɛ wú bó xwedó asú towe lɛ ɖò hwenu gbéjí.",
-    "Sécurité maximale": "Cyáncyán bǐ",
-    "Smart contracts audités et immuables": "Smart contracts e è kpɔ́n lɛ bó ma sixu huzu ǎ lɛ",
-    "Transparence totale": "Mɔjɛmɛ bǐ",
-    "Toutes les transactions sur la blockchain": "Nǔ bǐ ɖò blockchain jí",
-    "Assistant IA YAO": "Alɔdótɔ́ IA YAO",
-    "Conseils personnalisés 24/7": "Gbè nina mɛɖésunɔ tɔn 24/7",
-    "Créez un compte": "Bló kɔ́ntì ɖokpó",
-    "Rejoignez des milliers d'utilisateurs qui sécurisent leurs tontines": "Byɔ mɛ gěgé e ɖò asú yětɔn cyán wɛ lɛ mɛ",
-    "Prénom *": "Nyikɔ *",
-    "Nom *": "Tɔ́ nyikɔ *",
-    "Email *": "Email *",
-    "Téléphone *": "Tɛlɛfónu *",
-    "Mot de passe *": "Nyǐkɔgbè *",
-    "Confirmer le mot de passe *": "Vɔ́ nyǐkɔgbè ɔ xlɛ́ *",
-    "Entrez un mot de passe": "Wlǎn nyǐkɔgbè towe",
-    "J'accepte les": "Un yí gbè nú",
-    "Conditions d'utilisation": "Sɛ́n e è na xwedó lɛ",
-    "Politique de confidentialité": "Nǔ e kàn nǔ hɛn mimɔ lɛ",
-    "Commencez Gratuitement": "Bɛ̀ vɔ̀",
-    "Créez votre compte en moins de 2 minutes et commencez à épargner en toute sécurité.": "Bló kɔ́ntì towe ɖò ganxixo 2 mɛ bó bɛ́ akwɛ́ kplé kpó cyáncyán kpó.",
-    "Inscription 100% gratuite": "Wlǎn nyikɔ vɔ̀ 100%",
-    "Aucun frais cachés": "Akwɛ́ ɖěvo kún ɖò mɛ ó",
-    "Support client 24/7": "Alɔdó mɛ 24/7",
-    "Assistant IA YAO inclus": "Alɔdótɔ́ IA YAO ɖò mɛ",
-    "Messagerie sécurisée": "Wɛn lɛ ɖò ayi jí",
-    "Notifications en temps réel": "Gbè nú mɛ ɖò hwenu gbéjí",
-    "Commerçante, Dantokpa": "Ajɔ̌watɔ́, Dantokpa",
-    "\"Depuis que j'utilise TontineChain, je n'ai plus peur des détournements. Tout est transparent et sécurisé !\"": "\"Sín hwenu e un bɛ́ TontineChain ɔ, un sɔ́ nɔ ɖì xɛsi nú akwɛ́ fínfín ǎ. Nǔ bǐ ɖò mɔjɛmɛ bó ɖò ayi jí !\""
+    "Modifier les paramètres": "Ðyɔ́ ɖiɖe lɛ"
   },
 
   translateTextNode(node) {
@@ -389,12 +349,10 @@ const I18N = {
   },
 
   applyAll() {
-    // Translate on index, login and signup
-    const path = window.location.pathname;
-    const isTranslatablePage = path.endsWith('index.html') || path.endsWith('/') || path === '' || 
-                               path.endsWith('login.html') || path.endsWith('signup.html');
+    // Only translate if on index.html or root
+    const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '';
     
-    if (isTranslatablePage) {
+    if (isHomePage) {
       this.walkDOM(document.body);
       document.documentElement.lang = this.currentLang === 'fon' ? 'fon' : 'fr';
     }
