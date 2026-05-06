@@ -6,15 +6,15 @@ const yaoResponses = {
     suggestions: ['Oui, rappelle-moi', 'Voir toutes mes échéances', 'Payer maintenant']
   },
   'analyse': {
-    text: '📊 <strong>Analyse de vos habitudes d\'épargne</strong><br><br>✅ Taux de paiement : <strong>100%</strong> (Excellent !)<br>💰 Épargne mensuelle moyenne : <strong>175,000 FCFA</strong><br>📈 Progression : <strong>+15%</strong> vs mois dernier<br><br>Vous êtes dans le top 10% des épargnants les plus réguliers !',
+    text: '<i class="fas fa-chart-bar" style="color:var(--blue-primary)"></i> <strong>Analyse de vos habitudes d\'épargne</strong><br><br><i class="fas fa-check-circle" style="color:var(--green-dark)"></i> Taux de paiement : <strong>100%</strong> (Excellent !)<br><i class="fas fa-coins" style="color:var(--gold-primary)"></i> Épargne mensuelle moyenne : <strong>175,000 FCFA</strong><br><i class="fas fa-chart-line" style="color:var(--blue-primary)"></i> Progression : <strong>+15%</strong> vs mois dernier<br><br>Vous êtes dans le top 10% des épargnants les plus réguliers !',
     suggestions: ['Voir les détails', 'Conseils d\'optimisation', 'Comparer avec d\'autres']
   },
   'optimiser': {
-    text: '💡 <strong>Conseils pour optimiser vos cotisations</strong><br><br>1. Augmentez votre cotisation mensuelle de 10% pour atteindre vos objectifs plus rapidement<br>2. Rejoignez une tontine à fréquence hebdomadaire pour une épargne plus régulière<br>3. Diversifiez avec une tontine à montant plus élevé<br><br>Voulez-vous que je vous aide à créer une nouvelle tontine ?',
+    text: '<i class="fas fa-lightbulb" style="color:var(--gold-primary)"></i> <strong>Conseils pour optimiser vos cotisations</strong><br><br>1. Augmentez votre cotisation mensuelle de 10% pour atteindre vos objectifs plus rapidement<br>2. Rejoignez une tontine à fréquence hebdomadaire pour une épargne plus régulière<br>3. Diversifiez avec une tontine à montant plus élevé<br><br>Voulez-vous que je vous aide à créer une nouvelle tontine ?',
     suggestions: ['Créer une tontine', 'Voir les tontines disponibles', 'Plus de conseils']
   },
   'résumé': {
-    text: '📋 <strong>Résumé de vos tontines</strong><br><br>🟢 <strong>3 tontines actives</strong><br>• Femmes Entrepreneures (12 membres)<br>• Commerçantes Dantokpa (8 membres)<br>• Artisanes Porto-Novo (10 membres)<br><br>💰 Total épargné : <strong>2,450,000 FCFA</strong><br>📅 Prochaine distribution : <strong>20 Mars 2026</strong>',
+    text: '<i class="fas fa-clipboard-list" style="color:var(--blue-primary)"></i> <strong>Résumé de vos tontines</strong><br><br><i class="fas fa-circle" style="color:var(--green-dark)"></i> <strong>3 tontines actives</strong><br>• Femmes Entrepreneures (12 membres)<br>• Commerçantes Dantokpa (8 membres)<br>• Artisanes Porto-Novo (10 membres)<br><br><i class="fas fa-coins" style="color:var(--gold-primary)"></i> Total épargné : <strong>2,450,000 FCFA</strong><br><i class="fas fa-calendar-alt" style="color:var(--blue-primary)"></i> Prochaine distribution : <strong>20 Mars 2026</strong>',
     suggestions: ['Voir les détails', 'Créer une nouvelle tontine', 'Inviter des membres']
   },
   'default': {
@@ -179,7 +179,7 @@ function clearChat() {
         </div>
         <div class="message-content">
           <div class="message-bubble">
-            <p>👋 Nouvelle conversation démarrée ! Comment puis-je vous aider ?</p>
+            <p><i class="fas fa-hand-sparkles" style="color:var(--gold-primary)"></i> Nouvelle conversation démarrée ! Comment puis-je vous aider ?</p>
           </div>
           <div class="message-time">Maintenant</div>
         </div>
