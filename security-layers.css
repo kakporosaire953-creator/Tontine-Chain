@@ -12,15 +12,15 @@
 @keyframes tcFadeIn { from{opacity:0} to{opacity:1} }
 
 .tc-modal {
-  background: #fff; border-radius: 20px; padding: 36px 32px;
+  background: var(--card-bg-solid); border-radius: 20px; padding: 36px 32px;
   max-width: 440px; width: 100%; text-align: center;
   box-shadow: 0 24px 48px rgba(0,0,0,.18);
   animation: tcSlideUp .3s ease;
 }
 @keyframes tcSlideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
 
-.tc-modal h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #1E293B; }
-.tc-modal p  { font-size: 14px; color: #64748B; margin-bottom: 16px; line-height: 1.6; }
+.tc-modal h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+.tc-modal p  { font-size: 14px; color: var(--gray); margin-bottom: 16px; line-height: 1.6; }
 
 .tc-modal-icon {
   width: 64px; height: 64px; border-radius: 16px;
@@ -55,7 +55,7 @@
 .otp-row { display: flex; gap: 8px; justify-content: center; margin: 16px 0; }
 .otp-digit {
   width: 44px; height: 52px; border: 2px solid #E2E8F0; border-radius: 10px;
-  text-align: center; font-size: 22px; font-weight: 700; color: #1E293B;
+  text-align: center; font-size: 22px; font-weight: 700; color: var(--text-main);
   font-family: 'Space Grotesk', sans-serif; transition: border-color .2s;
   outline: none;
 }
@@ -73,11 +73,11 @@
 /* ── FedaPay modal ── */
 .fedapay-modal { padding: 28px 28px 20px; }
 .feda-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.feda-logo { font-size: 18px; font-weight: 800; color: #1E293B; display: flex; align-items: center; gap: 8px; }
+.feda-logo { font-size: 18px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
 .feda-logo i { color: #3B82F6; }
 .feda-secure { font-size: 12px; color: #00A86B; font-weight: 600; display: flex; align-items: center; gap: 4px; }
-.feda-amount { font-size: 32px; font-weight: 800; color: #1E293B; margin-bottom: 4px; }
-.feda-desc { font-size: 13px; color: #64748B; margin-bottom: 20px; }
+.feda-amount { font-size: 32px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
+.feda-desc { font-size: 13px; color: var(--gray); margin-bottom: 20px; }
 .feda-footer { font-size: 11px; color: #94A3B8; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
 
 .payment-methods { display: flex; flex-direction: column; gap: 10px; }
@@ -89,24 +89,24 @@
 .pm:hover { border-color: #93C5FD; background: #F8FAFF; }
 .pm.active { border-color: #3B82F6; background: #EFF6FF; }
 .pm-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.pm-name { font-weight: 700; font-size: 14px; color: #1E293B; }
-.pm-sub  { font-size: 12px; color: #64748B; }
+.pm-name { font-weight: 700; font-size: 14px; color: var(--text-main); }
+.pm-sub  { font-size: 12px; color: var(--gray); }
 .pm-check { margin-left: auto; font-size: 18px; transition: opacity .2s; }
 
 /* ── Blockchain modal ── */
 .blockchain-modal { padding: 32px 28px 24px; }
 .chain-badge { display: inline-block; background: #EEF2FF; color: #6366F1; padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; margin-bottom: 16px; }
-.chain-amount { font-size: 28px; font-weight: 800; color: #1E293B; margin-bottom: 20px; }
+.chain-amount { font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 20px; }
 .chain-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 13px; }
-.chain-label { color: #64748B; font-weight: 500; }
-.chain-val   { font-weight: 600; color: #1E293B; font-family: 'Space Grotesk', monospace; }
+.chain-label { color: var(--gray); font-weight: 500; }
+.chain-val   { font-weight: 600; color: var(--text-main); font-family: 'Space Grotesk', monospace; }
 .chain-immutable { background: #F0FFF4; color: #00A86B; border-radius: 10px; padding: 10px 14px; font-size: 12px; font-weight: 600; margin: 16px 0 12px; display: flex; align-items: center; gap: 8px; }
 
 /* ── Widget base ── */
 .tc-widget { padding: 0; }
 .tc-widget-header {
   display: flex; align-items: center; gap: 8px; font-weight: 700;
-  font-size: 15px; color: #1E293B; margin-bottom: 16px;
+  font-size: 15px; color: var(--text-main); margin-bottom: 16px;
 }
 .tc-badge {
   margin-left: auto; font-size: 11px; font-weight: 700; padding: 3px 10px;
@@ -115,7 +115,7 @@
 
 /* ── Trust score widget ── */
 .tc-score-val { font-size: 48px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
-.tc-score-sub { font-size: 13px; color: #64748B; margin-bottom: 12px; }
+.tc-score-sub { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
 .tc-bar { height: 10px; background: #E2E8F0; border-radius: 50px; overflow: hidden; margin-bottom: 14px; }
 .tc-bar-fill { height: 100%; border-radius: 50px; transition: width .8s ease; }
 .tc-score-items { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: #475569; margin-bottom: 12px; }
@@ -127,12 +127,12 @@
 .notif-row i { font-size: 18px; margin-top: 2px; flex-shrink: 0; }
 .notif-row-body { flex: 1; }
 .notif-ch   { font-size: 11px; font-weight: 700; margin-bottom: 2px; }
-.notif-msg  { font-size: 13px; color: #1E293B; line-height: 1.4; }
+.notif-msg  { font-size: 13px; color: var(--text-main); line-height: 1.4; }
 .notif-time { font-size: 11px; color: #94A3B8; margin-top: 3px; }
 
 /* ── AI risk widget ── */
 .ai-risk-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-.ai-risk-name { font-size: 13px; font-weight: 600; color: #1E293B; width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; }
+.ai-risk-name { font-size: 13px; font-weight: 600; color: var(--text-main); width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; }
 .ai-risk-bar-wrap { flex: 1; height: 8px; background: #E2E8F0; border-radius: 50px; overflow: hidden; }
 .ai-risk-fill { height: 100%; border-radius: 50px; }
 .ai-risk-label { font-size: 12px; font-weight: 700; width: 56px; text-align: right; flex-shrink: 0; }

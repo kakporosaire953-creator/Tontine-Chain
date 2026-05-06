@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   padding-top: 80px;
-  background: linear-gradient(135deg, #F8FAFC 0%, #E0F2FE 50%, #F8FAFC 100%);
+  background: var(--bg-body);
   position: relative;
   overflow: hidden;
 }
@@ -80,7 +80,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: var(--color-white);
+  background: var(--card-bg-solid);
   border-radius: var(--radius-full);
   font-size: 14px;
   font-weight: 600;
@@ -184,7 +184,7 @@
 
 /* Problem Section */
 #probleme {
-  background: var(--color-white);
+  background: var(--card-bg-solid);
 }
 
 .problem-image,
@@ -221,7 +221,7 @@
 }
 
 .stat-box {
-  background: var(--color-white);
+  background: var(--card-bg-solid);
   padding: var(--spacing-xl);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -269,7 +269,7 @@
 }
 
 .problem-card {
-  background: var(--color-white);
+  background: var(--card-bg-solid);
   padding: var(--spacing-xl);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -367,7 +367,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: var(--spacing-xl);
-  background: linear-gradient(135deg, #F8FAFC, #E0F2FE);
+  background: var(--card-bg-solid);
   border-left: 4px solid var(--color-blue);
   border-radius: var(--radius-md);
   display: flex;

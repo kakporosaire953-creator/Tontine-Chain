@@ -14,6 +14,11 @@
   --glass-shadow: 0 8px 32px rgba(45, 40, 36, 0.05);
   --accent-faille: #C05C42; /* Terracotta */
   --heading-font: 'Playfair Display', 'Space Grotesk', serif;
+  
+  /* Modern Core UI Variables */
+  --core-bg: #FFFFFF;
+  --core-text: #0F172A;
+  --core-dark: #1E293B;
 
   /* Colors Mapping */
   --color-gold: #FFB81C;
@@ -84,6 +89,15 @@ body[data-theme="basalte"] {
   
   --color-gray-lighter: #0F172A;
   --color-border: var(--border-color);
+  
+  /* Improved Contrast Colors - Basalte */
+  --color-gray: #94A3B8;
+  --color-dark: #F8FAFC;
+  
+  /* Modern Core UI Variables - Basalte */
+  --core-bg: #1E293B;
+  --core-text: #E2E8F0;
+  --core-dark: #0D0E12;
 }
 
 /* Reset */
