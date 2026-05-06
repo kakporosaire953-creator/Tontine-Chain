@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mes Tontines - TontineChain</title>
-  
+
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
   <link rel="icon" type="image/jpeg" href="assets/images/logo-tontinechain.jpeg">
   <link rel="stylesheet" href="style.css">
-<script>if(!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) { window.location.href='login.html'; }</script>
+  <script>if (!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) { window.location.href = 'login.html'; }</script>
 </head>
+
 <body>
-  
+
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
@@ -27,7 +31,7 @@
             <span class="logo-gold">Tontine</span><span class="logo-blue">Chain</span>
           </span>
         </div>
-        
+
         <div class="nav-links">
           <a href="index.html">Accueil</a>
           <a href="dashboard.html">Dashboard</a>
@@ -35,29 +39,27 @@
           <a href="assistant-yao.html">Assistant YAO</a>
           <a href="messagerie.html">Messages</a>
         </div>
-        
+
         <div class="nav-buttons">
-          <div class="tectonic-toggle" onclick="toggleTectonicTheme()" title="Basculer la Faille Géologique" style="margin-right: 15px;">
-            <div class="fault-line"></div>
-          </div>
           <button class="btn btn-primary" onclick="window.location.href='create-tontine.html'">
             <i class="fas fa-plus"></i> Nouvelle Tontine
           </button>
           <button class="btn btn-outline" onclick="window.location.href='profil.html'">Mon Profil</button>
         </div>
-        
+
         <button class="menu-toggle" onclick="toggleMenu()">
           <i class="fas fa-bars" id="menuIcon"></i>
         </button>
       </div>
-      
+
       <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Accueil</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="mes-tontines.html">Mes Tontines</a>
         <a href="assistant-yao.html">Assistant YAO</a>
         <a href="messagerie.html">Messages</a>
-        <button class="btn btn-primary btn-block" onclick="window.location.href='create-tontine.html'">Nouvelle Tontine</button>
+        <button class="btn btn-primary btn-block" onclick="window.location.href='create-tontine.html'">Nouvelle
+          Tontine</button>
         <button class="btn btn-outline btn-block" onclick="window.location.href='profil.html'">Mon Profil</button>
       </div>
     </div>
@@ -394,8 +396,5 @@
     </a>
   </nav>
 </body>
+
 </html>
-
-
-
-

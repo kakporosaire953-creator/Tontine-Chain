@@ -177,8 +177,28 @@ function toggleTectonicTheme() {
     }, 50);
 }
 
-// Restore theme on load
-document.addEventListener('DOMContentLoaded', () => {
+// Auto-inject the FAB and restore theme
+(function() {
     const savedTheme = localStorage.getItem('tc_theme') || 'calcaire';
     document.body.setAttribute('data-theme', savedTheme);
-});
+
+    const injectFAB = () => {
+        if (document.querySelector('.tectonic-fab')) return;
+        
+        const fab = document.createElement('div');
+        fab.className = 'tectonic-fab';
+        fab.innerHTML = `
+            <div class="tectonic-label">La Faille</div>
+            <div class="tectonic-toggle" onclick="toggleTectonicTheme()" title="Basculer la Faille Géologique">
+                <div class="fault-line"></div>
+            </div>
+        `;
+        document.body.appendChild(fab);
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectFAB);
+    } else {
+        injectFAB();
+    }
+})();

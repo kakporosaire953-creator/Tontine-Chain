@@ -1,4 +1,4 @@
-Ôªø<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <title>Assistant YAO - TontineChain</title>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -72,21 +72,21 @@
 
           <div class="yao-suggestions">
             <h3>Suggestions</h3>
-            <button class="suggestion-btn" onclick="sendSuggestion('Quelle est ma prochaine √©ch√©ance ?')">
+            <button class="suggestion-btn" onclick="sendSuggestion('Quelle est ma prochaine ÈchÈance ?')">
               <i class="fas fa-calendar"></i>
-              <span>Prochaine √©ch√©ance</span>
+              <span>Prochaine ÈchÈance</span>
             </button>
-            <button class="suggestion-btn" onclick="sendSuggestion('Analyse mes habitudes d\'√©pargne')">
+            <button class="suggestion-btn" onclick="sendSuggestion('Analyse mes habitudes d\'Èpargne')">
               <i class="fas fa-chart-line"></i>
-              <span>Analyse d'√©pargne</span>
+              <span>Analyse d'Èpargne</span>
             </button>
             <button class="suggestion-btn" onclick="sendSuggestion('Comment optimiser mes cotisations ?')">
               <i class="fas fa-lightbulb"></i>
               <span>Optimiser cotisations</span>
             </button>
-            <button class="suggestion-btn" onclick="sendSuggestion('R√©sum√© de mes tontines')">
+            <button class="suggestion-btn" onclick="sendSuggestion('RÈsumÈ de mes tontines')">
               <i class="fas fa-list"></i>
-              <span>R√©sum√© tontines</span>
+              <span>RÈsumÈ tontines</span>
             </button>
           </div>
 
@@ -95,7 +95,7 @@
             <div class="history-list">
               <div class="history-item">
                 <i class="fas fa-clock"></i>
-                <span>Prochaine √©ch√©ance</span>
+                <span>Prochaine ÈchÈance</span>
               </div>
               <div class="history-item">
                 <i class="fas fa-chart-bar"></i>
@@ -103,7 +103,7 @@
               </div>
               <div class="history-item">
                 <i class="fas fa-question-circle"></i>
-                <span>Comment cr√©er une tontine</span>
+                <span>Comment crÈer une tontine</span>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@
               <span>YAO est en ligne</span>
             </div>
             <div class="yao-actions">
-              <button class="icon-btn" title="Param√®tres">
+              <button class="icon-btn" title="ParamËtres">
                 <i class="fas fa-cog"></i>
               </button>
               <button class="icon-btn" title="Aide">
@@ -138,13 +138,13 @@
               </div>
               <div class="message-content">
                 <div class="message-bubble">
-                  <p>üëã Bonjour ! Je suis YAO, votre assistant IA personnel.</p>
-                  <p>Je peux vous aider √† :</p>
+                  <p>?? Bonjour ! Je suis YAO, votre assistant IA personnel.</p>
+                  <p>Je peux vous aider ‡ :</p>
                   <ul>
-                    <li>üìä Analyser vos habitudes d'√©pargne</li>
-                    <li>üìÖ G√©rer vos √©ch√©ances</li>
-                    <li>üí° Optimiser vos cotisations</li>
-                    <li>‚ùì R√©pondre √† vos questions</li>
+                    <li>?? Analyser vos habitudes d'Èpargne</li>
+                    <li>?? GÈrer vos ÈchÈances</li>
+                    <li>?? Optimiser vos cotisations</li>
+                    <li>? RÈpondre ‡ vos questions</li>
                   </ul>
                   <p>Comment puis-je vous aider aujourd'hui ?</p>
                 </div>
@@ -161,7 +161,7 @@
               <input 
                 type="text" 
                 id="yaoInput" 
-                placeholder="Posez votre question √† YAO..." 
+                placeholder="Posez votre question ‡ YAO..." 
                 onkeypress="handleKeyPress(event)"
               >
               <button class="icon-btn" title="Note vocale">
@@ -173,7 +173,7 @@
             </div>
             <div class="yao-input-hint">
               <i class="fas fa-info-circle"></i>
-              YAO utilise l'IA pour vous fournir des conseils personnalis√©s
+              YAO utilise l'IA pour vous fournir des conseils personnalisÈs
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@
   <script src="yao.js"></script>
 
 
-  <script src="i18n.js"></script>
+  <script src="i18n.js"></script><script src="faille.js"></script>
 
   <!-- Bottom Nav for Mobile -->
   <nav class="bottom-nav">
