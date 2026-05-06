@@ -361,7 +361,7 @@
           </div>
         </div>
       <!-- Transaction History Section (NEW for Demo) -->
-      <div class="section-card" id="history-section" style="margin-top: 32px; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+      <div class="section-card" id="history-section" style="margin-top: 32px; background: linear-gradient(135deg, #ffffff 0%, var(--card-bg-solid) 100%);">
         <div class="section-header">
           <h2 class="section-title"><i class="fas fa-history" style="color:var(--green-dark)"></i> Historique des Gains</h2>
           <span class="badge-new" style="background: rgba(0, 168, 107, 0.1); color: var(--green-dark); padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;">Trust Score: 98%</span>
@@ -428,14 +428,14 @@
       m.innerHTML = '<div style="background:#fff;border-radius:20px;padding:32px;max-width:520px;width:92%;box-shadow:0 25px 60px rgba(0,0,0,.15);font-family:Manrope,sans-serif;max-height:90vh;overflow-y:auto;">'
         +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;"><h3 style="font-family:Space Grotesk,sans-serif;font-size:20px;margin:0;">'+name+'</h3><button onclick="document.getElementById(\'tontineDetailModal\').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#94A3B8;">&times;</button></div>'
         +'<div style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;background:'+sc+'15;color:'+sc+';font-size:13px;font-weight:600;margin-bottom:16px;"><i class="fas '+si+'"></i> '+t.status+'</div>'
-        +'<p style="color:#64748B;font-size:14px;margin-bottom:20px;">'+t.desc+'</p>'
+        +'<p style="color:var(--color-gray);font-size:14px;margin-bottom:20px;">'+t.desc+'</p>'
         +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">'
-        +'<div style="background:#F8FAFC;padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-users"></i> Membres</div><div style="font-weight:700;font-size:16px;">'+t.members+'</div></div>'
-        +'<div style="background:#F8FAFC;padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-coins"></i> Cotisation</div><div style="font-weight:700;font-size:16px;">'+t.amount+'</div></div>'
-        +'<div style="background:#F8FAFC;padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-wallet"></i> Total</div><div style="font-weight:700;font-size:16px;color:#00A86B;">'+t.totalCollected+'</div></div>'
-        +'<div style="background:#F8FAFC;padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-calendar"></i> Prochaine</div><div style="font-weight:700;font-size:14px;">'+t.next+'</div></div>'
+        +'<div style="background:var(--card-bg-solid);padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-users"></i> Membres</div><div style="font-weight:700;font-size:16px;">'+t.members+'</div></div>'
+        +'<div style="background:var(--card-bg-solid);padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-coins"></i> Cotisation</div><div style="font-weight:700;font-size:16px;">'+t.amount+'</div></div>'
+        +'<div style="background:var(--card-bg-solid);padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-wallet"></i> Total</div><div style="font-weight:700;font-size:16px;color:#00A86B;">'+t.totalCollected+'</div></div>'
+        +'<div style="background:var(--card-bg-solid);padding:14px;border-radius:12px;"><div style="font-size:12px;color:#94A3B8;margin-bottom:4px;"><i class="fas fa-calendar"></i> Prochaine</div><div style="font-weight:700;font-size:14px;">'+t.next+'</div></div>'
         +'</div>'
-        +'<div style="margin-bottom:20px;"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:#64748B;">Cycle '+t.cycle+'</span><span style="font-weight:600;">'+t.progress+'%</span></div><div style="background:#E2E8F0;border-radius:8px;height:8px;overflow:hidden;"><div style="background:linear-gradient(90deg,#00A86B,#3B82F6);height:100%;width:'+t.progress+'%;border-radius:8px;"></div></div></div>'
+        +'<div style="margin-bottom:20px;"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:var(--color-gray);">Cycle '+t.cycle+'</span><span style="font-weight:600;">'+t.progress+'%</span></div><div style="background:var(--border-color);border-radius:8px;height:8px;overflow:hidden;"><div style="background:linear-gradient(90deg,#00A86B,#3B82F6);height:100%;width:'+t.progress+'%;border-radius:8px;"></div></div></div>'
         +'<div style="display:flex;gap:10px;">'
         +(isActive ? '<button class="btn btn-primary" style="flex:1;" onclick="if(typeof TC!==\'undefined\')TC.fedapay.pay(50000,\''+name+'\');document.getElementById(\'tontineDetailModal\').remove();"><i class="fas fa-credit-card"></i> Payer</button>' : '<button class="btn btn-primary" style="flex:1;" onclick="window.location.href=\'join-tontine.html\'"><i class="fas fa-user-plus"></i> Inviter</button>')
         +'<button class="btn btn-outline" style="flex:1;" onclick="window.location.href=\'messagerie.html\'"><i class="fas fa-comments"></i> Messagerie</button>'
