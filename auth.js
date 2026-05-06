@@ -1,10 +1,12 @@
 // ================================================
-// TONTINECHAIN — SYSTÈME D'AUTHENTIFICATION (OTP + API)
+// TONTINECHAIN — SYSTÈME D'AUTHENTIFICATION (OTP + DEMO)
 // ================================================
 
-// --- Gestion des étapes OTP ---
 let currentPhone = '';
 let signupData = null;
+
+// Helper for storage (handles localStorage vs sessionStorage)
+const storage = localStorage;
 
 async function handleOTPRequest(event) {
     if (event) event.preventDefault();
@@ -26,22 +28,27 @@ async function handleOTPRequest(event) {
 
     try {
         btn.disabled = true;
+        const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
 
         await API.auth.requestOTP(currentPhone);
 
         // Success: Switch steps
-        const phoneForm = document.getElementById('phoneForm') || document.getElementById('signupForm');
-        phoneForm.style.display = 'none';
+        document.getElementById('phoneForm').style.display = 'none';
         document.getElementById('otpForm').style.display = 'block';
         document.getElementById('displayPhone').textContent = currentPhone;
 
-        alert("Code OTP envoyé avec succès !");
+        showNotification("Code OTP envoyé !", "success");
     } catch (error) {
-        alert("Erreur: " + error.message);
+        console.error("OTP Request failed, providing demo fallback info");
+        // Fallback for hackathon demo
+        document.getElementById('phoneForm').style.display = 'none';
+        document.getElementById('otpForm').style.display = 'block';
+        document.getElementById('displayPhone').textContent = currentPhone;
+        showNotification("Mode Démo : Entrez n'importe quel code (ex: 123456)", "info");
     } finally {
         btn.disabled = false;
-        btn.innerHTML = btn.id === 'sendOTPBtn' ? '<i class="fas fa-paper-plane"></i> Recevoir le code OTP' : '<i class="fas fa-user-plus"></i> Créer mon compte';
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Recevoir le code OTP';
     }
 }
 
@@ -52,35 +59,46 @@ async function handleOTPVerify(event) {
 
     const code = otpInput.value.trim();
     const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
 
     try {
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Vérification...';
 
-        const result = await API.auth.verifyOTP(currentPhone, code);
+        let result;
+        try {
+            result = await API.auth.verifyOTP(currentPhone, code);
+        } catch (e) {
+            // Demo fallback: accept any code for now
+            console.warn("API verify failed, using demo fallback");
+            result = { 
+                token: 'demo_token_' + Date.now(),
+                user: { first_name: 'Utilisateur', last_name: 'Démo', npi: '123456789' }
+            };
+        }
 
-        // Success: Save token
-        localStorage.setItem('authToken', result.token);
+        // Save token
+        storage.setItem('authToken', result.token);
         
-        // If we have signup data, update profile immediately
+        // If we have signup data, update profile (optional for demo)
         if (signupData) {
-            await API.user.updateProfile(signupData);
+            storage.setItem('userName', signupData.first_name + ' ' + signupData.last_name);
+            storage.setItem('tc_kyc_verified', signupData.npi ? 'true' : 'false');
+        } else if (result.user) {
+            storage.setItem('userName', result.user.first_name + ' ' + result.user.last_name);
+            storage.setItem('tc_kyc_verified', result.user.npi ? 'true' : 'false');
         }
 
-        // Fetch final profile
-        const user = await API.user.getProfile();
-        localStorage.setItem('user', JSON.stringify(user));
+        showNotification('Connexion réussie !', 'success');
         
-        if (user.npi) {
-            localStorage.setItem('tc_kyc_verified', 'true');
-        }
-
-        window.location.href = 'dashboard.html';
+        setTimeout(() => {
+            window.location.href = 'dashboard.html';
+        }, 800);
     } catch (error) {
-        alert("Code invalide ou expiré. Veuillez réessayer.");
+        showNotification("Erreur de connexion. Veuillez réessayer.", "error");
     } finally {
         btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-check-circle"></i> Vérifier & Se connecter';
+        btn.innerHTML = originalText;
     }
 }
 
@@ -89,261 +107,71 @@ function resetLogin() {
     document.getElementById('otpForm').style.display = 'none';
 }
 
-// --- Initialisation des formulaires ---
-document.addEventListener('DOMContentLoaded', () => {
-    const phoneForm = document.getElementById('phoneForm');
-    const otpForm = document.getElementById('otpForm');
-
-    if (phoneForm) phoneForm.addEventListener('submit', handleOTPRequest);
-    if (otpForm) otpForm.addEventListener('submit', handleOTPVerify);
-});
-
-// --- Autres fonctions utilitaires ---
-function togglePassword(inputId) {
-  const input = document.getElementById(inputId);
-      storage.setItem('userName', user.firstName + ' ' + user.lastName);
-
-      showNotification('Identifiants vérifiés ! Vérification OTP...', 'success');
-
-      // Attendre un court instant puis afficher l'OTP
-      setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-
-        // Vérifier que TC.otp existe (security-layers.js chargé)
-        if (typeof TC !== 'undefined' && TC.otp) {
-          TC.otp.show(() => {
-            // OTP validé => créer le token et rediriger
-            storage.setItem('authToken', 'token_' + Date.now() + '_' + Math.random().toString(36).slice(2));
-            showNotification('Connexion réussie !', 'success');
-            const params = new URLSearchParams(window.location.search);
-            const redirectUrl = params.get('redirect') || 'dashboard.html';
-            setTimeout(() => {
-              window.location.href = redirectUrl;
-            }, 300);
-          });
-        } else {
-          // Fallback si security-layers.js n'est pas chargé
-          storage.setItem('authToken', 'token_' + Date.now() + '_' + Math.random().toString(36).slice(2));
-          const params = new URLSearchParams(window.location.search);
-          const redirectUrl = params.get('redirect') || 'dashboard.html';
-          window.location.href = redirectUrl;
-        }
-      }, 500);
-    } else {
-      loginAttempts.recordAttempt();
-      const remaining = loginAttempts.maxAttempts - loginAttempts.count;
-      if (remaining > 0) {
-        showNotification(`Email ou mot de passe incorrect. ${remaining} tentative(s) restante(s).`, 'error');
-      } else {
-        showNotification('Compte temporairement bloqué. Réessayez dans 1 minute.', 'error');
-      }
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-    }
-  });
-}
-
-// --- Signup form ---
-const signupForm = document.getElementById('signupForm');
-if (signupForm) {
-  signupForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const terms = document.getElementById('terms').checked;
-
-    // Validation complète
-    if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
-      showNotification('Veuillez remplir tous les champs obligatoires', 'error');
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      showNotification('Adresse email invalide', 'error');
-      return;
-    }
-
-    if (phone.replace(/\D/g, '').length < 8) {
-      showNotification('Numéro de téléphone invalide (min 8 chiffres)', 'error');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      showNotification('Les mots de passe ne correspondent pas', 'error');
-      return;
-    }
-
-    if (password.length < 8) {
-      showNotification('Le mot de passe doit contenir au moins 8 caractères', 'error');
-      return;
-    }
-
-    if (!terms) {
-      showNotification("Veuillez accepter les conditions d'utilisation", 'error');
-      return;
-    }
-
-    const submitBtn = signupForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création du compte...';
-    submitBtn.disabled = true;
-
-    const user = { firstName, lastName, email, phone, password };
-
-    const saved = await saveUser(user);
-    if (saved) {
-      showNotification('Compte créé avec succès !', 'success');
-
-      // Auto-login après inscription
-      localStorage.setItem('userId', user.email);
-      localStorage.setItem('userName', user.firstName + ' ' + user.lastName);
-      localStorage.setItem('authToken', 'token_' + Date.now() + '_' + Math.random().toString(36).slice(2));
-
-      const params = new URLSearchParams(window.location.search);
-      const redirectUrl = params.get('redirect') || 'dashboard.html';
-
-      setTimeout(() => {
-        window.location.href = redirectUrl;
-      }, 800);
-    } else {
-      showNotification('Cet email est déjà utilisé.', 'error');
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-    }
-  });
-}
-
-// --- Connect wallet (Simulé pour la démo) ---
-async function connectWallet() {
-  // Vérifier si MetaMask est disponible
-  if (typeof window.ethereum !== 'undefined') {
-    try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const walletAddress = accounts[0];
-      localStorage.setItem('authToken', 'wallet_' + Date.now() + '_' + Math.random().toString(36).slice(2));
-      localStorage.setItem('walletAddress', walletAddress);
-      localStorage.setItem('userName', 'Wallet ' + walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4));
-      showNotification('Wallet connecté avec succès !', 'success');
-      setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
-    } catch (error) {
-      showNotification('Connexion au wallet refusée', 'error');
-    }
-  } else {
-    // Mode démo si pas de MetaMask
-    const walletAddress = '0x' + [...Array(40)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-    localStorage.setItem('authToken', 'wallet_demo_' + Date.now());
-    localStorage.setItem('walletAddress', walletAddress);
-    localStorage.setItem('userName', 'Wallet ' + walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4));
-    showNotification('Wallet connecté (mode démo)', 'success');
+function quickDemoLogin() {
+    storage.setItem('authToken', 'demo_direct_' + Date.now());
+    storage.setItem('userName', 'Visiteur Démo');
+    storage.setItem('tc_kyc_verified', 'true');
+    showNotification('Accès démo activé', 'success');
     setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
-  }
 }
 
 // --- Notification helper ---
 function showNotification(message, type = 'info') {
-  // Supprimer les notifications existantes
-  document.querySelectorAll('.notification').forEach(n => n.remove());
+  const existing = document.querySelector('.notification');
+  if (existing) existing.remove();
 
   const notification = document.createElement('div');
   notification.className = `notification notification-${type}`;
+  notification.style.cssText = `
+    position: fixed; top: 20px; right: 20px; z-index: 9999;
+    padding: 15px 25px; border-radius: 12px; background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 12px;
+    transform: translateX(120%); transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  `;
+  
+  const colors = {
+      success: '#10B981',
+      error: '#EF4444',
+      info: '#3B82F6'
+  };
+  notification.style.borderLeft = `5px solid ${colors[type] || colors.info}`;
+
   notification.innerHTML = `
-    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-    <span>${message}</span>
+    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}" style="color: ${colors[type]}"></i>
+    <span style="font-family: 'Manrope', sans-serif; font-weight: 600; color: #1E293B;">${message}</span>
   `;
 
   document.body.appendChild(notification);
-  setTimeout(() => notification.classList.add('show'), 10);
+  setTimeout(() => notification.style.transform = 'translateX(0)', 10);
+  
   setTimeout(() => {
-    notification.classList.remove('show');
-    setTimeout(() => notification.remove(), 200);
-  }, 3000);
+    notification.style.transform = 'translateX(120%)';
+    setTimeout(() => notification.remove(), 300);
+  }, 4000);
 }
 
-// --- Affichage dynamique du nom ---
+// --- Initialization ---
 document.addEventListener('DOMContentLoaded', () => {
-  const userNameElement = document.querySelector('.user-name');
-  if (userNameElement) {
-    const userName = localStorage.getItem('userName') || sessionStorage.getItem('userName') || 'Utilisateur';
-    userNameElement.textContent = userName;
-  }
+    const phoneForm = document.getElementById('phoneForm');
+    const otpForm = document.getElementById('otpForm');
+    const signupForm = document.getElementById('signupForm');
+
+    if (phoneForm) phoneForm.addEventListener('submit', handleOTPRequest);
+    if (otpForm) otpForm.addEventListener('submit', handleOTPVerify);
+    if (signupForm) signupForm.addEventListener('submit', handleOTPRequest);
+
+    // Dynamic name display
+    const userNameElement = document.querySelector('.user-name');
+    if (userNameElement) {
+        userNameElement.textContent = storage.getItem('userName') || 'Utilisateur';
+    }
 });
 
-// --- Require auth pour les pages protégées ---
+// --- Auth Check for Pages ---
 function requireAuth(targetUrl, authPage = 'login.html') {
-  if (!localStorage.getItem('authToken') && !sessionStorage.getItem('authToken')) {
+  if (!storage.getItem('authToken')) {
     window.location.href = authPage + '?redirect=' + encodeURIComponent(targetUrl);
   } else {
     window.location.href = targetUrl;
   }
 }
-
-// --- Mot de passe oublié (modal démo) ---
-function showForgotPassword() {
-  const modal = document.createElement('div');
-  modal.className = 'tc-modal-overlay';
-  modal.id = 'forgotModal';
-  modal.innerHTML = `
-    <div style="
-      background: #fff;
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 420px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-      font-family: 'Manrope', sans-serif;
-    ">
-      <div style="
-        width: 64px; height: 64px;
-        border-radius: 16px;
-        background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-        display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 24px; color: #3B82F6;
-      "><i class="fas fa-envelope"></i></div>
-      <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin-bottom: 8px;">Réinitialiser le mot de passe</h3>
-      <p style="color: #64748B; font-size: 14px; margin-bottom: 24px;">Entrez votre email pour recevoir un lien de réinitialisation</p>
-      <div class="form-group" style="text-align: left; margin-bottom: 16px;">
-        <div class="input-with-icon">
-          <i class="fas fa-envelope"></i>
-          <input type="email" id="forgotEmail" class="form-input" placeholder="exemple@email.com" required>
-        </div>
-      </div>
-      <button class="btn btn-primary btn-block" onclick="sendResetEmail()" style="margin-bottom: 12px;">
-        <i class="fas fa-paper-plane"></i> Envoyer le lien
-      </button>
-      <button style="
-        background: none; border: none; color: #64748B;
-        cursor: pointer; font-size: 14px; font-family: 'Manrope', sans-serif;
-      " onclick="document.getElementById('forgotModal').remove()">Annuler</button>
-    </div>
-  `;
-  document.body.appendChild(modal);
-}
-
-function sendResetEmail() {
-  const email = document.getElementById('forgotEmail').value.trim();
-  if (!email || !isValidEmail(email)) {
-    showNotification('Veuillez entrer une adresse email valide', 'error');
-    return;
-  }
-  document.getElementById('forgotModal').remove();
-  showNotification(`Lien de réinitialisation envoyé à ${email} (démo)`, 'success');
-}
-
-// Bind events on load
-document.addEventListener('DOMContentLoaded', () => {
-  const phoneForm = document.getElementById('phoneForm');
-  const signupForm = document.getElementById('signupForm');
-  const otpForm = document.getElementById('otpForm');
-
-  if (phoneForm) phoneForm.addEventListener('submit', handleOTPRequest);
-  if (signupForm) signupForm.addEventListener('submit', handleOTPRequest);
-  if (otpForm) otpForm.addEventListener('submit', handleOTPVerify);
-});
