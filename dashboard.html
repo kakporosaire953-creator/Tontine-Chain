@@ -133,6 +133,20 @@
         </button>
       </div>
 
+      <!-- YAO Smart Advice (NEW for Demo) -->
+      <div class="section-card animate-float" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; border: none; margin-bottom: 24px;">
+        <div style="display:flex; align-items:center; gap:20px;">
+          <div style="width:60px; height:60px; background:rgba(0,168,107,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; border: 1px solid var(--green-dark);">
+            <img src="assets/images/logo-tontinechain.jpeg" style="width:40px; border-radius:50%;" alt="YAO">
+          </div>
+          <div style="flex:1;">
+            <h4 style="color:var(--green-light); margin-bottom:4px;"><i class="fas fa-robot"></i> Conseil de YAO</h4>
+            <p style="font-size:14px; opacity:0.9;">"Marie, j'ai analysé vos tontines. Si vous épargnez <strong>5.000 FCFA</strong> de plus sur la Tontine Famille ce mois-ci, vous atteindrez votre objectif 2 semaines plus tôt !"</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="window.location.href='assistant-yao.html'">En savoir plus</button>
+        </div>
+      </div>
+
       <!-- Stats Cards -->
       <div class="stats-grid">
         <div class="stat-card">
@@ -223,7 +237,12 @@
             </div>
             <div class="tontine-card-footer">
               <div class="tontine-card-next"><i class="fas fa-calendar"></i><span>Prochain: 15 Mars 2026</span></div>
-              <button class="btn btn-primary btn-sm" onclick="showTontineDetail('Tontine des Femmes de Dantokpa')">Voir Détails</button>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-outline btn-sm" style="padding: 8px; color: #25D366; border-color: #25D366;" onclick="shareTontine('Tontine des Femmes', 'DAN-229')">
+                  <i class="fab fa-whatsapp"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="showTontineDetail('Tontine des Femmes de Dantokpa')">Voir Détails</button>
+              </div>
             </div>
           </div>
           <!-- Tontine 2 -->
@@ -341,12 +360,48 @@
             <div class="activity-amount">-100,000 FCFA</div>
           </div>
         </div>
+      <!-- Transaction History Section (NEW for Demo) -->
+      <div class="section-card" id="history-section" style="margin-top: 32px; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fas fa-history" style="color:var(--green-dark)"></i> Historique des Gains</h2>
+          <span class="badge-new" style="background: rgba(0, 168, 107, 0.1); color: var(--green-dark); padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;">Trust Score: 98%</span>
+        </div>
+        <div class="activity-timeline">
+          <div class="activity-item">
+            <div class="activity-icon" style="background:#ECFDF5; color:#059669;"><i class="fas fa-arrow-down"></i></div>
+            <div class="activity-content">
+              <div class="activity-title">Gain reçu - Tontine Artisans</div>
+              <div class="activity-desc">Cycle 2 terminé • Position 1/10</div>
+              <div class="activity-time">10 Février 2026</div>
+            </div>
+            <div class="activity-amount" style="color:#059669; font-weight:800;">+1,000,000 FCFA</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon" style="background:#ECFDF5; color:#059669;"><i class="fas fa-arrow-down"></i></div>
+            <div class="activity-content">
+              <div class="activity-title">Gain reçu - Tontine Famille</div>
+              <div class="activity-desc">Épargne annuelle • Position 5/8</div>
+              <div class="activity-time">24 Décembre 2025</div>
+            </div>
+            <div class="activity-amount" style="color:#059669; font-weight:800;">+200,000 FCFA</div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
 
   <script src="script.js"></script>
   <script src="auth.js"></script>
+  <script src="i18n.js"></script>
+  <script src="blockchain.js"></script>
+  <script src="share.js"></script>
+  <script src="kyc-sim.js"></script>
+  <script>
+    // Initialize demo scripts
+    document.addEventListener('DOMContentLoaded', () => {
+        // Any init logic
+    });
+  </script>
   <script src="app.js"></script>
   <script src="security-layers.js"></script>
   <style>
