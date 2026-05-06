@@ -6,7 +6,7 @@
   <title>Inscription - TontineChain</title>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -19,6 +19,11 @@
   <div class="auth-container">
     <!-- Left Side - Form -->
     <div class="auth-form-side">
+      <div class="auth-controls" style="position: absolute; top: 20px; right: 20px;">
+        <div class="tectonic-toggle" onclick="toggleTectonicTheme()" title="Basculer la Faille Géologique">
+            <div class="fault-line"></div>
+        </div>
+      </div>
       <div class="auth-form-container">
         <!-- Logo -->
         <div class="auth-logo">
@@ -145,5 +150,6 @@
   <script src="api.js"></script>
   <script src="auth.js"></script>
   <script src="i18n.js"></script>
+  <script src="faille.js"></script>
 </body>
 </html>

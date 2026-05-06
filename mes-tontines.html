@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,7 @@
   <title>Mes Tontines - TontineChain</title>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -37,6 +37,9 @@
         </div>
         
         <div class="nav-buttons">
+          <div class="tectonic-toggle" onclick="toggleTectonicTheme()" title="Basculer la Faille Géologique" style="margin-right: 15px;">
+            <div class="fault-line"></div>
+          </div>
           <button class="btn btn-primary" onclick="window.location.href='create-tontine.html'">
             <i class="fas fa-plus"></i> Nouvelle Tontine
           </button>
@@ -365,6 +368,7 @@
 
 
   <script src="i18n.js"></script>
+  <script src="faille.js"></script>
 
   <!-- Bottom Nav for Mobile -->
   <nav class="bottom-nav">

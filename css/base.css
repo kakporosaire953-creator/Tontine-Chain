@@ -4,7 +4,18 @@
 
 /* CSS Variables */
 :root {
-  /* Colors */
+  /* Theme: Calcaire (Light - Default) */
+  --bg-body: #F5F2EB;
+  --text-main: #2D2824;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-bg-solid: #FFFFFF;
+  --border-color: rgba(45, 40, 36, 0.08);
+  --navbar-bg: rgba(245, 242, 235, 0.7);
+  --glass-shadow: 0 8px 32px rgba(45, 40, 36, 0.05);
+  --accent-faille: #C05C42; /* Terracotta */
+  --heading-font: 'Playfair Display', 'Space Grotesk', serif;
+
+  /* Colors Mapping */
   --color-gold: #FFB81C;
   --color-gold-dark: #E5A000;
   --color-gold-light: #FFF3D0;
@@ -18,13 +29,13 @@
   --color-orange: #F59E0B;
   --color-yellow: #FFB81C;
   
-  /* Neutral Colors */
-  --color-dark: #0F172A;
+  /* Neutral Colors Mapping */
+  --color-dark: var(--text-main);
   --color-gray: #64748B;
   --color-gray-light: #CBD5E1;
   --color-gray-lighter: #F8FAFC;
-  --color-white: #FFFFFF;
-  --color-border: #E2E8F0;
+  --color-white: var(--card-bg-solid);
+  --color-border: var(--border-color);
   
   /* Spacing */
   --spacing-xs: 8px;
@@ -44,10 +55,10 @@
   --radius-full: 9999px;
   
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
-  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-sm: var(--glass-shadow);
+  --shadow-md: var(--glass-shadow);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.15);
   
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -55,8 +66,24 @@
   --transition-slow: 400ms cubic-bezier(0.22, 1, 0.36, 1);
   
   /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
+  --font-heading: var(--heading-font);
   --font-body: 'Manrope', sans-serif;
+}
+
+body[data-theme="basalte"] {
+  /* Theme: Sous Terre (Dark) */
+  --bg-body: #0D0E12;
+  --text-main: #E2E8F0;
+  --card-bg: rgba(30, 41, 59, 0.4);
+  --card-bg-solid: #1E293B;
+  --border-color: rgba(226, 232, 240, 0.1);
+  --navbar-bg: rgba(13, 14, 18, 0.7);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --accent-faille: #14B8A6; /* Teal Bioluminescent */
+  --heading-font: 'Space Grotesk', sans-serif;
+  
+  --color-gray-lighter: #0F172A;
+  --color-border: var(--border-color);
 }
 
 /* Reset */
@@ -76,9 +103,10 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
-  color: var(--color-dark);
-  background: var(--color-white);
+  color: var(--text-main);
+  background: var(--bg-body);
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
