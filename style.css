@@ -7033,3 +7033,156 @@ body {
   color: #00A86B;
   transform: translateY(-2px);
 }
+
+/* ===== DASHBOARD & YAO MOBILE REFINEMENTS ===== */
+@media (max-width: 768px) {
+  /* Dashboard Adjustments */
+  .main-content {
+    padding: 15px !important;
+    padding-bottom: 90px !important; /* Space for bottom nav */
+  }
+
+  .topbar {
+    padding: 0 15px !important;
+    height: 60px !important;
+  }
+
+  .topbar-search {
+    display: none !important; /* Hide search on mobile to save space */
+  }
+
+  .welcome-section {
+    margin-bottom: 20px !important;
+  }
+
+  .page-title {
+    font-size: 24px !important;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
+  /* YAO Chat Adjustments */
+  .yao-container {
+    height: calc(100vh - 150px) !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .yao-messages {
+    padding: 15px !important;
+  }
+
+  .yao-message {
+    max-width: 90% !important;
+    margin-bottom: 20px !important;
+  }
+
+  .yao-bot {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .yao-bot .message-avatar {
+    margin-bottom: 8px !important;
+  }
+
+  .yao-user {
+    flex-direction: column-reverse !important;
+    align-items: flex-end !important;
+  }
+
+  .yao-user .message-avatar {
+    margin-top: 8px !important;
+  }
+
+  .message-bubble {
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .message-suggestions {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .suggestion-chip {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+  }
+
+  .yao-input-area {
+    padding: 10px !important;
+    position: fixed !important;
+    bottom: 70px !important; /* Just above bottom nav */
+    left: 0 !important;
+    width: 100% !important;
+    background: white !important;
+    border-top: 1px solid #E2E8F0 !important;
+    z-index: 999 !important;
+  }
+
+  /* Cards and Sections */
+  .section-card {
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .tontine-card-modern {
+    padding: 16px !important;
+  }
+
+  .tontine-card-title {
+    font-size: 18px !important;
+  }
+}
+
+/* ===== YAO ASSISTANT MOBILE SPECIFIC ===== */
+@media (max-width: 900px) {
+  .yao-container {
+    flex-direction: column !important;
+    height: calc(100vh - 140px) !important;
+    margin-top: 0 !important;
+  }
+
+  .yao-sidebar {
+    display: none !important;
+  }
+
+  .yao-chat-area {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  .yao-messages {
+    height: calc(100% - 150px) !important;
+    padding: 10px !important;
+  }
+
+  .yao-input-container {
+    gap: 5px !important;
+    padding: 5px !important;
+  }
+
+  .yao-input-container input {
+    font-size: 14px !important;
+  }
+
+  .yao-input-container .icon-btn {
+    padding: 8px !important;
+  }
+
+  .message-bubble {
+    max-width: 95% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  section.section-white {
+    padding-top: 80px !important;
+  }
+}
