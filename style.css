@@ -7186,3 +7186,96 @@ body {
     padding-top: 80px !important;
   }
 }
+/* ===== CHARIOW-INSPIRED MOBILE DESIGN REFINEMENTS ===== */
+@media (max-width: 600px) {
+  :root {
+    --chariow-radius: 20px;
+    --chariow-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .main-content {
+    padding: 20px 16px !important;
+    background-color: #F8FAFC !important;
+  }
+
+  .section-card, .tontine-card-modern, .stat-card, .yao-container {
+    border-radius: var(--chariow-radius) !important;
+    box-shadow: var(--chariow-shadow) !important;
+    border: 1px solid rgba(226, 232, 240, 0.5) !important;
+    background: #ffffff !important;
+    margin-bottom: 20px !important;
+    padding: 24px !important;
+  }
+
+  .page-title {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 8px !important;
+    color: #0F172A !important;
+  }
+
+  .page-subtitle {
+    font-size: 15px !important;
+    color: #64748B !important;
+    margin-bottom: 24px !important;
+  }
+
+  .bottom-nav {
+    height: 75px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(226, 232, 240, 0.8) !important;
+    padding: 0 12px !important;
+  }
+
+  .bottom-nav-item {
+    gap: 6px !important;
+  }
+
+  .bottom-nav-item i {
+    font-size: 22px !important;
+  }
+
+  .bottom-nav-item span {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
+
+  /* YAO Chat Refinement */
+  .yao-message {
+    margin-bottom: 24px !important;
+  }
+
+  .message-bubble {
+    border-radius: 18px !important;
+    padding: 16px 20px !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02) !important;
+  }
+
+  .yao-bot .message-bubble {
+    border-bottom-left-radius: 4px !important;
+  }
+
+  .yao-user .message-bubble {
+    border-bottom-right-radius: 4px !important;
+    background: #00A86B !important;
+    color: white !important;
+  }
+
+  .yao-input-area {
+    padding: 16px !important;
+    bottom: 75px !important;
+    background: #ffffff !important;
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.03) !important;
+  }
+
+  .yao-input-container {
+    background: #F1F5F9 !important;
+    border-radius: 30px !important;
+    padding: 4px 8px !important;
+    border: 1px solid #E2E8F0 !important;
+  }
+}
