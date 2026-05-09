@@ -14,6 +14,10 @@ async function handleOTPRequest(event) {
     if (!phoneInput) return;
 
     currentPhone = phoneInput.value.trim();
+    if (!currentPhone.startsWith('+')) {
+        if (currentPhone.startsWith('229')) currentPhone = '+' + currentPhone;
+        else currentPhone = '+229' + currentPhone;
+    }
     const btn = document.getElementById('sendOTPBtn');
 
     // If signup, collect extra info

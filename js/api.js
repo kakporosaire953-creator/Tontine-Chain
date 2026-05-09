@@ -26,6 +26,9 @@ const API = {
                 throw new Error(data.message || 'Une erreur est survenue');
             }
 
+            if (data.data !== undefined) {
+                return data.data;
+            }
             return data;
         } catch (error) {
             console.error(`API Error (${endpoint}):`, error);
