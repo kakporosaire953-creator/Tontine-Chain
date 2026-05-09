@@ -100,8 +100,8 @@
 }
 
 .badge-red {
-  background: #FEE2E2;
-  color: var(--color-red);
+  background: #EBF2FF;
+  color: var(--color-blue);
 }
 
 /* Form Elements */
@@ -411,3 +411,4 @@
     text-align: center;
   }
 }
+

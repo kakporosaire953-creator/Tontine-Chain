@@ -21,18 +21,18 @@
   --core-dark: #1E293B;
 
   /* Colors Mapping */
-  --color-gold: #FFB81C;
-  --color-gold-dark: #E5A000;
-  --color-gold-light: #FFF3D0;
-  --color-green: #00A86B;
-  --color-green-dark: #007A4D;
-  --color-green-light: #D0F5E8;
-  --color-blue: #1E40AF;
-  --color-blue-dark: #1E3A8A;
-  --color-blue-light: #DBEAFE;
-  --color-red: #DC2626;
-  --color-orange: #F59E0B;
-  --color-yellow: #FFB81C;
+  --color-gold: #F5A623;
+  --color-gold-dark: #D48806;
+  --color-gold-light: #FFF4E5;
+  --color-green: #00C896;
+  --color-green-dark: #00A67D;
+  --color-green-light: #E6FFF9;
+  --color-blue: #1A6BFF;
+  --color-blue-dark: #0052E0;
+  --color-blue-light: #EBF2FF;
+  
+  
+  
   
   /* Neutral Colors Mapping */
   --color-dark: var(--text-main);
@@ -195,3 +195,4 @@ ul, ol {
     padding: 0 var(--spacing-md);
   }
 }
+

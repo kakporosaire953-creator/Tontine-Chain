@@ -130,9 +130,9 @@ function showNotification(message, type = 'info') {
   `;
   
   const colors = {
-      success: '#10B981',
-      error: '#EF4444',
-      info: '#3B82F6'
+      success: '#00C896',
+      error: '#1A6BFF',
+      info: '#1A6BFF'
   };
   notification.style.borderLeft = `5px solid ${colors[type] || colors.info}`;
 
@@ -175,3 +175,4 @@ function requireAuth(targetUrl, authPage = 'login.html') {
     window.location.href = targetUrl;
   }
 }
+

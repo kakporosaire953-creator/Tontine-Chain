@@ -405,7 +405,7 @@ html, body {
     color: var(--color-dark) !important;
 }
 .section-gradient {
-    background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%) !important;
+    background: linear-gradient(135deg, #f0fdf4 0%, #EBF2FF 100%) !important;
 }
 .text-gold { color: var(--color-gold-dark) !important; }
 .text-blue { color: var(--color-blue) !important; }
@@ -583,3 +583,4 @@ html, body {
         max-width: 100%;
     }
 }
+

@@ -66,7 +66,7 @@
 .kyc-badge {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;
-  background: #F0FFF4; color: #00A86B;
+  background: #F0FFF4; color: #00C896;
 }
 .kyc-badge i { font-size: 11px; }
 
@@ -75,7 +75,7 @@
 .feda-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .feda-logo { font-size: 18px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
 .feda-logo i { color: #3B82F6; }
-.feda-secure { font-size: 12px; color: #00A86B; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.feda-secure { font-size: 12px; color: #00C896; font-weight: 600; display: flex; align-items: center; gap: 4px; }
 .feda-amount { font-size: 32px; font-weight: 800; color: var(--text-main); margin-bottom: 4px; }
 .feda-desc { font-size: 13px; color: var(--gray); margin-bottom: 20px; }
 .feda-footer { font-size: 11px; color: #94A3B8; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
@@ -100,7 +100,7 @@
 .chain-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #F1F5F9; font-size: 13px; }
 .chain-label { color: var(--gray); font-weight: 500; }
 .chain-val   { font-weight: 600; color: var(--text-main); font-family: 'Space Grotesk', monospace; }
-.chain-immutable { background: #F0FFF4; color: #00A86B; border-radius: 10px; padding: 10px 14px; font-size: 12px; font-weight: 600; margin: 16px 0 12px; display: flex; align-items: center; gap: 8px; }
+.chain-immutable { background: #F0FFF4; color: #00C896; border-radius: 10px; padding: 10px 14px; font-size: 12px; font-weight: 600; margin: 16px 0 12px; display: flex; align-items: center; gap: 8px; }
 
 /* ── Widget base ── */
 .tc-widget { padding: 0; }
@@ -153,3 +153,4 @@
   .tc-score-val { font-size: 36px; }
   .ai-risk-name { width: 110px; }
 }
+

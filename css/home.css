@@ -125,7 +125,7 @@
   margin-bottom: 4px;
 }
 
-.stat-red { color: var(--color-red); }
+.stat-red { color: var(--color-blue); }
 .stat-green { color: var(--color-green); }
 .stat-gold { color: var(--color-gold); }
 
@@ -229,7 +229,7 @@
   transition: all var(--transition-base);
 }
 
-.stat-box-red { border-left-color: var(--color-red); }
+.stat-box-red { border-left-color: var(--color-blue); }
 .stat-box-orange { border-left-color: var(--color-orange); }
 .stat-box-yellow { border-left-color: var(--color-yellow); }
 
@@ -285,7 +285,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-red), var(--color-orange));
+  background: linear-gradient(90deg, var(--color-blue), var(--color-orange));
 }
 
 .problem-card:hover {
@@ -315,8 +315,8 @@
 }
 
 .problem-icon-red {
-  background: linear-gradient(135deg, #FEE2E2, #FECACA);
-  color: var(--color-red);
+  background: linear-gradient(135deg, #EBF2FF, #FECACA);
+  color: var(--color-blue);
 }
 
 .problem-icon-orange {
@@ -357,7 +357,7 @@
 }
 
 .problem-list i {
-  color: var(--color-red);
+  color: var(--color-blue);
   margin-top: 2px;
   flex-shrink: 0;
 }
@@ -436,3 +436,4 @@
     display: none;
   }
 }
+
