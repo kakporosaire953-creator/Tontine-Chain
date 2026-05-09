@@ -4,55 +4,75 @@
 
 const API_BASE_URL = 'https://tonnine-benin-backend.onrender.com/api/v1';
 
+// Configure axios instance
+const axiosInstance = axios.create({
+    baseURL: API_BASE_URL,
+    timeout: 30000,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+});
+
+// Request interceptor - Add token to all requests
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        console.log(`[API] ${config.method.toUpperCase()} ${config.url}`);
+        return config;
+    },
+    (error) => {
+        console.error('[API] Request error:', error);
+        return Promise.reject(error);
+    }
+);
+
+// Response interceptor - Handle responses and errors
+axiosInstance.interceptors.response.use(
+    (response) => {
+        console.log(`[API] Response:`, response.status, response.data);
+        
+        // Laravel data unwrapping
+        if (response.data && response.data.data !== undefined) {
+            return { ...response, data: response.data.data };
+        }
+        return response;
+    },
+    (error) => {
+        console.error('[API Error]:', error.response || error);
+        
+        // Handle 401 Unauthorized
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem('authToken');
+            if (!window.location.pathname.includes('login.html')) {
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Extract error message
+        const message = error.response?.data?.message 
+            || error.response?.data?.error 
+            || error.message 
+            || `HTTP ${error.response?.status || 'Error'}`;
+        
+        return Promise.reject(new Error(message));
+    }
+);
+
 const API = {
     async request(endpoint, options = {}) {
-        const token = localStorage.getItem('authToken');
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            ...(token && { 'Authorization': `Bearer ${token}` }),
-            ...options.headers
-        };
-
         try {
-            console.log(`[API] ${options.method || 'GET'} ${endpoint}`);
-            
-            const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-                ...options,
-                headers
+            const response = await axiosInstance({
+                url: endpoint,
+                method: options.method || 'GET',
+                data: options.body ? JSON.parse(options.body) : undefined,
+                headers: options.headers
             });
-
-            // Try to parse JSON, handle empty responses
-            let data;
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                data = await response.json();
-            } else {
-                const text = await response.text();
-                console.warn(`[API] Non-JSON response:`, text);
-                data = { message: text };
-            }
-
-            console.log(`[API] Response:`, response.status, data);
-
-            if (!response.ok) {
-                // Handle 401 Unauthorized
-                if (response.status === 401) {
-                    localStorage.removeItem('authToken');
-                    if (!window.location.pathname.includes('login.html')) {
-                        window.location.href = 'login.html';
-                    }
-                }
-                throw new Error(data.message || data.error || `HTTP ${response.status}`);
-            }
-
-            // Laravel data unwrapping
-            if (data.data !== undefined) {
-                return data.data;
-            }
-            return data;
+            return response.data;
         } catch (error) {
-            console.error(`[API Error] ${endpoint}:`, error);
             throw error;
         }
     },
