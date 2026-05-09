@@ -3,6 +3,16 @@
 // ================================================
 
 async function loadDashboardData() {
+    // Show loading state and clear mock data
+    const tontinesContainer = document.querySelector('.tontines-list');
+    const historyContainer = document.querySelector('#history-section .activity-timeline');
+    if (tontinesContainer) tontinesContainer.innerHTML = '<div style="padding:40px;text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:24px;color:var(--color-gold);"></i><p>Chargement de vos tontines...</p></div>';
+    if (historyContainer) historyContainer.innerHTML = '<div style="padding:40px;text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:24px;color:var(--color-blue);"></i><p>Chargement de l\'historique...</p></div>';
+    
+    document.getElementById('totalSaved').textContent = '...';
+    document.getElementById('activeTontines').textContent = '...';
+    document.getElementById('payoutRate').textContent = '...';
+
     try {
         // 1. Get User Profile
         const user = await API.user.getProfile();
@@ -28,7 +38,11 @@ async function loadDashboardData() {
 
     } catch (error) {
         console.error("Dashboard Loading Error:", error);
-        // Fallback or notice
+        if (tontinesContainer) tontinesContainer.innerHTML = `<div style="padding:40px;text-align:center;color:red;"><i class="fas fa-exclamation-triangle"></i><p>Erreur: ${error.message}</p></div>`;
+        if (historyContainer) historyContainer.innerHTML = `<div style="padding:40px;text-align:center;color:red;"><i class="fas fa-exclamation-triangle"></i><p>Impossible de charger l'historique.</p></div>`;
+        document.getElementById('totalSaved').textContent = '0 FCFA';
+        document.getElementById('activeTontines').textContent = '0';
+        document.getElementById('payoutRate').textContent = '0%';
     }
 }
 

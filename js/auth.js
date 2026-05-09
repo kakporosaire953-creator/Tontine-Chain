@@ -39,12 +39,8 @@ async function handleOTPRequest(event) {
 
         showNotification("Code OTP envoyé !", "success");
     } catch (error) {
-        console.error("OTP Request failed, providing demo fallback info");
-        // Fallback for hackathon demo
-        document.getElementById('phoneForm').style.display = 'none';
-        document.getElementById('otpForm').style.display = 'block';
-        document.getElementById('displayPhone').textContent = currentPhone;
-        showNotification("Mode Démo : Entrez n'importe quel code (ex: 123456)", "info");
+        console.error("OTP Request failed:", error);
+        showNotification(error.message || "Erreur lors de l'envoi de l'OTP", "error");
     } finally {
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-paper-plane"></i> Recevoir le code OTP';
@@ -64,22 +60,18 @@ async function handleOTPVerify(event) {
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Vérification...';
 
-        let result;
-        try {
-            result = await API.auth.verifyOTP(currentPhone, code);
-        } catch (e) {
-            // Demo fallback: accept any code for now
-            console.warn("API verify failed, using demo fallback");
-                token: 'demo_token_' + Date.now(),
-                user: { first_name: 'Utilisateur', last_name: 'Démo', npi: '' }
-            };
-        }
+        let result = await API.auth.verifyOTP(currentPhone, code);
 
         // Save token
-        storage.setItem('authToken', result.token);
+        storage.setItem('authToken', result.token || result.access_token);
         
-        // If we have signup data, update profile (optional for demo)
+        // If we have signup data, update profile
         if (signupData) {
+            try {
+                await API.user.updateProfile(signupData);
+            } catch (err) {
+                console.error("Erreur lors de la mise à jour du profil :", err);
+            }
             storage.setItem('userName', signupData.first_name + ' ' + signupData.last_name);
             storage.setItem('tc_kyc_verified', 'false');
         } else if (result.user) {

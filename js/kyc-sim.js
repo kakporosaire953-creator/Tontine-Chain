@@ -68,19 +68,11 @@ const KYC = {
 
     async verify(npi) {
         try {
-            // Update profile with NPI via API (may fail in demo)
-            if (window.API && API.user) {
-                try { await API.user.updateProfile({ npi }); } catch(e) {}
-            }
+            // Update profile with NPI via API
+            await API.user.updateProfile({ npi });
             
-            // Bypass backend check for now to allow access
-            let user = localStorage.getItem('user');
-            if(user) {
-                user = JSON.parse(user);
-                user.npi = npi;
-            } else {
-                user = { npi: npi };
-            }
+            // Refresh local user data
+            const user = await API.user.getProfile();
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('tc_kyc_verified', 'true');
             
