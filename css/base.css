@@ -198,3 +198,7 @@ ul, ol {
 
 
 
+
+/* Image Brightness Attenuation */
+img { filter: brightness(0.85); }
+

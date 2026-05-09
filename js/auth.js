@@ -21,7 +21,6 @@ async function handleOTPRequest(event) {
         signupData = {
             first_name: document.getElementById('firstName').value,
             last_name: document.getElementById('lastName').value,
-            npi: document.getElementById('npi').value,
             profession: document.getElementById('profession') ? document.getElementById('profession').value : 'Membre'
         };
     }
@@ -71,9 +70,8 @@ async function handleOTPVerify(event) {
         } catch (e) {
             // Demo fallback: accept any code for now
             console.warn("API verify failed, using demo fallback");
-            result = { 
                 token: 'demo_token_' + Date.now(),
-                user: { first_name: 'Utilisateur', last_name: 'Démo', npi: '123456789' }
+                user: { first_name: 'Utilisateur', last_name: 'Démo', npi: '' }
             };
         }
 
@@ -83,7 +81,7 @@ async function handleOTPVerify(event) {
         // If we have signup data, update profile (optional for demo)
         if (signupData) {
             storage.setItem('userName', signupData.first_name + ' ' + signupData.last_name);
-            storage.setItem('tc_kyc_verified', signupData.npi ? 'true' : 'false');
+            storage.setItem('tc_kyc_verified', 'false');
         } else if (result.user) {
             storage.setItem('userName', result.user.first_name + ' ' + result.user.last_name);
             storage.setItem('tc_kyc_verified', result.user.npi ? 'true' : 'false');
