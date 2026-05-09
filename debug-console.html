@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Console - TontineChain</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0F172A;
+            color: #E2E8F0;
+            padding: 20px;
+        }
+        .header {
+            background: #1E293B;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00C896;
+        }
+        h1 {
+            color: #00C896;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #94A3B8;
+            font-size: 14px;
+        }
+        .section {
+            background: #1E293B;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            color: #F5A623;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .command {
+            background: #0F172A;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #1A6BFF;
+        }
+        .command-title {
+            color: #1A6BFF;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .command-code {
+            color: #00C896;
+            font-size: 13px;
+            word-break: break-all;
+        }
+        .command-desc {
+            color: #94A3B8;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        button {
+            background: #00C896;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        button:hover {
+            background: #00A67D;
+        }
+        .output {
+            background: #0F172A;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 12px;
+            border: 1px solid #334155;
+        }
+        .output.show {
+            display: block;
+        }
+        .output.hide {
+            display: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .badge.success { background: #00C896; color: white; }
+        .badge.error { background: #EF4444; color: white; }
+        .badge.info { background: #1A6BFF; color: white; }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .quick-btn {
+            background: #334155;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quick-btn:hover {
+            background: #475569;
+            transform: translateY(-2px);
+        }
+        .quick-btn-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .quick-btn-text {
+            font-size: 12px;
+            color: #E2E8F0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐛 Debug Console</h1>
+        <p class="subtitle">Commandes rapides pour débugger TontineChain</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>⚡</span>
+            <span>Actions Rapides</span>
+        </div>
+        <div class="quick-actions">
+            <div class="quick-btn" onclick="checkBackend()">
+                <div class="quick-btn-icon">🏥</div>
+                <div class="quick-btn-text">Check Backend</div>
+            </div>
+            <div class="quick-btn" onclick="showToken()">
+                <div class="quick-btn-icon">🔑</div>
+                <div class="quick-btn-text">Show Token</div>
+            </div>
+            <div class="quick-btn" onclick="showUser()">
+                <div class="quick-btn-icon">👤</div>
+                <div class="quick-btn-text">Show User</div>
+            </div>
+            <div class="quick-btn" onclick="clearAll()">
+                <div class="quick-btn-icon">🗑️</div>
+                <div class="quick-btn-text">Clear Storage</div>
+            </div>
+            <div class="quick-btn" onclick="testAPI()">
+                <div class="quick-btn-icon">🧪</div>
+                <div class="quick-btn-text">Test API</div>
+            </div>
+            <div class="quick-btn" onclick="window.location.href='test-api.html'">
+                <div class="quick-btn-icon">🔬</div>
+                <div class="quick-btn-text">Full Tests</div>
+            </div>
+        </div>
+        <div id="quick-output" class="output hide"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>📦</span>
+            <span>LocalStorage</span>
+        </div>
+        
+        <div class="command">
+            <div class="command-title">Voir le token</div>
+            <div class="command-code">localStorage.getItem('authToken')</div>
+            <button onclick="runCommand('localStorage.getItem(\'authToken\')', 'token-output')">Exécuter</button>
+            <div id="token-output" class="output hide"></div>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Voir l'utilisateur</div>
+            <div class="command-code">JSON.parse(localStorage.getItem('user'))</div>
+            <button onclick="runCommand('JSON.parse(localStorage.getItem(\'user\'))', 'user-output')">Exécuter</button>
+            <div id="user-output" class="output hide"></div>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Voir tout le localStorage</div>
+            <div class="command-code">Object.entries(localStorage)</div>
+            <button onclick="runCommand('Object.entries(localStorage)', 'storage-output')">Exécuter</button>
+            <div id="storage-output" class="output hide"></div>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Effacer le token</div>
+            <div class="command-code">localStorage.removeItem('authToken')</div>
+            <button onclick="runCommand('localStorage.removeItem(\'authToken\')', 'clear-token-output')">Exécuter</button>
+            <div id="clear-token-output" class="output hide"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>🌐</span>
+            <span>API Tests</span>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Test Health</div>
+            <div class="command-code">fetch('https://tonnine-benin-backend.onrender.com/api/v1/health').then(r => r.json())</div>
+            <button onclick="testHealth()">Exécuter</button>
+            <div id="health-output" class="output hide"></div>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Get Profile (nécessite token)</div>
+            <div class="command-code">API.user.getProfile()</div>
+            <button onclick="testProfile()">Exécuter</button>
+            <div id="profile-output" class="output hide"></div>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Get Groups (nécessite token)</div>
+            <div class="command-code">API.groups.list()</div>
+            <button onclick="testGroups()">Exécuter</button>
+            <div id="groups-output" class="output hide"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>🔧</span>
+            <span>Utilitaires</span>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Recharger la page</div>
+            <button onclick="location.reload()">Recharger</button>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Ouvrir la console navigateur</div>
+            <div class="command-desc">Appuyez sur F12 ou Ctrl+Shift+I</div>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Aller au Dashboard</div>
+            <button onclick="window.location.href='dashboard.html'">Dashboard</button>
+        </div>
+
+        <div class="command">
+            <div class="command-title">Aller au Login</div>
+            <button onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        function runCommand(cmd, outputId) {
+            const output = document.getElementById(outputId);
+            output.className = 'output show';
+            try {
+                const result = eval(cmd);
+                output.innerHTML = `<span class="badge success">SUCCESS</span>\n${JSON.stringify(result, null, 2)}`;
+            } catch (error) {
+                output.innerHTML = `<span class="badge error">ERROR</span>\n${error.message}`;
+            }
+        }
+
+        async function testHealth() {
+            const output = document.getElementById('health-output');
+            output.className = 'output show';
+            output.innerHTML = '<span class="badge info">LOADING</span> Testing...';
+            try {
+                const response = await fetch('https://tonnine-benin-backend.onrender.com/api/v1/health');
+                const data = await response.json();
+                output.innerHTML = `<span class="badge success">SUCCESS</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                output.innerHTML = `<span class="badge error">ERROR</span>\n${error.message}`;
+            }
+        }
+
+        async function testProfile() {
+            const output = document.getElementById('profile-output');
+            output.className = 'output show';
+            output.innerHTML = '<span class="badge info">LOADING</span> Testing...';
+            try {
+                const data = await API.user.getProfile();
+                output.innerHTML = `<span class="badge success">SUCCESS</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                output.innerHTML = `<span class="badge error">ERROR</span>\n${error.message}`;
+            }
+        }
+
+        async function testGroups() {
+            const output = document.getElementById('groups-output');
+            output.className = 'output show';
+            output.innerHTML = '<span class="badge info">LOADING</span> Testing...';
+            try {
+                const data = await API.groups.list();
+                output.innerHTML = `<span class="badge success">SUCCESS</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                output.innerHTML = `<span class="badge error">ERROR</span>\n${error.message}`;
+            }
+        }
+
+        function checkBackend() {
+            testHealth();
+            document.getElementById('quick-output').className = 'output show';
+            document.getElementById('quick-output').innerHTML = 'Vérification en cours...';
+        }
+
+        function showToken() {
+            const output = document.getElementById('quick-output');
+            output.className = 'output show';
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                output.innerHTML = `<span class="badge success">FOUND</span>\n${token}`;
+            } else {
+                output.innerHTML = `<span class="badge error">NOT FOUND</span>\nAucun token trouvé. Connectez-vous d'abord.`;
+            }
+        }
+
+        function showUser() {
+            const output = document.getElementById('quick-output');
+            output.className = 'output show';
+            try {
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    output.innerHTML = `<span class="badge success">FOUND</span>\n${JSON.stringify(user, null, 2)}`;
+                } else {
+                    output.innerHTML = `<span class="badge error">NOT FOUND</span>\nAucun utilisateur trouvé.`;
+                }
+            } catch (error) {
+                output.innerHTML = `<span class="badge error">ERROR</span>\n${error.message}`;
+            }
+        }
+
+        function clearAll() {
+            if (confirm('Effacer tout le localStorage ?')) {
+                localStorage.clear();
+                const output = document.getElementById('quick-output');
+                output.className = 'output show';
+                output.innerHTML = `<span class="badge success">CLEARED</span>\nLocalStorage effacé. Rechargez la page.`;
+            }
+        }
+
+        async function testAPI() {
+            const output = document.getElementById('quick-output');
+            output.className = 'output show';
+            output.innerHTML = '<span class="badge info">TESTING</span> Tests en cours...\n\n';
+            
+            // Test 1: Health
+            try {
+                const health = await fetch('https://tonnine-benin-backend.onrender.com/api/v1/health').then(r => r.json());
+                output.innerHTML += '✅ Health: OK\n';
+            } catch (e) {
+                output.innerHTML += '❌ Health: FAIL - ' + e.message + '\n';
+            }
+
+            // Test 2: Token
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                output.innerHTML += '✅ Token: FOUND\n';
+                
+                // Test 3: Profile
+                try {
+                    const profile = await API.user.getProfile();
+                    output.innerHTML += '✅ Profile: OK\n';
+                } catch (e) {
+                    output.innerHTML += '❌ Profile: FAIL - ' + e.message + '\n';
+                }
+            } else {
+                output.innerHTML += '⚠️ Token: NOT FOUND (connectez-vous d\'abord)\n';
+            }
+
+            output.innerHTML += '\n<span class="badge success">DONE</span> Tests terminés';
+        }
+    </script>
+</body>
+</html>
+""

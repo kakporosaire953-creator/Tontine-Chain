@@ -195,15 +195,17 @@ document.getElementById('createTontineForm')?.addEventListener('submit', async f
     description: document.getElementById('tontineDescription').value,
     category: document.getElementById('tontineCategory').value,
     privacy: document.getElementById('tontinePrivacy').value,
-    contributionAmount: parseFloat(document.getElementById('contributionAmount').value),
-    contributionFrequency: document.getElementById('contributionFrequency').value,
-    maxMembers: parseInt(document.getElementById('maxMembers').value),
+    contribution_amount: parseFloat(document.getElementById('contributionAmount').value),
+    frequency: document.getElementById('contributionFrequency').value,
+    max_members: parseInt(document.getElementById('maxMembers').value),
     duration: parseInt(document.getElementById('duration').value),
-    startDate: document.getElementById('startDate').value,
-    latePaymentPenalty: parseFloat(document.getElementById('latePaymentPenalty').value),
-    autoDistribution: document.getElementById('autoDistribution').checked,
-    members: members
+    start_date: document.getElementById('startDate').value,
+    late_payment_penalty: parseFloat(document.getElementById('latePaymentPenalty').value) || 0,
+    auto_distribution: document.getElementById('autoDistribution').checked,
+    invited_members: members.map(m => ({ name: m.name, contact: m.email }))
   };
+  
+  console.log('[CreateTontine] Submitting:', tontineData);
   
   // Show loading
   const submitBtn = document.querySelector('button[type="submit"]');
@@ -213,34 +215,27 @@ document.getElementById('createTontineForm')?.addEventListener('submit', async f
   
   try {
     // Call API to create tontine
-    const result = await Promise.resolve({success: true, data: []}).then(tontineData);
+    const result = await API.groups.create(tontineData);
+    console.log('[CreateTontine] Success:', result);
     
-    if (result.success) {
-      showNotification('Tontine créée avec succès!', 'success');
+    showNotification('Tontine créée avec succès!', 'success');
+    
+    // Show blockchain confirmation
+    if (result.tx_hash) {
+      showNotification('Smart contract déployé: ' + result.tx_hash.substring(0, 10) + '...', 'success');
       
-      // Deploy smart contract if blockchain is enabled
-      if (result.data.requiresBlockchain) {
-        showNotification('Déploiement du smart contract...', 'info');
-        
-        const contractResult = await Promise.resolve({success: true, data: []}).then({
-          tontineId: result.data.tontine.id,
-          ...tontineData
-        });
-        
-        if (contractResult.success) {
-          showNotification('Smart contract déployé avec succès!', 'success');
-        }
+      // Show blockchain popup
+      if (typeof BC !== 'undefined') {
+        setTimeout(() => BC.showTransactionProof(result.tx_hash), 1000);
       }
-      
-      // Redirect after short delay
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 1500);
-    } else {
-      throw new Error(result.error);
     }
+    
+    // Redirect after short delay
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 2000);
   } catch (error) {
-    console.error('Create tontine error:', error);
+    console.error('[CreateTontine] Error:', error);
     showNotification(error.message || 'Erreur lors de la création de la tontine', 'error');
     
     // Reset button

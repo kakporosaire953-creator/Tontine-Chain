@@ -15,23 +15,44 @@ const API = {
         };
 
         try {
+            console.log(`[API] ${options.method || 'GET'} ${endpoint}`);
+            
             const response = await fetch(`${API_BASE_URL}${endpoint}`, {
                 ...options,
                 headers
             });
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Une erreur est survenue');
+            // Try to parse JSON, handle empty responses
+            let data;
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                console.warn(`[API] Non-JSON response:`, text);
+                data = { message: text };
             }
 
+            console.log(`[API] Response:`, response.status, data);
+
+            if (!response.ok) {
+                // Handle 401 Unauthorized
+                if (response.status === 401) {
+                    localStorage.removeItem('authToken');
+                    if (!window.location.pathname.includes('login.html')) {
+                        window.location.href = 'login.html';
+                    }
+                }
+                throw new Error(data.message || data.error || `HTTP ${response.status}`);
+            }
+
+            // Laravel data unwrapping
             if (data.data !== undefined) {
                 return data.data;
             }
             return data;
         } catch (error) {
-            console.error(`API Error (${endpoint}):`, error);
+            console.error(`[API Error] ${endpoint}:`, error);
             throw error;
         }
     },
