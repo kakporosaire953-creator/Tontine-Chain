@@ -20,7 +20,7 @@
   right: -20%;
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(255, 184, 28, 0.1) 0%, transparent 70%);
+  background: transparent;
   border-radius: 50%;
   animation: float 6s ease-in-out infinite;
 }
@@ -32,7 +32,7 @@
   left: -10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(0, 168, 107, 0.1) 0%, transparent 70%);
+  background: transparent;
   border-radius: 50%;
   animation: float 8s ease-in-out infinite reverse;
 }
@@ -243,9 +243,7 @@
   font-weight: 800;
   font-family: var(--font-heading);
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg, var(--color-gold), var(--color-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--blue);
   background-clip: text;
 }
 
@@ -285,7 +283,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-blue), var(--color-orange));
+  background: var(--color-blue);
 }
 
 .problem-card:hover {
@@ -315,17 +313,17 @@
 }
 
 .problem-icon-red {
-  background: linear-gradient(135deg, #EBF2FF, #FECACA);
+  background: #EBF2FF;
   color: var(--color-blue);
 }
 
 .problem-icon-orange {
-  background: linear-gradient(135deg, #FED7AA, #FDBA74);
+  background: #F5A623;
   color: var(--color-orange);
 }
 
 .problem-icon-yellow {
-  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold));
+  background: var(--color-gold);
   color: var(--color-gold-dark);
 }
 
@@ -436,4 +434,6 @@
     display: none;
   }
 }
+
+
 
