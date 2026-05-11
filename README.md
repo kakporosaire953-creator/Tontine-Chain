@@ -372,7 +372,7 @@ Tous droits réservés © 2026 TontineChain
 
 ## <i class="fas fa-envelope"></i> Contact
 
-- **Site Web** : [https://kakporosaire953-creator.github.io/Tontine-Chain/](https://kakporosaire953-creator.github.io/Tontine-Chain/)
+- **Site Web** :https://tontine-chain-pied.vercel.app/
 - **GitHub** : [https://github.com/kakporosaire953-creator/Tontine-Chain](https://github.com/kakporosaire953-creator/Tontine-Chain)
 - **Email** : contact@tontinechain.bj
 
