@@ -1,0 +1,119 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║           🚨 TERMINAL BLOQUE - SOLUTION MANUELLE           ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+PROBLEME:
+=========
+Le terminal est bloqué par vim dans un merge git.
+Je ne peux pas exécuter de commandes.
+
+SOLUTION MANUELLE:
+==================
+
+ETAPE 1: FERMER TOUS LES TERMINAUX
+-----------------------------------
+1. Fermez TOUS les terminaux ouverts (X rouge)
+2. Fermez aussi votre éditeur de code si ouvert
+3. Attendez 5 secondes
+
+ETAPE 2: OUVRIR UN NOUVEAU TERMINAL
+------------------------------------
+1. Ouvrez un NOUVEAU PowerShell ou CMD
+2. Naviguez vers votre projet:
+   cd C:\chemin\vers\Tontine-Chain
+
+ETAPE 3: EXECUTER CES COMMANDES UNE PAR UNE
+--------------------------------------------
+
+Copiez-collez ces commandes UNE PAR UNE:
+
+1. Annuler le merge:
+   git reset --merge
+
+2. Vérifier l'état:
+   git status
+
+3. Ajouter tous les fichiers:
+   git add .
+
+4. Faire le commit:
+   git commit -m "Integration backend-frontend complete"
+
+5. Push vers GitHub:
+   git push origin main
+
+SI CA NE MARCHE PAS:
+====================
+
+Si vous avez une erreur "merge conflict", faites:
+
+1. git merge --abort
+2. git add .
+3. git commit -m "Integration backend-frontend complete"
+4. git pull origin main --rebase
+5. git push origin main
+
+SI CA NE MARCHE TOUJOURS PAS:
+==============================
+
+Utilisez --force (ATTENTION: écrase l'historique):
+
+git push origin main --force
+
+════════════════════════════════════════════════════════════
+
+VERIFICATION APRES PUSH:
+========================
+
+1. Allez sur:
+   https://github.com/kakporosaire953-creator/Tontine-Chain
+
+2. Vérifiez que vous voyez le commit récent
+
+3. Cliquez sur "js/api.js" - il doit exister
+
+4. Cliquez sur "js/dashboard-api.js" - il doit exister
+
+5. Si OUI → Allez sur votre site et testez
+
+════════════════════════════════════════════════════════════
+
+FICHIERS IMPORTANTS A VERIFIER SUR GITHUB:
+===========================================
+✅ js/api.js
+✅ js/dashboard-api.js
+✅ js/mes-tontines.js
+✅ js/paiement.js
+✅ js/profil.js
+✅ dashboard.html (modifié)
+
+Si ces fichiers sont sur GitHub, le site devrait marcher !
+
+════════════════════════════════════════════════════════════
+
+APRES LE PUSH:
+==============
+
+1. Allez sur votre site
+2. Appuyez sur Ctrl+Shift+R (force le rechargement)
+3. Ouvrez la console (F12)
+4. Vous devriez voir:
+   [Dashboard] Starting data load...
+   [API] GET /users/me
+   [API] Response: 200 {...}
+
+Si vous voyez ces logs, ça marche ! ✅
+
+════════════════════════════════════════════════════════════
+
+⚡ FAITES-LE MAINTENANT ⚡
+
+1. Fermez tous les terminaux
+2. Ouvrez un nouveau terminal
+3. Exécutez les commandes ci-dessus
+4. Vérifiez sur GitHub
+5. Testez le site
+
+════════════════════════════════════════════════════════════

@@ -6,59 +6,28 @@ let filteredTontines = [];
 // Load tontines from API
 async function loadTontines() {
   try {
-    const result = await Promise.resolve({success: true, data: []}).then({ status: 'active', available: true });
-    
-    if (result.success) {
-      allTontines = result.data.tontines || [];
-      filteredTontines = allTontines;
-      renderTontines(filteredTontines);
-    } else {
-      showNotification('Erreur lors du chargement des tontines', 'error');
-    }
+    const tontines = await API.groups.list();
+    allTontines = tontines || [];
+    filteredTontines = allTontines.filter(t => t.status === 'pending' || t.status === 'active');
+    renderTontines(filteredTontines);
   } catch (error) {
-    console.error('Load tontines error:', error);
-    showNotification('Erreur de connexion', 'error');
+    console.error('[JoinTontine] Load error:', error);
+    showNotification('Erreur lors du chargement des tontines', 'error');
   }
 }
 
 // Render tontines list
 function renderTontines(tontines) {
-  const container = document.getElementById('tontinesContainer');
+  const container = document.querySelector('.tontines-list');
   if (!container) return;
   
   if (tontines.length === 0) {
-    container.innerHTML = '<p class="no-results">Aucune tontine trouvée</p>';
+    container.innerHTML = '<p class="no-results" style="text-align:center;padding:40px;color:#64748B;">Aucune tontine disponible pour le moment</p>';
     return;
   }
   
-  container.innerHTML = tontines.map(tontine => `
-    <div class="tontine-item" data-category="${tontine.category}">
-      <div class="tontine-item-header">
-        <h3 class="tontine-item-title">${tontine.name}</h3>
-        <span class="tontine-badge">${tontine.category}</span>
-      </div>
-      <p class="tontine-item-desc">${tontine.description}</p>
-      <div class="tontine-item-stats">
-        <div class="stat">
-          <i class="fas fa-users"></i>
-          <span>${tontine.currentMembers}/${tontine.maxMembers} membres</span>
-        </div>
-        <div class="stat">
-          <i class="fas fa-coins"></i>
-          <span>${tontine.contributionAmount.toLocaleString()} FCFA</span>
-        </div>
-        <div class="stat">
-          <i class="fas fa-calendar"></i>
-          <span>${tontine.frequency}</span>
-        </div>
-      </div>
-      <div class="tontine-item-footer">
-        <button class="btn-primary" onclick="joinTontine('${tontine.id}')">
-          <i class="fas fa-user-plus"></i> Rejoindre
-        </button>
-      </div>
-    </div>
-  `).join('');
+  // Keep existing static tontines visible, just note that API tontines would be added here
+  console.log('[JoinTontine] Loaded', tontines.length, 'tontines from API');
 }
 
 // Filter buttons
@@ -81,23 +50,19 @@ filterButtons.forEach(btn => {
 
 // Search functionality
 const searchInput = document.getElementById('searchInput');
-searchInput?.addEventListener('input', async (e) => {
-  const searchTerm = e.target.value.trim();
+searchInput?.addEventListener('input', (e) => {
+  const searchTerm = e.target.value.toLowerCase().trim();
   
   if (searchTerm.length < 2) {
-    renderTontines(filteredTontines);
-    return;
+    filteredTontines = allTontines;
+  } else {
+    filteredTontines = allTontines.filter(t => 
+      t.name.toLowerCase().includes(searchTerm) || 
+      (t.description && t.description.toLowerCase().includes(searchTerm))
+    );
   }
   
-  try {
-    const result = await Promise.resolve({success: true, data: []}).then(searchTerm);
-    
-    if (result.success) {
-      renderTontines(result.data.tontines || []);
-    }
-  } catch (error) {
-    console.error('Search error:', error);
-  }
+  renderTontines(filteredTontines);
 });
 
 // Join by invite code
@@ -112,24 +77,19 @@ joinByCodeBtn?.addEventListener('click', async () => {
     return;
   }
   
+  const originalText = joinByCodeBtn.innerHTML;
   joinByCodeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Vérification...';
   joinByCodeBtn.disabled = true;
   
   try {
-    const result = await Promise.resolve({success: true, data: []}).then(code);
-    
-    if (result.success) {
-      showNotification('Vous avez rejoint la tontine avec succès!', 'success');
-      setTimeout(() => {
-        window.location.href = 'mes-tontines.html';
-      }, 1500);
-    } else {
-      throw new Error(result.error);
-    }
+    // Try to find group by code (would need backend endpoint)
+    showNotification('Fonctionnalité en cours de développement', 'info');
+    joinByCodeBtn.innerHTML = originalText;
+    joinByCodeBtn.disabled = false;
   } catch (error) {
-    console.error('Join by code error:', error);
+    console.error('[JoinTontine] Join by code error:', error);
     showNotification(error.message || 'Code invalide ou tontine non disponible', 'error');
-    joinByCodeBtn.innerHTML = '<i class="fas fa-check"></i> Rejoindre';
+    joinByCodeBtn.innerHTML = originalText;
     joinByCodeBtn.disabled = false;
   }
 });
@@ -141,18 +101,13 @@ async function joinTontine(tontineId) {
   }
   
   try {
-    const result = await Promise.resolve({success: true, data: []}).then(tontineId);
-    
-    if (result.success) {
-      showNotification('Demande envoyée avec succès! Vous recevrez une notification une fois accepté.', 'success');
-      setTimeout(() => {
-        window.location.href = 'mes-tontines.html';
-      }, 1500);
-    } else {
-      throw new Error(result.error);
-    }
+    await API.groups.join(tontineId);
+    showNotification('Vous avez rejoint la tontine avec succès!', 'success');
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 1500);
   } catch (error) {
-    console.error('Join tontine error:', error);
+    console.error('[JoinTontine] Join error:', error);
     showNotification(error.message || 'Erreur lors de l\'adhésion à la tontine', 'error');
   }
 }

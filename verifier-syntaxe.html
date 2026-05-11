@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vérification Syntaxe</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        .result {
+            background: #0f172a;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #00C896;
+        }
+        .error {
+            border-left-color: #EF4444;
+            color: #EF4444;
+        }
+        .success {
+            border-left-color: #00C896;
+            color: #00C896;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Vérification de la Syntaxe JavaScript</h1>
+    
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(file, status, message) {
+            const div = document.createElement('div');
+            div.className = `result ${status}`;
+            div.innerHTML = `<strong>${file}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        // Test 1: Charger api.js
+        try {
+            const script1 = document.createElement('script');
+            script1.src = 'js/api.js';
+            script1.onerror = () => addResult('js/api.js', 'error', '❌ Fichier introuvable ou erreur de chargement');
+            script1.onload = () => {
+                if (typeof API !== 'undefined') {
+                    addResult('js/api.js', 'success', '✅ Chargé avec succès - API object existe');
+                } else {
+                    addResult('js/api.js', 'error', '❌ Chargé mais API object non défini');
+                }
+            };
+            document.head.appendChild(script1);
+        } catch (e) {
+            addResult('js/api.js', 'error', '❌ Erreur: ' + e.message);
+        }
+
+        // Test 2: Charger dashboard-api.js
+        setTimeout(() => {
+            try {
+                const script2 = document.createElement('script');
+                script2.src = 'js/dashboard-api.js';
+                script2.onerror = () => addResult('js/dashboard-api.js', 'error', '❌ Fichier introuvable ou erreur de chargement');
+                script2.onload = () => {
+                    if (typeof loadDashboardData !== 'undefined') {
+                        addResult('js/dashboard-api.js', 'success', '✅ Chargé avec succès - loadDashboardData existe');
+                    } else {
+                        addResult('js/dashboard-api.js', 'error', '❌ Chargé mais loadDashboardData non défini');
+                    }
+                };
+                document.head.appendChild(script2);
+            } catch (e) {
+                addResult('js/dashboard-api.js', 'error', '❌ Erreur: ' + e.message);
+            }
+        }, 1000);
+
+        // Test 3: Vérifier après 2 secondes
+        setTimeout(() => {
+            addResult('VERIFICATION FINALE', 'success', '---');
+            addResult('typeof API', typeof API !== 'undefined' ? 'success' : 'error', typeof API);
+            addResult('typeof loadDashboardData', typeof loadDashboardData !== 'undefined' ? 'success' : 'error', typeof loadDashboardData);
+            
+            if (typeof API !== 'undefined') {
+                addResult('API.auth', typeof API.auth !== 'undefined' ? 'success' : 'error', typeof API.auth);
+                addResult('API.user', typeof API.user !== 'undefined' ? 'success' : 'error', typeof API.user);
+                addResult('API.groups', typeof API.groups !== 'undefined' ? 'success' : 'error', typeof API.groups);
+            }
+        }, 2000);
+    </script>
+</body>
+</html>

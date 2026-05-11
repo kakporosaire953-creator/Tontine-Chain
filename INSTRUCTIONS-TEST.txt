@@ -1,0 +1,115 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║              INSTRUCTIONS DE TEST - URGENT                 ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+ETAPE 1: OUVRIR LE DIAGNOSTIC
+==============================
+
+1. Double-cliquez sur: DIAGNOSTIC.html
+2. La page s'ouvre dans votre navigateur
+
+ETAPE 2: REGARDER LES RESULTATS
+================================
+
+Vous devriez voir 5 sections:
+
+Section 1: VERIFICATION DES FICHIERS
+-------------------------------------
+Regardez les statuts:
+- API object chargé: ✅ ou ❌ ?
+- API.auth: ✅ ou ❌ ?
+- API.user: ✅ ou ❌ ?
+- API.groups: ✅ ou ❌ ?
+- loadDashboardData function: ✅ ou ❌ ?
+- Token d'authentification: ✅ ou ⚠️ ?
+
+Section 2: TEST BACKEND
+-----------------------
+Cliquez sur le bouton "🚀 Tester le Backend"
+Résultat: ✅ ou ❌ ?
+
+Section 3: TEST API.JS
+----------------------
+Cliquez sur le bouton "🔌 Tester API Object"
+Résultat: ✅ ou ❌ ?
+
+Section 4: TEST AUTHENTIFICATION
+---------------------------------
+Cliquez sur le bouton "🔐 Tester Auth"
+Résultat: ✅ ou ❌ ?
+
+Section 5: CONSOLE LOGS
+------------------------
+Y a-t-il des messages en rouge (erreurs) ?
+
+ETAPE 3: ME DIRE LES RESULTATS
+===============================
+
+Copiez-collez EXACTEMENT ce que vous voyez:
+
+Section 1:
+- API object chargé: [✅ ou ❌]
+- API.auth: [✅ ou ❌]
+- API.user: [✅ ou ❌]
+- API.groups: [✅ ou ❌]
+- loadDashboardData: [✅ ou ❌]
+- Token: [✅ ou ⚠️]
+
+Section 2 (après clic):
+- Backend: [✅ ou ❌]
+- Message: [copiez le message]
+
+Section 3 (après clic):
+- API Object: [✅ ou ❌]
+- Message: [copiez le message]
+
+Section 4 (après clic):
+- Auth: [✅ ou ❌]
+- Message: [copiez le message]
+
+Section 5:
+- Erreurs en rouge: [OUI ou NON]
+- Si OUI, copiez les messages
+
+════════════════════════════════════════════════════════════
+
+ALTERNATIVE SI DIAGNOSTIC.HTML NE S'OUVRE PAS:
+===============================================
+
+1. Ouvrez dashboard.html
+2. Appuyez sur F12 (ouvre la console)
+3. Regardez l'onglet "Console"
+4. Copiez-collez TOUS les messages que vous voyez
+
+════════════════════════════════════════════════════════════
+
+QUESTIONS RAPIDES:
+==================
+
+1. Quel navigateur utilisez-vous?
+   [ ] Chrome
+   [ ] Firefox
+   [ ] Edge
+   [ ] Safari
+   [ ] Autre: _______
+
+2. Avez-vous une connexion internet?
+   [ ] OUI
+   [ ] NON
+
+3. Avez-vous déjà fait un commit/push?
+   [ ] OUI
+   [ ] NON
+
+4. Les fichiers js/api.js et js/dashboard-api.js existent?
+   [ ] OUI
+   [ ] NON
+   [ ] Je ne sais pas
+
+════════════════════════════════════════════════════════════
+
+AVEC CES INFORMATIONS, JE POURRAI CORRIGER LE PROBLEME EXACT !
+
+════════════════════════════════════════════════════════════

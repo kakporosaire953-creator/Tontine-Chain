@@ -219,70 +219,10 @@
           <a href="mes-tontines.html" class="link-primary">Voir tout <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="tontines-list">
-          <!-- Tontine 1 -->
-          <div class="tontine-card-modern">
-            <div class="tontine-card-header">
-              <div class="tontine-badge tontine-badge-active"><i class="fas fa-circle"></i> Active</div>
-              <button class="tontine-menu-btn" onclick="showTontineDetail('Tontine des Femmes de Dantokpa')"><i class="fas fa-ellipsis-v"></i></button>
-            </div>
-            <h3 class="tontine-card-title">Tontine des Femmes de Dantokpa</h3>
-            <p class="tontine-card-desc">Groupe d'épargne pour les commerçantes du marché</p>
-            <div class="tontine-card-stats">
-              <div class="tontine-card-stat"><i class="fas fa-users"></i><span>12/15 membres</span></div>
-              <div class="tontine-card-stat"><i class="fas fa-coins"></i><span>50,000 FCFA/mois</span></div>
-            </div>
-            <div class="tontine-card-progress">
-              <div class="progress-info"><span>Cycle 6/10</span><span>60%</span></div>
-              <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
-            </div>
-            <div class="tontine-card-footer">
-              <div class="tontine-card-next"><i class="fas fa-calendar"></i><span>Prochain: 15 Mars 2026</span></div>
-              <div style="display:flex; gap:8px;">
-                <button class="btn btn-outline btn-sm" style="padding: 8px; color: #25D366; border-color: #25D366;" onclick="shareTontine('Tontine des Femmes', 'DAN-229')">
-                  <i class="fab fa-whatsapp"></i>
-                </button>
-                <button class="btn btn-primary btn-sm" onclick="showTontineDetail('Tontine des Femmes de Dantokpa')">Voir Détails</button>
-              </div>
-            </div>
-          </div>
-          <!-- Tontine 2 -->
-          <div class="tontine-card-modern">
-            <div class="tontine-card-header">
-              <div class="tontine-badge tontine-badge-active"><i class="fas fa-circle"></i> Active</div>
-              <button class="tontine-menu-btn" onclick="showTontineDetail('Association des Artisans')"><i class="fas fa-ellipsis-v"></i></button>
-            </div>
-            <h3 class="tontine-card-title">Association des Artisans</h3>
-            <p class="tontine-card-desc">Épargne collective pour projets artisanaux</p>
-            <div class="tontine-card-stats">
-              <div class="tontine-card-stat"><i class="fas fa-users"></i><span>8/10 membres</span></div>
-              <div class="tontine-card-stat"><i class="fas fa-coins"></i><span>100,000 FCFA/mois</span></div>
-            </div>
-            <div class="tontine-card-progress">
-              <div class="progress-info"><span>Cycle 3/10</span><span>30%</span></div>
-              <div class="progress-bar"><div class="progress-fill" style="width: 30%"></div></div>
-            </div>
-            <div class="tontine-card-footer">
-              <div class="tontine-card-next"><i class="fas fa-calendar"></i><span>Prochain: 20 Mars 2026</span></div>
-              <button class="btn btn-primary btn-sm" onclick="showTontineDetail('Association des Artisans')">Voir Détails</button>
-            </div>
-          </div>
-          <!-- Tontine 3 -->
-          <div class="tontine-card-modern">
-            <div class="tontine-card-header">
-              <div class="tontine-badge tontine-badge-pending"><i class="fas fa-clock"></i> En attente</div>
-              <button class="tontine-menu-btn" onclick="showTontineDetail('Famille Miabe')"><i class="fas fa-ellipsis-v"></i></button>
-            </div>
-            <h3 class="tontine-card-title">Famille Miabe</h3>
-            <p class="tontine-card-desc">Tontine familiale pour événements</p>
-            <div class="tontine-card-stats">
-              <div class="tontine-card-stat"><i class="fas fa-users"></i><span>5/8 membres</span></div>
-              <div class="tontine-card-stat"><i class="fas fa-coins"></i><span>25,000 FCFA/semaine</span></div>
-            </div>
-            <div class="tontine-card-alert"><i class="fas fa-info-circle"></i><span>En attente de 3 membres pour démarrer</span></div>
-            <div class="tontine-card-footer">
-              <div class="tontine-card-next"><i class="fas fa-user-plus"></i><span>Inviter des membres</span></div>
-              <button class="btn btn-outline btn-sm" onclick="showTontineDetail('Famille Miabe')">Gérer</button>
-            </div>
+          <!-- Les tontines seront chargées ici par l'API -->
+          <div style="padding:60px 20px;text-align:center;">
+            <i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--gold);"></i>
+            <p style="margin-top:16px;color:#64748B;">Chargement de vos tontines...</p>
           </div>
         </div>
       </div>
@@ -364,32 +304,21 @@
       <div class="section-card" id="history-section" style="margin-top: 32px; background: linear-gradient(135deg, #ffffff 0%, var(--card-bg-solid) 100%);">
         <div class="section-header">
           <h2 class="section-title"><i class="fas fa-history" style="color:var(--green-dark)"></i> Historique des Gains</h2>
-          <span class="badge-new" style="background: rgba(0, 168, 107, 0.1); color: var(--green-dark); padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;">Trust Score: 98%</span>
+          <span class="badge-new" style="background: rgba(0, 168, 107, 0.1); color: var(--green-dark); padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;">Trust Score: ...</span>
         </div>
         <div class="activity-timeline">
-          <div class="activity-item">
-            <div class="activity-icon" style="background:#ECFDF5; color:#059669;"><i class="fas fa-arrow-down"></i></div>
-            <div class="activity-content">
-              <div class="activity-title">Gain reçu - Tontine Artisans</div>
-              <div class="activity-desc">Cycle 2 terminé • Position 1/10</div>
-              <div class="activity-time">10 Février 2026</div>
-            </div>
-            <div class="activity-amount" style="color:#059669; font-weight:800;">+1,000,000 FCFA</div>
-          </div>
-          <div class="activity-item">
-            <div class="activity-icon" style="background:#ECFDF5; color:#059669;"><i class="fas fa-arrow-down"></i></div>
-            <div class="activity-content">
-              <div class="activity-title">Gain reçu - Tontine Famille</div>
-              <div class="activity-desc">Épargne annuelle • Position 5/8</div>
-              <div class="activity-time">24 Décembre 2025</div>
-            </div>
-            <div class="activity-amount" style="color:#059669; font-weight:800;">+200,000 FCFA</div>
+          <!-- L'historique sera chargé ici par l'API -->
+          <div style="padding:40px 20px;text-align:center;">
+            <i class="fas fa-spinner fa-spin" style="font-size:24px;color:var(--blue);"></i>
+            <p style="margin-top:12px;color:#64748B;">Chargement de l'historique...</p>
           </div>
         </div>
       </div>
     </div>
   </main>
 
+  <script src="js/api.js"></script>
+  <script src="js/dashboard-api.js"></script>
   <script src="js/script.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/i18n.js"></script>
@@ -552,8 +481,6 @@
     }
   </script>
 
-  <!-- Axios CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
   <script src="js/api.js"></script>
   <script src="js/dashboard-api.js"></script>
   <script src="js/i18n.js"></script>
