@@ -201,7 +201,7 @@ function App() {
         <button onClick={() => setSidebarOpen(true)} style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer' }}>
           <Menu size={22} />
         </button>
-        <img src={logoOfficial} alt="Logo" style={{ width: 32, height: 32, borderRadius: '6px' }} />
+        <img src={logoOfficial} alt="Logo" style={{ width: 48, height: 48, borderRadius: '8px' }} />
         <span style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 16 }}>TontineChain</span>
       </div>
 

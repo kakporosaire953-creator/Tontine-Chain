@@ -26,7 +26,7 @@ const Sidebar = ({ currentView, onNavigate, onLogout, theme, toggleTheme, mobile
         {/* Logo */}
         <div style={{ padding: '20px 20px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src={logoOfficial} alt="TontineChain" style={{ width: 38, height: 38, borderRadius: '8px' }} />
+            <img src={logoOfficial} alt="TontineChain" style={{ width: 60, height: 60, borderRadius: '12px' }} />
             <span style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 17 }}>TontineChain</span>
           </div>
           <button onClick={onCloseMobile} className="md:hidden" style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}>

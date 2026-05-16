@@ -56,7 +56,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
           >
             <div className="relative">
               <div className="absolute inset-0 bg-blue-500 blur-md opacity-40 group-hover:opacity-80 transition-opacity" />
-              <img src={logoOfficial} alt="TontineChain" className="w-14 h-14 rounded-xl relative z-10 transform group-hover:scale-110 transition-transform" />
+              <img src={logoOfficial} alt="TontineChain" className="w-24 h-24 rounded-xl relative z-10 transform group-hover:scale-110 transition-transform" />
             </div>
             <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-yellow-500">Chain</span></span>
           </motion.div>
@@ -469,7 +469,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                   initial={{ rotateY: 0 }}
                   animate={{ rotateY: 360 }}
                   transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                  className="relative w-48 h-48 lg:w-56 lg:h-56 rounded-full flex items-center justify-center overflow-hidden group"
+                  className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full flex items-center justify-center overflow-hidden group"
                 >
                   <img src={logoOfficial} alt="TontineChain Logo" className="w-full h-full object-contain" />
                   {/* Gloss effect */}
