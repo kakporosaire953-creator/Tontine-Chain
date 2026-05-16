@@ -5,7 +5,8 @@ import {
   Link, Share2, Rss, Users, CheckCircle, ArrowRight, 
   Moon, Sun, AlertTriangle, BookOpen, UserCheck, Eye, 
   Lock, RefreshCw, Bell, CreditCard, Brain, ChevronDown,
-  Star, TrendingUp, Shield, Activity, MousePointer2
+  Star, TrendingUp, Shield, Activity, MousePointer2,
+  Menu, X, Play, Github
 } from 'lucide-react';
 import BeninMoneyAnimation from './BeninMoneyAnimation';
 import logoOfficial from '../assets/logo_official.png';
@@ -15,6 +16,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState('tontine');
   const [openFaq, setOpenFaq] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -36,7 +38,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0b1120] text-white' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0b1120] text-white' : 'bg-slate-50 text-slate-900'}`}>
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         <div className={`absolute -top-1/4 -left-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-20 ${theme === 'dark' ? 'bg-blue-600' : 'bg-blue-400'}`} />
@@ -83,13 +85,56 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             </button>
             <button 
               onClick={onNavigateLogin}
-              className="bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-3 rounded-2xl shadow-lg shadow-blue-600/30 transform hover:-translate-y-1 active:scale-95 transition-all flex items-center gap-2"
+              className="hidden md:flex bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-3 rounded-2xl shadow-lg shadow-blue-600/30 transform hover:-translate-y-1 active:scale-95 transition-all items-center gap-2"
             >
               Démarrer <ArrowRight size={18} />
+            </button>
+            <button
+              className="md:hidden p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
       </nav>
+
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className={`fixed inset-0 z-40 md:hidden pt-24 px-6 flex flex-col gap-6 ${theme === 'dark' ? 'bg-[#0b1120]/95 backdrop-blur-xl' : 'bg-slate-50/95 backdrop-blur-xl'}`}
+          >
+            {['Solutions', 'Sécurité', 'IA Yao', 'À Propos'].map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`} 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-2xl font-black hover:text-blue-500 transition-colors ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
+              >
+                {item}
+              </a>
+            ))}
+            <div className="flex flex-col gap-4 mt-8">
+              <button 
+                onClick={() => { setIsMobileMenuOpen(false); onNavigateLogin(); }}
+                className={`w-full font-bold py-4 border rounded-2xl ${theme === 'dark' ? 'text-white border-white/10' : 'text-slate-900 border-slate-200'}`}
+              >
+                Connexion
+              </button>
+              <button 
+                onClick={() => { setIsMobileMenuOpen(false); onNavigateLogin(); }}
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-4 rounded-2xl shadow-lg shadow-blue-600/30 flex justify-center items-center gap-2"
+              >
+                Démarrer <ArrowRight size={18} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* HERO SECTION */}
       <section className="relative pt-40 pb-32 px-4 overflow-hidden">
@@ -107,36 +152,49 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               L'avenir de la Tontine est ici
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter">
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] mb-8 tracking-tighter">
               Épargnez avec <br />
               <span className="text-gradient-premium">Confiance.</span>
             </motion.h1>
             
             <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-400 max-w-xl mb-8 lg:mb-10 leading-relaxed mx-auto lg:mx-0 px-4 lg:px-0">
-              La première plateforme de tontine digitale au Bénin sécurisée par la <span className="text-white font-bold">Blockchain</span> et propulsée par l'IA <span className="text-blue-500 font-bold">Yao</span>. Fini les risques, place à la sérénité.
+              <span className="text-white font-bold block mb-2 text-lg lg:text-2xl">Vos tontines perdent de l'argent à cause des fraudes ?</span>
+              TontineChain les sécurise sur la <span className="text-blue-500 font-bold">Blockchain</span>. Fini les risques, place à la sérénité.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 lg:gap-5 px-6 lg:px-0">
               <button 
                 onClick={onNavigateLogin}
-                className="group bg-white text-slate-900 font-black px-8 py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-50 transition-all premium-shadow-blue w-full sm:w-auto"
+                className="group bg-blue-600 text-white font-black px-8 py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 w-full sm:w-auto"
               >
-                Créer mon compte <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                Voir la démo <Play className="group-hover:translate-x-1 transition-transform" size={20} fill="currentColor" />
               </button>
-              <div className="flex items-center justify-center gap-4 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm w-full sm:w-auto">
-                <div className="flex -space-x-3">
-                  {[1,2,3].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0b1120] bg-gradient-to-tr from-blue-500 to-purple-500" />
-                  ))}
+              <a 
+                href="https://github.com/votre-repo" 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center justify-center gap-3 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all w-full sm:w-auto font-bold"
+              >
+                <Github size={20} />
+                GitHub
+                <div className="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-md text-xs">
+                  <Star size={12} className="text-yellow-400" fill="currentColor" /> 128
                 </div>
-                <div className="text-sm">
-                  <p className="font-bold">+10k Utilisateurs</p>
-                  <p className="text-slate-500 text-xs text-nowrap">au Bénin & Togo</p>
+              </a>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-12 flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 max-w-md mx-auto lg:mx-0 text-left">
+              <img src="https://i.pravatar.cc/150?img=11" alt="Sessi" className="w-12 h-12 rounded-full border-2 border-blue-500 object-cover" />
+              <div>
+                <div className="flex text-yellow-400 mb-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                 </div>
+                <p className="text-xs text-slate-300 italic mb-1">"Depuis que mon groupe utilise TontineChain, plus personne ne fuit avec la caisse. C'est transparent."</p>
+                <p className="text-xs font-bold text-white">— Sessi, Commerçante à Dantokpa</p>
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="mt-16 grid grid-cols-3 gap-8">
+            <motion.div variants={itemVariants} className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { label: 'Sécurité', icon: Shield, color: 'text-green-500' },
                 { label: 'Rapidité', icon: Zap, color: 'text-yellow-500' },
@@ -164,7 +222,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
 
       {/* STATS SECTION */}
       <section className="py-20 relative overflow-hidden border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           {[
             { value: 250, label: 'Volume Transigé', suffix: 'M+', unit: 'FCFA' },
             { value: 99.9, label: 'Sécurité Blockchain', suffix: '%', unit: '' },
@@ -189,6 +247,58 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
         </div>
       </section>
 
+      {/* POURQUOI LA BLOCKCHAIN / DEMO */}
+      <section className="py-24 px-4 bg-blue-900/10 border-b border-white/5" id="pourquoi-blockchain">
+        <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-black uppercase tracking-[0.2em] mb-6">
+              <AlertTriangle size={16} /> Le Problème
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">
+              <span className="text-red-500">47%</span> des tontines informelles au Bénin <br/> connaissent des fraudes.
+            </h2>
+            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+              La confiance ne suffit plus. Les détournements de fonds et les retards de paiement détruisent des projets de vie. La blockchain élimine le besoin de faire confiance à un humain pour garder l'argent.
+            </p>
+            
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm mb-8">
+              <div className="flex items-center gap-3 mb-2">
+                <Globe className="text-blue-500" size={24} />
+                <h4 className="font-black text-lg">Contrat Déployé (Polygon Testnet)</h4>
+              </div>
+              <p className="text-xs text-slate-500 mb-3 font-mono break-all">0x7a59...4F9b</p>
+              <a href="https://mumbai.polygonscan.com/" target="_blank" rel="noreferrer" className="text-sm font-bold text-blue-500 hover:text-blue-400 flex items-center gap-2">
+                Voir sur Polygonscan <ArrowRight size={14} />
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-full"
+          >
+            <div className="relative pt-[56.25%] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+              <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Demo thumbnail" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-40 transition-opacity" />
+                <button className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/50 hover:scale-110 transition-transform relative z-10">
+                  <Play size={32} fill="currentColor" className="text-white ml-2" />
+                </button>
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between text-xs font-bold text-white z-10">
+                  <span>Démo Produit (1:24)</span>
+                  <span>Tontine → Smart Contract → Paiement</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CORE SOLUTIONS */}
       <section className="py-32 px-4" id="solutions">
         <div className="max-w-7xl mx-auto">
@@ -202,7 +312,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">Une solution pour chaque <br /><span className="text-blue-500">vision d'épargne.</span></h2>
               <p className="text-slate-400 text-lg">Nous avons réinventé la tontine traditionnelle pour la rendre inviolable, transparente et accessible à tous.</p>
             </motion.div>
-            <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md">
+            <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md overflow-x-auto no-scrollbar max-w-full">
               {['tontine', 'securite', 'ia'].map(tab => (
                 <button
                   key={tab}
@@ -443,6 +553,87 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
         </div>
       </section>
 
+      {/* MARCHE ET BUSINESS MODEL */}
+      <section className="py-24 px-4 bg-[#0b1120]" id="business">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-black mb-4">Un marché gigantesque. <br/><span className="text-blue-500">Un modèle pérenne.</span></h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+            {/* Marche */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-white/5 border border-white/10"
+            >
+              <h3 className="text-2xl font-black mb-6 flex items-center gap-3"><TrendingUp className="text-green-500" /> Le Marché (Bénin)</h3>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                  <span className="text-slate-400">Taille du marché tontine</span>
+                  <span className="font-black text-xl">~1.2 Milliards $</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                  <span className="text-slate-400">Population non-bancarisée</span>
+                  <span className="font-black text-xl text-red-400">72%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Volume estimé (TAM)</span>
+                  <span className="font-black text-xl text-blue-400">500M+ FCFA/mois</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Business Model */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="p-8 rounded-3xl bg-white/5 border border-white/10"
+            >
+              <h3 className="text-2xl font-black mb-6 flex items-center gap-3"><CreditCard className="text-blue-500" /> Modèle Économique</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20">
+                  <h4 className="font-black text-blue-500 mb-2">0.5%</h4>
+                  <p className="text-sm text-slate-400">Frais de transaction par cycle sur les gros montants.</p>
+                </div>
+                <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20">
+                  <h4 className="font-black text-purple-500 mb-2">B2B SaaS</h4>
+                  <p className="text-sm text-slate-400">Abonnement pour les SFD et institutions de microfinance.</p>
+                </div>
+                <div className="p-4 rounded-2xl bg-green-500/10 border border-green-500/20 sm:col-span-2">
+                  <h4 className="font-black text-green-500 mb-2">Yield Farming (DeFi)</h4>
+                  <p className="text-sm text-slate-400">Génération d'intérêts sur la liquidité bloquée via Aave/Compound (optionnel).</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Roadmap */}
+          <div className="relative pt-12">
+            <h3 className="text-2xl font-black mb-12 text-center">Roadmap Q3 2026 - Q1 2027</h3>
+            <div className="flex flex-col md:flex-row justify-between gap-8 relative">
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-white/10 -translate-y-1/2 hidden md:block" />
+              {[
+                { q: "Q3 2026", title: "Lancement MVP", desc: "Mainnet Polygon, Intégration MTN MoMo, 50 groupes pilotes." },
+                { q: "Q4 2026", title: "Scale & Partenariats", desc: "Partenariat SFD locaux, KYC automatisé, Application mobile native." },
+                { q: "Q1 2027", title: "DeFi & Crédit", desc: "Micro-crédit basé sur l'historique tontine, expansion Togo/Côte d'Ivoire." }
+              ].map((step, i) => (
+                <div key={i} className="relative z-10 flex flex-col items-center text-center md:w-1/3">
+                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white font-black flex items-center justify-center mb-6 shadow-lg shadow-blue-600/30 border-4 border-[#0b1120]">
+                    {i + 1}
+                  </div>
+                  <h4 className="font-black text-blue-400 mb-2">{step.q} : {step.title}</h4>
+                  <p className="text-sm text-slate-400">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="py-32 px-4 relative overflow-hidden">
         <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -518,9 +709,10 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               <img src={logoOfficial} alt="TontineChain" className="w-10 h-10 rounded-xl" />
               <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-blue-500">Chain</span></span>
             </div>
-            <p className="text-slate-500 leading-relaxed mb-8">
+            <p className="text-slate-500 leading-relaxed mb-6">
               La tontine 2.0 pour l'Afrique. Épargne, crédit et confiance unifiés dans une application mobile révolutionnaire.
             </p>
+            <a href="mailto:contact@tontinechain.com" className="text-blue-500 font-bold mb-8 block hover:underline">contact@tontinechain.com</a>
             <div className="flex gap-4">
               {[Share2, Link, Rss, Globe].map((Icon, i) => (
                 <button key={i} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
@@ -544,8 +736,8 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             <h5 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-8">Entreprise</h5>
             <ul className="space-y-4 text-slate-400 font-bold text-sm">
               <li className="hover:text-white cursor-pointer transition-colors">À Propos</li>
-              <li className="hover:text-white cursor-pointer transition-colors">Carrières</li>
-              <li className="hover:text-white cursor-pointer transition-colors">Blog</li>
+              <li className="hover:text-white cursor-pointer transition-colors">Partenaires (MTN/Moov)</li>
+              <li className="hover:text-white cursor-pointer transition-colors">SFD & Microfinance</li>
               <li className="hover:text-white cursor-pointer transition-colors">Contact</li>
             </ul>
           </div>

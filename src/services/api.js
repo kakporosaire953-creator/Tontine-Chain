@@ -98,7 +98,7 @@ export const getVoteDetails = (voteId) => api.get(`/votes/${voteId}`);
 export const castVote = (voteId, data) => api.post(`/votes/${voteId}/cast`, data);
 
 // --- AI (YAO Assistant) ---
-export const chatWithAi = (data) => api.post('/ai/chat', data);
+export const chatWithAi = (data) => api.post('/ai/yao', data);
 
 // --- Messages & Chat ---
 export const getMessages = (groupId) => api.get(`/groups/${groupId}/messages`);

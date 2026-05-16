@@ -65,7 +65,7 @@ const Messagerie = ({ onBack, user, groups = [] }) => {
           </button>
           <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>Messagerie</h2>
           <span className="badge badge-info" style={{ marginLeft: 'auto' }}>
-            {conversations.reduce((sum, c) => sum + c.unread, 0)} non lus
+            {groups.reduce((sum, c) => sum + (c.unread || 0), 0)} non lus
           </span>
         </div>
 
