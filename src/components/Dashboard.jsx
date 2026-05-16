@@ -89,383 +89,242 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
   }
 
   return (
-    <div style={{ color: 'var(--text-primary)' }} className="font-inter relative">
-
-      {/* Welcome Header */}
-      <div style={{ marginBottom: 32 }}>
-        <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 28, fontWeight: 700, marginBottom: 4 }}>
-          Bonjour, {user?.first_name || 'Utilisateur'}
-        </h1>
-        <p style={{ color: 'var(--text-secondary)', fontSize: 15 }}>Voici un aperçu de vos tontines aujourd'hui</p>
+    <div style={{ color: 'var(--text-primary)' }} className="font-inter relative max-w-[1600px] mx-auto">
+      
+      {/* 1. TOP BAR: WELCOME & ACTIONS */}
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-10 gap-6">
+        <div>
+          <h1 className="text-3xl lg:text-4xl font-playfair font-black tracking-tight mb-2">
+            {t.welcome}, <span className="text-tontine-orange">{user?.first_name || 'Utilisateur'}</span> 👋
+          </h1>
+          <p className="text-slate-500 font-medium">Votre centre de commandement TontineChain.</p>
+        </div>
+        
+        <div className="flex items-center gap-4 w-full lg:w-auto">
+          <button 
+            onClick={() => setShowJoinModal(true)} 
+            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-4 rounded-2xl transition-all font-bold"
+          >
+            <Search className="w-5 h-5 text-tontine-orange" />
+            <span>{t.join_group}</span>
+          </button>
+          <button 
+            onClick={onNewGroup} 
+            className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-tontine-orange text-tontine-darker px-8 py-4 rounded-2xl transition-all font-black shadow-xl shadow-tontine-orange/20"
+          >
+            <Plus className="w-6 h-6" />
+            <span>{t.new_group}</span>
+          </button>
+        </div>
       </div>
 
-      <main className="relative z-10">
-
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Top 3 Elite Members Preview */}
-        <div className="mb-12">
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-playfair font-bold flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-tontine-gold" /> Membres Elite
-            </h3>
-            <button onClick={onOpenLeaderboard} className="text-xs text-tontine-orange hover:underline">Voir tout</button>
+        {/* LEFT COLUMN: MAIN CONTENT (8/12) */}
+        <div className="lg:col-span-8 space-y-8">
+          
+          {/* A. BALANCE & CORE STATS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-panel p-8 rounded-[2rem] relative overflow-hidden group border border-white/5"
+            >
+              <div className="absolute -right-4 -top-4 w-32 h-32 bg-tontine-orange/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <p className="text-slate-500 text-xs font-black uppercase tracking-widest mb-2">{t.balance_paid}</p>
+                  <h3 className="text-4xl font-black">{balance.total_paid.toLocaleString()} <span className="text-lg text-tontine-orange">F</span></h3>
+                </div>
+                <div className="p-4 bg-tontine-orange/10 rounded-2xl text-tontine-orange">
+                  <Wallet className="w-8 h-8" />
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-green-400">
+                <CheckCircle2 size={14} /> 100% de vos cotisations à jour
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="glass-panel p-8 rounded-[2rem] relative overflow-hidden group border border-white/5"
+            >
+              <div className="absolute -right-4 -top-4 w-32 h-32 bg-green-500/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <p className="text-slate-500 text-xs font-black uppercase tracking-widest mb-2">{t.expected_gains}</p>
+                  <h3 className="text-4xl font-black">{(groups.reduce((acc, g) => acc + ((g.contribution_amount || g.amount || 0) * (g.max_members || g.members || 0)), 0)).toLocaleString()} <span className="text-lg text-green-500">F</span></h3>
+                </div>
+                <div className="p-4 bg-green-500/10 rounded-2xl text-green-500">
+                  <TrendingUp className="w-8 h-8" />
+                </div>
+              </div>
+              <div className="text-xs text-slate-500 font-medium">Répartis sur {groups.length} groupes actifs</div>
+            </motion.div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {leaderboard.length > 0 ? leaderboard.map((p, i) => (
-              <div key={i} className="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-white/5 relative overflow-hidden group hover:border-tontine-gold/30 transition-all cursor-pointer">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold
-                  ${i === 0 ? 'bg-tontine-gold text-tontine-darker' : 'bg-white/10 text-gray-400'}`}>
-                  {i + 1}
+
+          {/* B. NEXT PAYMENT (URGENT ACTION) */}
+          {activities && activities.length > 0 && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-gradient-to-br from-tontine-orange/20 via-tontine-orange/5 to-transparent border border-tontine-orange/30 p-8 rounded-[2.5rem] flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl"
+            >
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 bg-tontine-orange rounded-2xl flex items-center justify-center text-tontine-darker shadow-lg shadow-tontine-orange/20">
+                  <Clock className="w-8 h-8 animate-pulse" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">{p.full_name || p.name}</h4>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-3 h-3 text-tontine-gold fill-tontine-gold" />
-                    <span className="text-[10px] text-gray-400">{p.score_confiance || p.score} pts</span>
+                  <h4 className="font-black text-2xl mb-1">{t?.next_payment || 'Cotisation en attente'}</h4>
+                  <p className="text-slate-400">{(activities[0]?.amount_fcfa || 0).toLocaleString()} FCFA • Tontine "{groups.find(g => g.id === activities[0]?.group_id)?.name || 'Active'}"</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => handlePay(activities[0]?.id)}
+                disabled={payingId === activities[0]?.id}
+                className="w-full md:w-auto bg-white text-tontine-darker font-black px-12 py-5 rounded-2xl hover:bg-tontine-gold transition-all shadow-xl hover:-translate-y-1 flex items-center justify-center gap-3"
+              >
+                {payingId === activities[0]?.id ? <Loader2 className="animate-spin" /> : <><CreditCard size={20}/> Payer maintenant</>}
+              </button>
+            </motion.div>
+          )}
+
+          {/* C. MY GROUPS LIST */}
+          <div className="space-y-6">
+            <div className="flex justify-between items-center px-2">
+              <h3 className="text-2xl font-playfair font-black">Mes Tontines Actives</h3>
+              <button onClick={() => onNavigate('mes_tontines')} className="text-sm font-black text-tontine-orange hover:underline uppercase tracking-widest">Tout voir</button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {groups.length > 0 ? groups.slice(0, 4).map((g, i) => (
+                <motion.div 
+                  key={g.id}
+                  onClick={() => onSelectGroup(g)}
+                  className="glass-panel p-6 rounded-3xl group cursor-pointer border border-white/5 hover:border-tontine-orange/30 transition-all"
+                >
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-tontine-orange/10 transition-colors">
+                      <Users className="w-6 h-6 text-tontine-orange" />
+                    </div>
+                    <div className="bg-white/5 px-3 py-1 rounded-full text-[10px] font-black text-slate-500 uppercase tracking-widest">{g.frequency || 'Mensuel'}</div>
                   </div>
+                  <h4 className="text-xl font-black mb-1 group-hover:text-tontine-orange transition-colors">{g.name}</h4>
+                  <p className="text-2xl font-black text-tontine-orange mb-4">{(g.contribution_amount || g.amount || 0).toLocaleString()} <span className="text-xs">F</span></p>
+                  
+                  <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden mb-4">
+                    <div 
+                      className="bg-gradient-to-r from-tontine-orange to-yellow-500 h-full transition-all duration-1000" 
+                      style={{ width: `${Math.round(((g.current_cycle || 1) / (g.max_members || 10)) * 100)}%` }} 
+                    />
+                  </div>
+                  <div className="flex justify-between items-center text-[10px] font-black text-slate-500">
+                    <span>CYCLE {g.current_cycle || 1}/{g.max_members || 10}</span>
+                    <span className="flex items-center gap-1"><ChevronRight size={14} /></span>
+                  </div>
+                </motion.div>
+              )) : (
+                <div className="col-span-full py-12 text-center glass-panel rounded-3xl border border-dashed border-white/10">
+                  <p className="text-slate-500 font-bold mb-4">Aucune tontine active</p>
+                  <button onClick={onNewGroup} className="text-tontine-orange font-black hover:underline uppercase tracking-widest text-xs">Créer ma première tontine</button>
                 </div>
-                <div className="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Trophy className="w-12 h-12" />
-                </div>
-              </div>
-            )) : (
-              <div className="col-span-3 text-center py-4 text-gray-500 text-sm italic">
-                En attente de données de fiabilité...
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4"
-        >
-            <div onClick={onOpenProfile} className="cursor-pointer group flex items-center gap-4">
-              <div className="relative w-16 h-16 flex items-center justify-center">
+        {/* RIGHT COLUMN: SIDEBAR (4/12) */}
+        <div className="lg:col-span-4 space-y-8">
+          
+          {/* D. RELIABILITY SCORE CARD */}
+          <motion.div 
+            whileHover={{ y: -5 }}
+            className="glass-panel p-8 rounded-[2.5rem] bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10"
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <div className="relative w-20 h-20 flex items-center justify-center">
                 <svg className="w-full h-full transform -rotate-90">
-                  <circle
-                    cx="32"
-                    cy="32"
-                    r="28"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    fill="transparent"
-                    className="text-white/5"
-                  />
-                  <motion.circle
-                    cx="32"
-                    cy="32"
-                    r="28"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    fill="transparent"
-                    strokeDasharray="175.9"
-                    initial={{ strokeDashoffset: 175.9 }}
-                    animate={{ strokeDashoffset: 175.9 - (175.9 * (user?.score_confiance || 0)) / 100 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
+                  <circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="6" fill="transparent" className="text-white/5" />
+                  <motion.circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="6" fill="transparent" strokeDasharray="226.2"
+                    initial={{ strokeDashoffset: 226.2 }}
+                    animate={{ strokeDashoffset: 226.2 - (226.2 * (user?.score_confiance || 0)) / 100 }}
+                    transition={{ duration: 2 }}
                     className="text-tontine-orange"
                   />
                 </svg>
-                <span className="absolute text-xs font-bold">{user?.score_confiance ?? '—'}</span>
+                <span className="absolute text-xl font-black">{user?.score_confiance ?? '—'}</span>
               </div>
               <div>
-                <h1 className="text-3xl font-bold mb-1 transition-colors group-hover:text-tontine-gold flex items-center gap-2">
-                  {t.welcome}, <span className="text-tontine-orange">{user?.first_name || 'Utilisateur'}</span>
-                  <CheckCircle2 className="w-5 h-5 text-yellow-500" />
-                  👋
-                </h1>
-                <div className="flex items-center gap-3">
-                  <p className="text-gray-400 flex items-center gap-2 group-hover:text-gray-200 transition-colors">
-                    <TrendingUp className="w-4 h-4 text-green-400" />
-                    Score de fiabilité: <span className="font-bold text-white">{user?.score_confiance ?? '—'}/100</span>
-                  </p>
-                  <AudioButton label={`Bienvenue ${user?.first_name}. Votre score de confiance est de ${user?.score_confiance ?? 0} sur 100.`} />
-                </div>
+                <h4 className="font-black text-lg">Confiance</h4>
+                <p className="text-xs text-slate-500 uppercase tracking-widest font-bold">Niveau: Elite</p>
               </div>
             </div>
-          <div className="flex gap-3">
-            <button 
-              onClick={() => setShowJoinModal(true)} 
-              className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-3 rounded-xl transition-all text-sm"
-            >
-              <Search className="w-4 h-4 text-tontine-orange" />
-              <span>{t.join_group}</span>
-            </button>
-            <button onClick={onNewGroup} className="flex items-center gap-2 bg-gradient-to-r from-tontine-orange to-tontine-gold text-tontine-darker px-5 py-3 rounded-xl transition-all font-bold shadow-lg shadow-tontine-orange/20">
-              <Plus className="w-5 h-5" />
-              <span>{t.new_group}</span>
-            </button>
-          </div>
-        </motion.div>
-
-        {/* KYC Verification Banner (MIABE 2026 Compliance) */}
-        {user?.kyc_status !== 'verified' && (
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8 p-4 bg-green-700/10 border border-blue-500/20 rounded-2xl flex items-center justify-between gap-4"
-          >
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-700/20 rounded-lg">
-                <ShieldCheck className="w-5 h-5 text-yellow-500" />
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex justify-between text-xs font-bold">
+                <span className="text-slate-500 uppercase tracking-widest">Paiements à temps</span>
+                <span className="text-green-500">98%</span>
               </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Sécurisez votre compte</h4>
-                <p className="text-[10px] text-gray-400">Prouvez votre identité avec YAO pour débloquer les tontines à haut capital.</p>
+              <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-green-500 h-full w-[98%]" />
               </div>
             </div>
-            <button 
-              onClick={onOpenProfile}
-              className="px-4 py-2 bg-green-700 text-white text-[10px] font-bold rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Vérifier maintenant
-            </button>
-          </motion.div>
-        )}
 
-        {/* Prochain Paiement Alert */}
-        {activities && activities.length > 0 && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="mb-10 bg-gradient-to-r from-tontine-orange/20 to-tontine-gold/10 border border-tontine-orange/30 p-5 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-4 shadow-xl shadow-tontine-orange/5"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-tontine-orange rounded-full flex items-center justify-center text-tontine-darker">
-                <Clock className="w-6 h-6 animate-pulse" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h4 className="font-bold text-lg">{t?.next_payment || 'Prochain paiement'}</h4>
-                  <AudioButton />
-                </div>
-                <p className="text-sm text-gray-300">
-                  Cotisation en attente • {(activities[0]?.amount_fcfa || 0).toLocaleString()} FCFA
-                </p>
-              </div>
-            </div>
-            <button 
-              onClick={() => handlePay(activities[0]?.id)}
-              disabled={payingId === activities[0]?.id}
-              className="bg-white text-tontine-darker font-bold px-8 py-3 rounded-xl hover:bg-tontine-gold transition-all shadow-lg flex items-center gap-2"
-            >
-              {payingId === activities[0]?.id ? <Loader2 className="w-5 h-5 animate-spin" /> : (t?.pay_now || 'Payer')}
-            </button>
-          </motion.div>
-        )}
-
-        {/* Groups List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {groups.length > 0 ? groups.map((g, i) => (
-            <motion.div 
-              key={g.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 }}
-              onClick={() => onSelectGroup(g)}
-              className="glass-panel p-6 rounded-3xl group cursor-pointer hover:border-tontine-orange/30 transition-all relative overflow-hidden"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-tontine-orange/10 transition-colors">
-                  <Users className="w-6 h-6 text-tontine-orange" />
-                </div>
-                <div className="text-right">
-                  <span className="block text-xs text-gray-400 uppercase font-bold tracking-widest">{g.frequency || g.cycle}</span>
-                  <span className="text-sm font-bold text-tontine-gold">{(g.contribution_amount || g.amount).toLocaleString()} F</span>
-                </div>
-              </div>
-              
-              <h3 className="text-lg font-bold mb-1 group-hover:text-tontine-orange transition-colors">{g.name}</h3>
-              <p className="text-xs text-gray-500 mb-4 flex items-center gap-1">
-                <ShieldCheck className="w-3 h-3" /> Leader: {g.creator?.full_name || 'Koffi A.'}
-              </p>
-
-              {/* Progress Bar */}
-              <div className="space-y-2 mb-4">
-                <div className="flex justify-between text-[10px] font-bold uppercase tracking-tighter">
-                  <span className="text-gray-400">Progression Cycle</span>
-                  <span className="text-tontine-orange">{Math.round((g.current_cycle / (g.max_members || g.members || 1)) * 100)}%</span>
-                </div>
-                <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                  <div 
-                    className="bg-gradient-to-r from-tontine-orange to-tontine-gold h-full" 
-                    style={{ width: `${(g.current_cycle / (g.max_members || g.members || 1)) * 100}%` }} 
-                  />
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center text-xs">
-                <div className="flex -space-x-2">
-                  {[1,2,3].map(z => (
-                    <div key={z} className="w-6 h-6 rounded-full border-2 border-tontine-darker bg-gray-700 flex items-center justify-center text-[8px] font-bold">U{z}</div>
-                  ))}
-                  <div className="w-6 h-6 rounded-full border-2 border-tontine-darker bg-tontine-orange text-tontine-darker flex items-center justify-center text-[8px] font-bold">+{(g.max_members || g.members) - 3}</div>
-                </div>
-                <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-tontine-orange transition-all group-hover:translate-x-1" />
-              </div>
-            </motion.div>
-          )) : (
-            <div className="col-span-full py-20 flex flex-col items-center justify-center glass-panel rounded-3xl border-2 border-dashed border-white/5">
-              <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
-                <Users className="w-10 h-10 text-gray-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Aucune tontine active</h3>
-              <p className="text-gray-500 text-sm mb-8 text-center max-w-xs">Vous ne faites partie d'aucun groupe pour le moment. Créez-en un ou rejoignez un cercle existant.</p>
-              <div className="flex gap-4">
-                <button onClick={onNewGroup} className="btn-primary px-8 py-3 rounded-xl flex items-center gap-2">
-                  <Plus className="w-5 h-5" /> Créer
-                </button>
-                <button onClick={() => onNavigate('join')} className="bg-white/5 hover:bg-white/10 px-8 py-3 rounded-xl transition-all border border-white/10">
-                  Rejoindre
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Live Activity Feed */}
-        <div className="mb-12">
-          <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-            <Activity className="w-4 h-4" /> Activité en direct
-          </h3>
-          <div className="glass-panel p-2 rounded-2xl border border-white/5 divide-y divide-white/5">
-            {activities.length > 0 ? activities.map((act, i) => (
-              <div key={i} className="flex items-center justify-between p-4 hover:bg-white/5 transition-colors">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  <p className="text-xs">
-                    Cotisation en attente • <span className="text-tontine-gold font-bold">{(act.amount_fcfa || 0).toLocaleString()} FCFA</span>
-                  </p>
-                </div>
-                <span className="text-[10px] text-gray-500">ID: {act.id}</span>
-              </div>
-            )) : (
-              <div className="p-8 text-center text-gray-500 text-xs italic">
-                Aucune activité récente. Les événements s'afficheront ici en temps réel.
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="glass-panel p-6 rounded-2xl relative overflow-hidden group"
-          >
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-tontine-orange/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <p className="text-gray-400 text-sm mb-1">{t.balance_paid}</p>
-                <h3 className="text-3xl font-bold font-playfair">{balance.total_paid.toLocaleString()} <span className="text-lg text-tontine-orange">FCFA</span></h3>
-              </div>
-              <div className="p-3 bg-white/5 rounded-xl text-tontine-gold">
-                <Wallet className="w-6 h-6" />
-              </div>
-            </div>
-            <div className="text-sm text-green-400 flex items-center gap-1">
-              <TrendingUp className="w-4 h-4" />
-              <span>À jour sur tous les groupes</span>
-            </div>
+            <button onClick={onOpenProfile} className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-black transition-all">Améliorer mon score</button>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="glass-panel p-6 rounded-2xl relative overflow-hidden group"
-          >
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-green-700/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <p className="text-gray-400 text-sm mb-1">{t.expected_gains}</p>
-                <h3 className="text-3xl font-bold font-playfair">{(groups.reduce((acc, g) => acc + ((g.contribution_amount || g.amount || 0) * (g.max_members || g.members || 0)), 0)).toLocaleString()} <span className="text-lg text-tontine-orange">FCFA</span></h3>
-              </div>
-              <div className="p-3 bg-white/5 rounded-xl text-yellow-500">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-            </div>
-            <div className="text-sm text-gray-400">
-              Sur {groups.length} tontine(s) active(s)
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            onClick={onOpenLeaderboard}
-            className="glass-panel p-6 rounded-2xl md:col-span-2 lg:col-span-1 cursor-pointer hover:border-white/10 transition-colors"
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-tontine-gold" />
-                Classement Confiance
-              </h3>
-            </div>
+          {/* E. ELITE MEMBERS (LEADERBOARD PREVIEW) */}
+          <div className="glass-panel p-6 rounded-[2.5rem] border border-white/5">
+            <h3 className="text-lg font-black mb-6 px-2 flex items-center gap-2">
+              <Trophy className="text-tontine-gold w-5 h-5" /> Membres Élite
+            </h3>
             <div className="space-y-3">
-              {leaderboard.map((u, i) => (
-                <div key={u.id} className="flex justify-between items-center p-2 hover:bg-white/5 rounded-lg transition-colors">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-tontine-dark flex items-center justify-center font-bold text-xs border border-white/10">
-                      {i + 1}
-                    </div>
-                    <span className="text-sm">{u.first_name} {u.last_name}</span>
+              {leaderboard.map((p, i) => (
+                <div key={i} className="flex items-center gap-4 p-3 rounded-2xl hover:bg-white/5 transition-all group cursor-pointer">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-black ${i === 0 ? 'bg-tontine-gold text-tontine-darker' : 'bg-white/5 text-slate-500'}`}>
+                    {i + 1}
                   </div>
-                  <span className="text-sm font-bold text-tontine-gold">{u.score_confiance}</span>
+                  <div className="flex-1">
+                    <h5 className="text-sm font-black group-hover:text-tontine-gold transition-colors">{p.full_name || p.name}</h5>
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Score: {p.score_confiance || p.score} pts</p>
+                  </div>
                 </div>
               ))}
             </div>
-          </motion.div>
-        </div>
+            <button onClick={onOpenLeaderboard} className="w-full mt-6 py-3 text-xs font-black text-slate-500 hover:text-white transition-colors">VOIR LE CLASSEMENT COMPLET</button>
+          </div>
 
-        {/* Google Translate Widget for Jury */}
-        <div className="mt-8 flex justify-center opacity-70 hover:opacity-100 transition-opacity">
-          <div id="google_translate_element" className="rounded-lg overflow-hidden border border-white/10 shadow-lg"></div>
-        </div>
-
-        {/* API Docs Link for Jury */}
-        <footer className="mt-20 pt-8 border-t border-white/5 text-center">
-          <a 
-            href="https://tonnine-benin-backend.onrender.com/api/documentation" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[10px] text-gray-500 hover:text-tontine-gold transition-colors"
-          >
-            <Search className="w-3 h-3" />
-            Accéder à la Documentation API (Swagger)
-          </a>
-        </footer>
-
-        {/* FedaPay Redirection Overlay */}
-        <AnimatePresence>
-          {showPaymentProgress && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] bg-tontine-darker/95 backdrop-blur-md flex flex-items justify-center items-center p-6 text-center"
-            >
-              <div className="max-w-xs w-full">
-                <div className="w-20 h-20 bg-white rounded-2xl mx-auto mb-6 flex items-center justify-center p-4 shadow-xl">
-                  <img src="https://fedapay.com/assets/images/logo.png" alt="FedaPay" className="w-full h-auto" />
+          {/* F. LIVE ACTIVITY */}
+          <div className="glass-panel p-6 rounded-[2.5rem] border border-white/5">
+            <h3 className="text-sm font-black text-slate-500 uppercase tracking-widest mb-6 px-2">Activité récente</h3>
+            <div className="space-y-6">
+              {activities.length > 0 ? activities.map((act, i) => (
+                <div key={i} className="flex gap-4 relative">
+                  {i !== activities.length - 1 && <div className="absolute left-[7px] top-6 bottom-0 w-0.5 bg-white/5" />}
+                  <div className="w-4 h-4 rounded-full bg-green-500/20 border-2 border-green-500 shrink-0 mt-1" />
+                  <div>
+                    <p className="text-xs font-bold text-slate-300">Cotisation reçue</p>
+                    <p className="text-[10px] text-slate-500">{(act.amount_fcfa || 0).toLocaleString()} F • {new Date().toLocaleDateString()}</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Sécurisation du paiement</h3>
-                <p className="text-gray-400 text-sm mb-8 italic">Redirection vers la passerelle Mobile Money de FedaPay...</p>
-                <div className="flex justify-center gap-2">
-                  <div className="w-2 h-2 bg-tontine-orange rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                  <div className="w-2 h-2 bg-tontine-orange rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                  <div className="w-2 h-2 bg-tontine-orange rounded-full animate-bounce"></div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
+              )) : (
+                <p className="text-xs text-slate-600 italic px-2">Aucune activité récente.</p>
+              )}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* FOOTER & UTILS */}
+      <footer className="mt-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div id="google_translate_element" className="rounded-xl overflow-hidden opacity-50 hover:opacity-100 transition-opacity"></div>
+        <a href="https://tonnine-benin-backend.onrender.com/api/documentation" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[10px] font-black text-slate-600 hover:text-tontine-gold uppercase tracking-widest transition-colors">
+          <Search size={12} /> Documentation API (Swagger)
+        </a>
+      </footer>
 
       {/* Join Group Modal */}
       <AnimatePresence>
