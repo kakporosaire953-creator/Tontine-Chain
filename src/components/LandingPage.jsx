@@ -1,0 +1,587 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ShieldCheck, Zap, Bot, Globe, Smartphone, MessageSquare, Mail,
+  Link, Share2, Rss, Users, CheckCircle, ArrowRight, 
+  Moon, Sun, AlertTriangle, BookOpen, UserCheck, Eye, 
+  Lock, RefreshCw, Bell, CreditCard, Brain, ChevronDown,
+  Star, TrendingUp, Shield, Activity, MousePointer2
+} from 'lucide-react';
+import BeninMoneyAnimation from './BeninMoneyAnimation';
+import logoOfficial from '../assets/logo_official.png';
+
+const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
+  const [email, setEmail] = useState('');
+  const [scrolled, setScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState('tontine');
+  const [openFaq, setOpenFaq] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 }
+  };
+
+  return (
+    <div className={`min-h-screen transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0b1120] text-white' : 'bg-slate-50 text-slate-900'}`}>
+      {/* BACKGROUND DECORATIONS */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className={`absolute -top-1/4 -left-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-20 ${theme === 'dark' ? 'bg-blue-600' : 'bg-blue-400'}`} />
+        <div className={`absolute -bottom-1/4 -right-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-10 ${theme === 'dark' ? 'bg-purple-600' : 'bg-purple-400'}`} />
+        <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px'}} />
+      </div>
+
+      {/* NAVBAR */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-3 glass-morphism-dark !bg-opacity-80 shadow-xl' : 'py-6 bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
+          <motion.div 
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            className="flex items-center gap-3 group cursor-pointer"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-blue-500 blur-md opacity-40 group-hover:opacity-80 transition-opacity" />
+              <img src={logoOfficial} alt="TontineChain" className="w-14 h-14 rounded-xl relative z-10 transform group-hover:scale-110 transition-transform" />
+            </div>
+            <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-blue-500">Chain</span></span>
+          </motion.div>
+
+          <div className="hidden lg:flex items-center gap-10 text-sm font-bold tracking-wide uppercase">
+            {['Solutions', 'Sécurité', 'IA Yao', 'À Propos'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-blue-500 transition-colors relative group">
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={toggleTheme}
+              className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+            >
+              {theme === 'dark' ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-slate-600" />}
+            </button>
+            <button 
+              onClick={onNavigateLogin}
+              className="hidden md:block font-bold hover:text-blue-500 transition-colors"
+            >
+              Connexion
+            </button>
+            <button 
+              onClick={onNavigateLogin}
+              className="bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-3 rounded-2xl shadow-lg shadow-blue-600/30 transform hover:-translate-y-1 active:scale-95 transition-all flex items-center gap-2"
+            >
+              Démarrer <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* HERO SECTION */}
+      <section className="relative pt-40 pb-32 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10 text-center lg:text-left pt-10 lg:pt-0">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-black uppercase tracking-[0.2em] mb-8">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              L'avenir de la Tontine est ici
+            </motion.div>
+            
+            <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black leading-[0.9] mb-8 tracking-tighter">
+              Épargnez avec <br />
+              <span className="text-gradient-premium">Confiance.</span>
+            </motion.h1>
+            
+            <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-400 max-w-xl mb-8 lg:mb-10 leading-relaxed mx-auto lg:mx-0 px-4 lg:px-0">
+              La première plateforme de tontine digitale au Bénin sécurisée par la <span className="text-white font-bold">Blockchain</span> et propulsée par l'IA <span className="text-blue-500 font-bold">Yao</span>. Fini les risques, place à la sérénité.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 lg:gap-5 px-6 lg:px-0">
+              <button 
+                onClick={onNavigateLogin}
+                className="group bg-white text-slate-900 font-black px-8 py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-50 transition-all premium-shadow-blue w-full sm:w-auto"
+              >
+                Créer mon compte <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <div className="flex items-center justify-center gap-4 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm w-full sm:w-auto">
+                <div className="flex -space-x-3">
+                  {[1,2,3].map(i => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0b1120] bg-gradient-to-tr from-blue-500 to-purple-500" />
+                  ))}
+                </div>
+                <div className="text-sm">
+                  <p className="font-bold">+10k Utilisateurs</p>
+                  <p className="text-slate-500 text-xs text-nowrap">au Bénin & Togo</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-16 grid grid-cols-3 gap-8">
+              {[
+                { label: 'Sécurité', icon: Shield, color: 'text-green-500' },
+                { label: 'Rapidité', icon: Zap, color: 'text-yellow-500' },
+                { label: 'Blockchain', icon: Globe, color: 'text-blue-500' }
+              ].map((feature, i) => (
+                <div key={i} className="flex flex-col gap-2">
+                  <feature.icon className={feature.color} size={24} />
+                  <span className="font-bold text-sm uppercase tracking-wider">{feature.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* DYNAMIC VISUAL ELEMENT: BENIN MAP + MONEY RAIN (VISIBLE ON MOBILE) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative order-1 lg:order-2 w-full max-w-[280px] sm:max-w-[400px] lg:max-w-full mx-auto"
+          >
+            <BeninMoneyAnimation />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* STATS SECTION */}
+      <section className="py-20 relative overflow-hidden border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+          {[
+            { value: 250, label: 'Volume Transigé', suffix: 'M+', unit: 'FCFA' },
+            { value: 99.9, label: 'Sécurité Blockchain', suffix: '%', unit: '' },
+            { value: 15, label: 'Tontines Créées', suffix: 'k', unit: '+' },
+            { value: 0, label: 'Détournements', suffix: '', unit: 'Plaintes' }
+          ].map((stat, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="text-center group"
+            >
+              <h3 className="text-3xl lg:text-5xl font-black text-gradient-premium mb-2 group-hover:scale-110 transition-transform duration-500">
+                {stat.value}{stat.suffix}
+              </h3>
+              <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] lg:text-xs">{stat.label}</p>
+              {stat.unit && <p className="text-[10px] text-blue-500/60 font-black mt-1">{stat.unit}</p>}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CORE SOLUTIONS */}
+      <section className="py-32 px-4" id="solutions">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="max-w-2xl text-center lg:text-left"
+            >
+              <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">Une solution pour chaque <br /><span className="text-blue-500">vision d'épargne.</span></h2>
+              <p className="text-slate-400 text-lg">Nous avons réinventé la tontine traditionnelle pour la rendre inviolable, transparente et accessible à tous.</p>
+            </motion.div>
+            <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md">
+              {['tontine', 'securite', 'ia'].map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${activeTab === tab ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-500 hover:text-white'}`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <AnimatePresence mode="wait">
+              {activeTab === 'tontine' && (
+                <>
+                  {[
+                    { title: 'Tontine Adogbè', desc: 'Épargne quotidienne flexible pour vos projets court terme.', icon: Star },
+                    { title: 'Tontine Confiance', desc: 'Groupes privés restreints pour investissements majeurs.', icon: Users },
+                    { title: 'Tontine Mobile', desc: 'Paiements directs via MTN & Moov Money sans intermédiaire.', icon: Smartphone }
+                  ].map((card, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600/10 hover:border-blue-500/30 transition-all overflow-hidden"
+                    >
+                      <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all" />
+                      <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500 mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                        <card.icon size={32} />
+                      </div>
+                      <h4 className="text-2xl font-black mb-4">{card.title}</h4>
+                      <p className="text-slate-400 mb-8 leading-relaxed">{card.desc}</p>
+                      <button className="flex items-center gap-2 text-sm font-black text-blue-500 uppercase tracking-widest group-hover:gap-4 transition-all">
+                        En savoir plus <ArrowRight size={16} />
+                      </button>
+                    </motion.div>
+                  ))}
+                </>
+              )}
+              {activeTab === 'securite' && (
+                <>
+                  {[
+                    { title: 'Smart Contracts', desc: 'Logique immuable sur Polygon pour une transparence totale.', icon: ShieldCheck },
+                    { title: 'Multi-Sig Wallet', desc: 'Protection avancée des fonds contre les accès non autorisés.', icon: Lock },
+                    { title: 'Audit Continu', icon: Eye, desc: 'Surveillance en temps réel des flux financiers du groupe.' }
+                  ].map((card, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600/10 hover:border-blue-500/30 transition-all overflow-hidden"
+                    >
+                      <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500 mb-8">
+                        <card.icon size={32} />
+                      </div>
+                      <h4 className="text-2xl font-black mb-4">{card.title}</h4>
+                      <p className="text-slate-400 mb-8 leading-relaxed">{card.desc}</p>
+                    </motion.div>
+                  ))}
+                </>
+              )}
+              {activeTab === 'ia' && (
+                <>
+                  {[
+                    { title: 'Prédiction de Risque', desc: 'L\'IA analyse les comportements pour prévenir les défauts.', icon: Brain },
+                    { title: 'Rappels Intelligents', desc: 'Notifications personnalisées basées sur vos habitudes.', icon: Bell },
+                    { title: 'Conseils Epargne', icon: Zap, desc: 'Optimisation de vos tours pour maximiser vos intérêts.' }
+                  ].map((card, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600/10 hover:border-blue-500/30 transition-all overflow-hidden"
+                    >
+                      <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500 mb-8">
+                        <card.icon size={32} />
+                      </div>
+                      <h4 className="text-2xl font-black mb-4">{card.title}</h4>
+                      <p className="text-slate-400 mb-8 leading-relaxed">{card.desc}</p>
+                    </motion.div>
+                  ))}
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* YAO AI SECTION */}
+      <section className="py-32 px-4 relative overflow-hidden" id="yao">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="order-2 lg:order-1"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-black uppercase tracking-[0.2em] mb-8">
+              <Bot size={16} /> Intelligence Artificielle
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black mb-8 leading-tight">Rencontrez <br /> <span className="text-blue-500 italic">YAO.</span></h2>
+            <div className="space-y-6">
+              {[
+                { title: 'Conseils Personnalisés', desc: 'Yao analyse votre capacité d\'épargne et vous propose les meilleurs groupes.', icon: Brain },
+                { title: 'Prévention des Risques', desc: 'Détection automatique des comportements suspects pour protéger le groupe.', icon: ShieldCheck },
+                { title: 'Support 24/7', desc: 'Posez vos questions à Yao en langue locale (Fon, Yoruba, Français).', icon: MessageSquare }
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="flex gap-4 p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0 group-hover:scale-110 transition-transform">
+                    <item.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-black mb-1">{item.title}</h4>
+                    <p className="text-slate-400 text-sm">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 2, 0, -2, 0]
+            }}
+            transition={{ 
+              y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="order-1 lg:order-2 flex justify-center"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full animate-pulse" />
+              <div className="relative w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-tr from-blue-600/20 to-indigo-900/20 rounded-full flex items-center justify-center border border-white/10 shadow-[0_0_50px_rgba(37,99,235,0.2)]">
+                {/* Stylized 100F Coin */}
+                <motion.div 
+                  initial={{ rotateY: 0 }}
+                  animate={{ rotateY: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-tr from-slate-300 via-white to-slate-400 shadow-2xl border-4 border-slate-200 flex items-center justify-center overflow-hidden group"
+                >
+                  <div className="absolute inset-2 rounded-full border-4 border-yellow-500/50 flex items-center justify-center bg-gradient-to-tr from-yellow-600 via-yellow-400 to-yellow-500 shadow-inner">
+                    <div className="text-center">
+                      <p className="text-3xl lg:text-4xl font-black text-slate-800 leading-none">100</p>
+                      <p className="text-[10px] lg:text-xs font-black text-slate-700 tracking-widest uppercase">FCFA</p>
+                    </div>
+                  </div>
+                  {/* Coin gloss effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shine" />
+                </motion.div>
+                
+                {/* Orbital icons */}
+                {[Shield, Lock, Bell, MessageSquare].map((Icon, i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 15 + i * 5, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    style={{ rotate: `${i * 90}deg` }}
+                  >
+                    <motion.div 
+                      className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white"
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 15 + i * 5, repeat: Infinity, ease: "linear" }}
+                      style={{ transform: `translateY(-140px) rotate(-${i * 90}deg)` }}
+                    >
+                      <Icon size={20} />
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECURITY GRID */}
+      <section className="py-32 px-4" id="securite">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-20"
+          >
+            <h2 className="text-4xl lg:text-5xl font-black mb-6">Zéro compromis sur la <span className="text-blue-500">Sécurité.</span></h2>
+            <p className="text-slate-400 text-lg">Nous utilisons les technologies les plus avancées pour protéger chaque franc que vous épargnez.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-4 gap-4 lg:gap-6">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 md:row-span-2 bg-white/5 border border-white/10 p-8 lg:p-12 rounded-[2.5rem] hover:bg-blue-600/5 transition-colors group relative overflow-hidden"
+            >
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all" />
+              <ShieldCheck className="text-blue-500 mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" size={64} />
+              <h3 className="text-3xl font-black mb-4">Contrats Intelligents</h3>
+              <p className="text-slate-400 leading-relaxed mb-8">Chaque tontine est un Smart Contract autonome sur Polygon. Personne, pas même TontineChain, ne peut détourner les fonds.</p>
+              <div className="flex flex-wrap gap-2">
+                {['Immuable', 'Open Source', 'Audité'].map(tag => (
+                  <span key={tag} className="px-4 py-2 rounded-xl bg-white/10 text-[10px] font-bold uppercase tracking-widest">{tag}</span>
+                ))}
+              </div>
+            </motion.div>
+            
+            {[
+              { title: 'KYC Strict', icon: UserCheck, desc: 'Identité vérifiée via NPI.' },
+              { title: 'OTP Email', icon: Mail, desc: 'Connexion sécurisée par email.' },
+              { title: 'Dépôt Garanti', icon: Lock, desc: 'Fonds sécurisés par Mobile Money.' },
+              { title: 'Score Confiance', icon: Star, desc: 'Algorithme anti-fraude.' }
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:border-blue-500/30 transition-all group">
+                <item.icon className="text-blue-500 mb-6 group-hover:-translate-y-1 transition-transform" size={32} />
+                <h4 className="text-xl font-black mb-2">{item.title}</h4>
+                <p className="text-slate-500 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-32 px-4 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="p-12 lg:p-20 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-xl relative overflow-hidden"
+          >
+            <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px]" />
+            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-purple-500/20 rounded-full blur-[100px]" />
+            
+            <h2 className="text-6xl md:text-8xl font-black mb-10 leading-none tracking-tighter relative z-10">
+              Rejoignez la <br /> <span className="text-gradient-premium">Révolution.</span>
+            </h2>
+            <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto relative z-10">
+              Rejoignez des milliers de béninois qui épargnent déjà sereinement. Votre avenir financier commence avec un clic.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={onNavigateLogin}
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-black px-12 py-6 rounded-[2rem] text-xl shadow-2xl shadow-blue-600/40 transition-all"
+              >
+                Créer mon compte gratuitement
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+        
+        {/* Background blobs for CTA */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-blue-600/5 blur-[150px] rounded-full pointer-events-none" />
+      </section>
+
+      {/* FAQ SECTION */}
+      <section id="faq" className="py-32 px-4 relative z-10">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black mb-4">Questions Fréquentes</h2>
+            <p className="text-slate-400">Tout ce que vous devez savoir sur TontineChain.</p>
+          </div>
+          <div className="space-y-4">
+            {[
+              { q: "Comment TontineChain sécurise-t-il mon argent ?", a: "Vos fonds sont bloqués dans des Smart Contracts audités sur la blockchain Polygon. Aucun intermédiaire ne peut y toucher." },
+              { q: "Qui est Yao ?", a: "Yao est votre assistant personnel propulsé par l'IA qui analyse les risques et vous conseille sur vos épargnes." },
+              { q: "Quels sont les frais ?", a: "L'utilisation de TontineChain est gratuite pour les utilisateurs. Les frais de blockchain sont pris en charge par notre technologie Gasless." }
+            ].map((faq, i) => (
+              <div key={i} className="glass-morphism-dark rounded-2xl border border-white/10 overflow-hidden">
+                <button 
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between p-6 text-left font-bold"
+                >
+                  {faq.q}
+                  <ChevronDown className={`transition-transform ${openFaq === i ? 'rotate-180' : ''}`} size={20} />
+                </button>
+                {openFaq === i && (
+                  <div className="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-20 px-4 border-t border-white/5 relative z-10 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+          <div className="col-span-1 md:col-span-1">
+            <div className="flex items-center gap-3 mb-8">
+              <img src={logoOfficial} alt="TontineChain" className="w-10 h-10 rounded-xl" />
+              <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-blue-500">Chain</span></span>
+            </div>
+            <p className="text-slate-500 leading-relaxed mb-8">
+              La tontine 2.0 pour l'Afrique. Épargne, crédit et confiance unifiés dans une application mobile révolutionnaire.
+            </p>
+            <div className="flex gap-4">
+              {[Share2, Link, Rss, Globe].map((Icon, i) => (
+                <button key={i} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
+                  <Icon size={18} />
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          <div>
+            <h5 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-8">Produit</h5>
+            <ul className="space-y-4 text-slate-400 font-bold text-sm">
+              <li className="hover:text-white cursor-pointer transition-colors">Tontines Adogbè</li>
+              <li className="hover:text-white cursor-pointer transition-colors">Groupes de Confiance</li>
+              <li className="hover:text-white cursor-pointer transition-colors">IA Yao Advisor</li>
+              <li className="hover:text-white cursor-pointer transition-colors">Blockchain Explorer</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-8">Entreprise</h5>
+            <ul className="space-y-4 text-slate-400 font-bold text-sm">
+              <li className="hover:text-white cursor-pointer transition-colors">À Propos</li>
+              <li className="hover:text-white cursor-pointer transition-colors">Carrières</li>
+              <li className="hover:text-white cursor-pointer transition-colors">Blog</li>
+              <li className="hover:text-white cursor-pointer transition-colors">Contact</li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 className="font-black uppercase tracking-[0.2em] text-xs text-blue-500 mb-8">Téléchargement</h5>
+            <div className="space-y-3">
+              <button className="w-full bg-white/5 hover:bg-white/10 border border-white/10 p-4 rounded-2xl flex items-center gap-3 transition-all">
+                <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center text-white"><Smartphone size={24}/></div>
+                <div className="text-left">
+                  <p className="text-[10px] text-slate-500 font-black uppercase">Disponible sur</p>
+                  <p className="font-black">App Store</p>
+                </div>
+              </button>
+              <button className="w-full bg-white/5 hover:bg-white/10 border border-white/10 p-4 rounded-2xl flex items-center gap-3 transition-all">
+                <div className="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center text-white"><Globe size={24}/></div>
+                <div className="text-left">
+                  <p className="text-[10px] text-slate-500 font-black uppercase">Disponible sur</p>
+                  <p className="font-black">Play Store</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-slate-500 text-xs font-bold">© 2026 TontineChain. Fait avec ❤️ à Cotonou pour l'Afrique.</p>
+          <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-600">
+            <span className="hover:text-blue-500 cursor-pointer">Confidentialité</span>
+            <span className="hover:text-blue-500 cursor-pointer">CGU</span>
+            <span className="hover:text-blue-500 cursor-pointer">Sécurité</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default LandingPage;

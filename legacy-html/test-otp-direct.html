@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test OTP Direct</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        input, button { margin: 10px; padding: 10px; }
+        .result { margin: 20px; padding: 15px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Test OTP Direct</h1>
+    
+    <div>
+        <label>Phone Number:</label>
+        <input type="text" id="phone" value="+22997000000" placeholder="+229XXXXXXXX">
+        <button onclick="testRequestOTP()">Test Request OTP</button>
+    </div>
+    
+    <div>
+        <label>OTP Code:</label>
+        <input type="text" id="otp" placeholder="000000">
+        <button onclick="testVerifyOTP()">Test Verify OTP</button>
+    </div>
+    
+    <div id="result" class="result"></div>
+    
+    <script>
+        const API_BASE_URL = 'https://tonnine-benin-backend.onrender.com/api/v1';
+        let currentPhone = '';
+        
+        async function testRequestOTP() {
+            const phone = document.getElementById('phone').value;
+            currentPhone = phone;
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing OTP request...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/request-otp`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ phone })
+                });
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <strong>Request OTP Response:</strong><br>
+                    Status: ${response.status}<br>
+                    Data: <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <strong>Error:</strong><br>
+                    ${error.message}<br>
+                    ${error.stack}
+                `;
+            }
+        }
+        
+        async function testVerifyOTP() {
+            const otp = document.getElementById('otp').value;
+            
+            if (!currentPhone) {
+                alert('Please test Request OTP first');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing OTP verification...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        phone: currentPhone, 
+                        code: otp 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <strong>Verify OTP Response:</strong><br>
+                    Status: ${response.status}<br>
+                    Data: <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <strong>Error:</strong><br>
+                    ${error.message}<br>
+                    ${error.stack}
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.vercel
+
+# Build outputs
+dist/
+dist-ssr/
+*.local
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

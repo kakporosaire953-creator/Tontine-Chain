@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Backend Connection</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>Test Backend Connection</h1>
+    <div id="results"></div>
+    
+    <script>
+        const API_BASE_URL = 'https://tonnine-benin-backend.onrender.com/api/v1';
+        
+        async function testEndpoint(endpoint, method = 'GET') {
+            const resultDiv = document.getElementById('results');
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'result loading';
+            loadingDiv.textContent = `Testing ${method} ${endpoint}...`;
+            resultDiv.appendChild(loadingDiv);
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+                    method,
+                    headers: { 'Accept': 'application/json' }
+                });
+                const endTime = Date.now();
+                const responseTime = endTime - startTime;
+                
+                loadingDiv.remove();
+                
+                const resultDiv2 = document.createElement('div');
+                resultDiv2.className = response.ok ? 'result success' : 'result error';
+                
+                let content = '';
+                try {
+                    const data = await response.json();
+                    content = JSON.stringify(data, null, 2);
+                } catch {
+                    const text = await response.text();
+                    content = text || 'No content';
+                }
+                
+                resultDiv2.innerHTML = `
+                    <strong>${method} ${endpoint}</strong><br>
+                    Status: ${response.status} ${response.statusText}<br>
+                    Time: ${responseTime}ms<br>
+                    Response: <pre>${content}</pre>
+                `;
+                resultDiv.appendChild(resultDiv2);
+                
+            } catch (error) {
+                loadingDiv.remove();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'result error';
+                errorDiv.innerHTML = `
+                    <strong>${method} ${endpoint}</strong><br>
+                    Error: ${error.message}<br>
+                    Type: ${error.name}
+                `;
+                resultDiv.appendChild(errorDiv);
+            }
+        }
+        
+        // Test endpoints
+        document.addEventListener('DOMContentLoaded', () => {
+            testEndpoint('/health');
+            testEndpoint('/auth/request-otp', 'POST');
+        });
+    </script>
+</body>
+</html>
