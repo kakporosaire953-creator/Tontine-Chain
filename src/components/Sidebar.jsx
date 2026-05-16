@@ -2,15 +2,16 @@ import React from 'react';
 import { LayoutDashboard, FolderOpen, PlusCircle, UserPlus, CreditCard, MessageCircle, Bot, User, Settings, LogOut, Sun, Moon, ShieldCheck, X } from 'lucide-react';
 import logoOfficial from '../assets/logo_official.png';
 
-const Sidebar = ({ currentView, onNavigate, onLogout, theme, toggleTheme, mobileOpen, onCloseMobile }) => {
+const Sidebar = ({ currentView, onNavigate, onLogout, theme, toggleTheme, mobileOpen, onCloseMobile, unreadNotifications, unreadMessages }) => {
   const links = [
     { id: 'dashboard', icon: <LayoutDashboard size={18} />, label: 'Dashboard' },
     { id: 'mes_tontines', icon: <FolderOpen size={18} />, label: 'Mes Tontines' },
     { id: 'create_group', icon: <PlusCircle size={18} />, label: 'Créer une Tontine' },
     { id: 'join', icon: <UserPlus size={18} />, label: 'Rejoindre' },
     { divider: true },
-    { id: 'messagerie', icon: <MessageCircle size={18} />, label: 'Messagerie', badge: 3 },
+    { id: 'messagerie', icon: <MessageCircle size={18} />, label: 'Messagerie', badge: unreadMessages || 0 },
     { id: 'assistant_yao', icon: <Bot size={18} />, label: 'Assistant YAO', badgeNew: true },
+    { id: 'notifications', icon: <Bell size={18} />, label: 'Notifications', badge: unreadNotifications || 0 },
     { divider: true },
     { id: 'profile', icon: <User size={18} />, label: 'Mon Profil' },
   ];

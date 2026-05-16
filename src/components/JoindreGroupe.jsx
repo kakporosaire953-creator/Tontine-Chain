@@ -126,7 +126,7 @@ const JoindreGroupe = ({ onBack, onJoin }) => {
                   </button>
                 </form>
                 <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', marginTop: 16 }}>
-                  Codes de test : <strong>MIABE-26</strong>, <strong>MKT-BJ</strong>, <strong>TECH-01</strong>
+                  Saisissez le code d'invitation fourni par l'administrateur de votre tontine.
                 </p>
               </div>
             </motion.div>

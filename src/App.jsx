@@ -63,12 +63,15 @@ function App() {
 
   const fetchInitialData = async () => {
     try {
-      const [groupsRes, notificationsRes] = await Promise.all([
+      const { getMe } = await import('./services/api');
+      const [groupsRes, notificationsRes, userRes] = await Promise.all([
         getGroups().catch(() => ({ data: groups })),
-        getNotificationsList().catch(() => ({ data: notifications }))
+        getNotificationsList().catch(() => ({ data: notifications })),
+        getMe().catch(() => ({ data: user }))
       ]);
       setGroups(groupsRes.data);
       setNotifications(notificationsRes.data);
+      if (userRes.data) setUser(prev => ({ ...prev, ...userRes.data }));
     } catch (err) {
       console.error("Erreur de chargement des données", err);
     }
@@ -194,6 +197,8 @@ function App() {
         toggleTheme={toggleTheme}
         mobileOpen={sidebarOpen}
         onCloseMobile={() => setSidebarOpen(false)}
+        unreadNotifications={notifications.filter(n => !n.read_at).length}
+        unreadMessages={groups.reduce((acc, g) => acc + (g.unread_messages_count || 0), 0)}
       />
 
       {/* Mobile top bar */}

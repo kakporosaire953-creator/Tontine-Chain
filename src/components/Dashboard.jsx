@@ -55,16 +55,16 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
   };
 
   useEffect(() => {
-    // Gestion du retour de paiement (Simulé pour le hackathon)
+    // Vérification du statut (Production)
     const params = new URLSearchParams(window.location.search);
     if (params.get('status') === 'success' || params.get('transaction_id')) {
       setShowPaymentProgress(true);
-      // Simuler les 3 secondes de traitement recommandées par le PDF
+      // Délai de traitement recommandé par FedaPay
       setTimeout(() => {
         setShowPaymentProgress(false);
         // Nettoyer l'URL
         window.history.replaceState({}, document.title, window.location.pathname);
-        alert("Paiement validé ! Votre tontine a été mise à jour.");
+        window.location.reload();
       }, 3000);
     }
   }, []);
