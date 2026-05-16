@@ -38,7 +38,10 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
     setShowPaymentProgress(true);
     try {
       const res = await initiatePayment(contributionId);
-      if (res.data.url) {
+      // Correction selon la documentation du PDF (payment_url)
+      if (res.data.payment_url) {
+        window.location.href = res.data.payment_url;
+      } else if (res.data.url) {
         window.location.href = res.data.url;
       } else {
         alert("Erreur lors de l'initialisation du paiement.");
@@ -50,6 +53,21 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
       setShowPaymentProgress(false);
     }
   };
+
+  useEffect(() => {
+    // Gestion du retour de paiement (Simulé pour le hackathon)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('status') === 'success' || params.get('transaction_id')) {
+      setShowPaymentProgress(true);
+      // Simuler les 3 secondes de traitement recommandées par le PDF
+      setTimeout(() => {
+        setShowPaymentProgress(false);
+        // Nettoyer l'URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+        alert("Paiement validé ! Votre tontine a été mise à jour.");
+      }, 3000);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -318,6 +336,8 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
         </div>
       </div>
 
+      </div>
+
       {/* FOOTER & UTILS */}
       <footer className="mt-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div id="google_translate_element" className="rounded-xl overflow-hidden opacity-50 hover:opacity-100 transition-opacity"></div>
@@ -374,6 +394,31 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
               </div>
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      {/* FedaPay Redirection & Processing Overlay */}
+      <AnimatePresence>
+        {showPaymentProgress && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] bg-tontine-darker/95 backdrop-blur-md flex justify-center items-center p-6 text-center"
+          >
+            <div className="max-w-xs w-full">
+              <div className="w-24 h-24 bg-white rounded-3xl mx-auto mb-8 flex items-center justify-center p-5 shadow-2xl">
+                <img src="https://fedapay.com/assets/images/logo.png" alt="FedaPay" className="w-full h-auto" />
+              </div>
+              <h3 className="text-2xl font-black mb-3">Traitement de votre paiement...</h3>
+              <p className="text-slate-400 text-sm mb-10 italic leading-relaxed">Vérification de la transaction via FedaPay Blockchain. Veuillez ne pas fermer cette fenêtre.</p>
+              <div className="flex justify-center gap-3">
+                <div className="w-3 h-3 bg-tontine-orange rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                <div className="w-3 h-3 bg-tontine-orange rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                <div className="w-3 h-3 bg-tontine-orange rounded-full animate-bounce"></div>
+              </div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
