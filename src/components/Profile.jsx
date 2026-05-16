@@ -76,7 +76,7 @@ const Profile = ({ user, onBack, onUpdate }) => {
           <div className="flex justify-between items-center mb-6">
             <div>
               <h4 className="text-sm font-bold text-gray-400">Score de Fiabilité</h4>
-              <p className="text-3xl font-bold text-tontine-orange">{user?.score_confiance ?? '—'}/100</p>
+              <p className="text-3xl font-bold text-yellow-500">{user?.score_confiance ?? '—'}/100</p>
             </div>
             <div className="bg-green-500/20 p-3 rounded-full">
                 <TrendingUp className="text-green-400 w-6 h-6" />
@@ -107,15 +107,15 @@ const Profile = ({ user, onBack, onUpdate }) => {
               onClick={() => alert("Génération du certificat de fiabilité certifié par Polygon...")}
               className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-all"
             >
-              <Download className="w-4 h-4 text-tontine-orange" />
+              <Download className="w-4 h-4 text-yellow-500" />
             </button>
           </div>
         </div>
 
         {/* KYC SECTION - IA Verification */}
-        <div className="glass-panel p-6 rounded-2xl mb-8 border border-tontine-orange/30 bg-tontine-orange/5">
+        <div className="glass-panel p-6 rounded-2xl mb-8 border border-yellow-500/30 bg-green-700/20">
           <div className="flex items-center gap-3 mb-4">
-            <Shield className="w-6 h-6 text-tontine-orange" />
+            <Shield className="w-6 h-6 text-yellow-500" />
             <h3 className="font-bold">Vérification YAO (IA)</h3>
           </div>
           
@@ -134,7 +134,7 @@ const Profile = ({ user, onBack, onUpdate }) => {
               <label className={`w-full flex flex-col items-center justify-center p-6 border-2 border-dashed border-white/10 rounded-xl hover:border-tontine-orange transition-all cursor-pointer ${kycLoading ? 'opacity-50 pointer-events-none' : ''}`}>
                 {kycLoading ? (
                   <div className="flex flex-col items-center gap-3">
-                    <Loader2 className="w-8 h-8 animate-spin text-tontine-orange" />
+                    <Loader2 className="w-8 h-8 animate-spin text-yellow-500" />
                     <p className="text-xs animate-pulse">YAO analyse votre document...</p>
                   </div>
                 ) : (
@@ -193,12 +193,12 @@ const Profile = ({ user, onBack, onUpdate }) => {
             <div>
               <label className="block text-[10px] text-gray-500 mb-1 uppercase tracking-widest">Numéro NPI (Vérifié par Blockchain)</label>
               <div className="relative">
-                <Shield className="absolute left-3 top-2.5 w-4 h-4 text-tontine-orange" />
+                <Shield className="absolute left-3 top-2.5 w-4 h-4 text-yellow-500" />
                 <input
                   type="text"
                   value={formData.npi}
                   onChange={(e) => setFormData({ ...formData, npi: e.target.value })}
-                  className="w-full bg-tontine-orange/5 border border-tontine-orange/20 rounded-xl py-2.5 pl-10 pr-4 outline-none font-mono text-tontine-orange"
+                  className="w-full bg-green-700/20 border border-tontine-orange/20 rounded-xl py-2.5 pl-10 pr-4 outline-none font-mono text-yellow-500"
                   placeholder="Analysé par YAO..."
                   readOnly={kycDone}
                 />

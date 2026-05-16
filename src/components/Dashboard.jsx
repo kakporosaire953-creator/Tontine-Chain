@@ -173,7 +173,7 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
               <div>
                 <h1 className="text-3xl font-bold mb-1 transition-colors group-hover:text-tontine-gold flex items-center gap-2">
                   {t.welcome}, <span className="text-tontine-orange">{user?.first_name || 'Utilisateur'}</span>
-                  <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                  <CheckCircle2 className="w-5 h-5 text-yellow-500" />
                   👋
                 </h1>
                 <div className="flex items-center gap-3">
@@ -205,11 +205,11 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="mb-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl flex items-center justify-between gap-4"
+            className="mb-8 p-4 bg-green-700/10 border border-blue-500/20 rounded-2xl flex items-center justify-between gap-4"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500/20 rounded-lg">
-                <ShieldCheck className="w-5 h-5 text-blue-400" />
+              <div className="p-2 bg-green-700/20 rounded-lg">
+                <ShieldCheck className="w-5 h-5 text-yellow-500" />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-white">Sécurisez votre compte</h4>
@@ -218,7 +218,7 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
             </div>
             <button 
               onClick={onOpenProfile}
-              className="px-4 py-2 bg-blue-500 text-white text-[10px] font-bold rounded-lg hover:bg-blue-600 transition-colors"
+              className="px-4 py-2 bg-green-700 text-white text-[10px] font-bold rounded-lg hover:bg-blue-600 transition-colors"
             >
               Vérifier maintenant
             </button>
@@ -379,13 +379,13 @@ const Dashboard = ({ user, groups = [], onLogout, onSelectGroup, onOpenProfile, 
             transition={{ delay: 0.2 }}
             className="glass-panel p-6 rounded-2xl relative overflow-hidden group"
           >
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-green-700/10 rounded-full group-hover:scale-150 transition-transform duration-500" />
             <div className="flex justify-between items-start mb-4">
               <div>
                 <p className="text-gray-400 text-sm mb-1">{t.expected_gains}</p>
                 <h3 className="text-3xl font-bold font-playfair">{(groups.reduce((acc, g) => acc + ((g.contribution_amount || g.amount || 0) * (g.max_members || g.members || 0)), 0)).toLocaleString()} <span className="text-lg text-tontine-orange">FCFA</span></h3>
               </div>
-              <div className="p-3 bg-white/5 rounded-xl text-blue-400">
+              <div className="p-3 bg-white/5 rounded-xl text-yellow-500">
                 <TrendingUp className="w-6 h-6" />
               </div>
             </div>

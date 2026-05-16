@@ -1,30 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-tontine-orange: #3B7FFF;
-  --color-tontine-dark: #0f172a;
-  --color-tontine-darker: #0b1120;
-  --color-tontine-gold: #3B7FFF;
-  --color-tontine-green: #10b981;
-  --color-tontine-red: #ef4444;
+  --color-tontine-orange: #d4af37;
+  --color-tontine-gold: #d4af37;
+  --color-tontine-green: #064e3b;
+  --color-tontine-dark: #064e3b;
+  --color-tontine-darker: #022c22;
+  --color-tontine-accent: #10b981;
   --font-inter: "Inter", sans-serif;
   --font-playfair: "Playfair Display", serif;
 }
 
 /* ========= DARK / LIGHT THEME ========= */
 :root {
-  --bg-primary: #0b1120;
-  --bg-secondary: #0f172a;
+  --bg-primary: #022c22;
+  --bg-secondary: #064e3b;
   --bg-card: rgba(255, 255, 255, 0.04);
   --bg-card-hover: rgba(255, 255, 255, 0.08);
   --bg-input: rgba(255, 255, 255, 0.05);
-  --border-color: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(212, 175, 55, 0.2);
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
-  --glass-bg: rgba(255, 255, 255, 0.02);
-  --sidebar-bg: rgba(15, 23, 42, 0.95);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(2, 44, 34, 0.8);
+  --sidebar-bg: rgba(6, 78, 59, 0.95);
+  --primary-gold: #d4af37;
+  --primary-green: #064e3b;
 }
 
 [data-theme="light"] {
@@ -345,7 +347,7 @@ body {
 
 /* ========= EXTRAORDINARY UTILITIES ========= */
 .text-gradient-premium {
-  background: linear-gradient(135deg, #3B7FFF 0%, #2563EB 50%, #1e40af 100%);
+  background: linear-gradient(135deg, #d4af37 0%, #fde047 50%, #ca8a04 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

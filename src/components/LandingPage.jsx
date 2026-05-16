@@ -41,8 +41,8 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
     <div className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${theme === 'dark' ? 'bg-[#0b1120] text-white' : 'bg-slate-50 text-slate-900'}`}>
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className={`absolute -top-1/4 -left-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-20 ${theme === 'dark' ? 'bg-blue-600' : 'bg-blue-400'}`} />
-        <div className={`absolute -bottom-1/4 -right-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-10 ${theme === 'dark' ? 'bg-purple-600' : 'bg-purple-400'}`} />
+        <div className={`absolute -top-1/4 -left-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-20 ${theme === 'dark' ? 'bg-green-700' : 'bg-green-400'}`} />
+        <div className={`absolute -bottom-1/4 -right-1/4 w-[70%] h-[70%] rounded-full blur-[120px] opacity-10 ${theme === 'dark' ? 'bg-yellow-600' : 'bg-yellow-400'}`} />
         <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px'}} />
       </div>
 
@@ -58,14 +58,14 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               <div className="absolute inset-0 bg-blue-500 blur-md opacity-40 group-hover:opacity-80 transition-opacity" />
               <img src={logoOfficial} alt="TontineChain" className="w-14 h-14 rounded-xl relative z-10 transform group-hover:scale-110 transition-transform" />
             </div>
-            <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-blue-500">Chain</span></span>
+            <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-yellow-500">Chain</span></span>
           </motion.div>
 
           <div className="hidden lg:flex items-center gap-10 text-sm font-bold tracking-wide uppercase">
             {['Solutions', 'Sécurité', 'IA Yao', 'À Propos'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-blue-500 transition-colors relative group">
+              <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-yellow-500 transition-colors relative group">
                 {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-500 transition-all group-hover:w-full" />
               </a>
             ))}
           </div>
@@ -79,13 +79,13 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             </button>
             <button 
               onClick={onNavigateLogin}
-              className="hidden md:block font-bold hover:text-blue-500 transition-colors"
+              className="hidden md:block font-bold hover:text-yellow-500 transition-colors"
             >
               Connexion
             </button>
             <button 
               onClick={onNavigateLogin}
-              className="hidden md:flex bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-3 rounded-2xl shadow-lg shadow-blue-600/30 transform hover:-translate-y-1 active:scale-95 transition-all items-center gap-2"
+              className="hidden md:flex bg-green-700 hover:bg-blue-500 text-white font-black px-6 py-3 rounded-2xl shadow-lg shadow-green-900/30 transform hover:-translate-y-1 active:scale-95 transition-all items-center gap-2"
             >
               Démarrer <ArrowRight size={18} />
             </button>
@@ -113,7 +113,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`text-2xl font-black hover:text-blue-500 transition-colors ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
+                className={`text-2xl font-black hover:text-yellow-500 transition-colors ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
               >
                 {item}
               </a>
@@ -127,7 +127,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               </button>
               <button 
                 onClick={() => { setIsMobileMenuOpen(false); onNavigateLogin(); }}
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-4 rounded-2xl shadow-lg shadow-blue-600/30 flex justify-center items-center gap-2"
+                className="w-full bg-green-700 hover:bg-blue-500 text-white font-black px-6 py-4 rounded-2xl shadow-lg shadow-green-900/30 flex justify-center items-center gap-2"
               >
                 Démarrer <ArrowRight size={18} />
               </button>
@@ -144,12 +144,12 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-black uppercase tracking-[0.2em] mb-8">
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-yellow-500 text-xs font-black uppercase tracking-[0.2em] mb-8">
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
               </span>
-              L'avenir de la Tontine est ici
+              L'excellence de la Tontine 2.0
             </motion.div>
             
             <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] mb-8 tracking-tighter">
@@ -159,13 +159,13 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             
             <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-400 max-w-xl mb-8 lg:mb-10 leading-relaxed mx-auto lg:mx-0 px-4 lg:px-0">
               <span className="text-white font-bold block mb-2 text-lg lg:text-2xl">Vos tontines perdent de l'argent à cause des fraudes ?</span>
-              TontineChain les sécurise sur la <span className="text-blue-500 font-bold">Blockchain</span>. Fini les risques, place à la sérénité.
+              TontineChain les sécurise sur la <span className="text-yellow-500 font-bold">Blockchain</span>. Fini les risques, place à la sérénité.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 lg:gap-5 px-6 lg:px-0">
               <button 
                 onClick={onNavigateLogin}
-                className="group bg-blue-600 text-white font-black px-8 py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 w-full sm:w-auto"
+                className="group bg-green-700 text-white font-black px-8 py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-500 transition-all shadow-xl shadow-green-900/30 w-full sm:w-auto"
               >
                 Voir la démo <Play className="group-hover:translate-x-1 transition-transform" size={20} fill="currentColor" />
               </button>
@@ -198,7 +198,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               {[
                 { label: 'Sécurité', icon: Shield, color: 'text-green-500' },
                 { label: 'Rapidité', icon: Zap, color: 'text-yellow-500' },
-                { label: 'Blockchain', icon: Globe, color: 'text-blue-500' }
+                { label: 'Blockchain', icon: Globe, color: 'text-yellow-500' }
               ].map((feature, i) => (
                 <div key={i} className="flex flex-col gap-2">
                   <feature.icon className={feature.color} size={24} />
@@ -241,7 +241,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                 {stat.value}{stat.suffix}
               </h3>
               <p className="text-slate-500 font-bold uppercase tracking-widest text-[10px] lg:text-xs">{stat.label}</p>
-              {stat.unit && <p className="text-[10px] text-blue-500/60 font-black mt-1">{stat.unit}</p>}
+              {stat.unit && <p className="text-[10px] text-yellow-500/60 font-black mt-1">{stat.unit}</p>}
             </motion.div>
           ))}
         </div>
@@ -267,11 +267,11 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm mb-8">
               <div className="flex items-center gap-3 mb-2">
-                <Globe className="text-blue-500" size={24} />
+                <Globe className="text-yellow-500" size={24} />
                 <h4 className="font-black text-lg">Contrat Déployé (Polygon Testnet)</h4>
               </div>
               <p className="text-xs text-slate-500 mb-3 font-mono break-all">0x7a59...4F9b</p>
-              <a href="https://mumbai.polygonscan.com/" target="_blank" rel="noreferrer" className="text-sm font-bold text-blue-500 hover:text-blue-400 flex items-center gap-2">
+              <a href="https://mumbai.polygonscan.com/" target="_blank" rel="noreferrer" className="text-sm font-bold text-yellow-500 hover:text-blue-400 flex items-center gap-2">
                 Voir sur Polygonscan <ArrowRight size={14} />
               </a>
             </div>
@@ -286,7 +286,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             <div className="relative pt-[56.25%] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
               <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Demo thumbnail" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-40 transition-opacity" />
-                <button className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/50 hover:scale-110 transition-transform relative z-10">
+                <button className="w-20 h-20 bg-green-700 rounded-full flex items-center justify-center shadow-lg shadow-blue-600/50 hover:scale-110 transition-transform relative z-10">
                   <Play size={32} fill="currentColor" className="text-white ml-2" />
                 </button>
                 <div className="absolute bottom-4 left-4 right-4 flex justify-between text-xs font-bold text-white z-10">
@@ -309,7 +309,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               viewport={{ once: true }}
               className="max-w-2xl text-center lg:text-left"
             >
-              <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">Une solution pour chaque <br /><span className="text-blue-500">vision d'épargne.</span></h2>
+              <h2 className="text-4xl lg:text-5xl font-black mb-6 leading-tight">Une solution pour chaque <br /><span className="text-yellow-500">vision d'épargne.</span></h2>
               <p className="text-slate-400 text-lg">Nous avons réinventé la tontine traditionnelle pour la rendre inviolable, transparente et accessible à tous.</p>
             </motion.div>
             <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md overflow-x-auto no-scrollbar max-w-full">
@@ -317,7 +317,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${activeTab === tab ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-500 hover:text-white'}`}
+                  className={`px-8 py-3 rounded-xl text-sm font-black uppercase tracking-wider transition-all ${activeTab === tab ? 'bg-green-700 text-white shadow-lg shadow-blue-600/20' : 'text-slate-500 hover:text-white'}`}
                 >
                   {tab}
                 </button>
@@ -340,15 +340,15 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ delay: i * 0.1 }}
-                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600/10 hover:border-blue-500/30 transition-all overflow-hidden"
+                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-green-700/10 hover:border-blue-500/30 transition-all overflow-hidden"
                     >
-                      <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all" />
-                      <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500 mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                      <div className="absolute -right-8 -top-8 w-32 h-32 bg-green-700/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all" />
+                      <div className="w-16 h-16 rounded-2xl bg-green-700/20 flex items-center justify-center text-yellow-500 mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         <card.icon size={32} />
                       </div>
                       <h4 className="text-2xl font-black mb-4">{card.title}</h4>
                       <p className="text-slate-400 mb-8 leading-relaxed">{card.desc}</p>
-                      <button className="flex items-center gap-2 text-sm font-black text-blue-500 uppercase tracking-widest group-hover:gap-4 transition-all">
+                      <button className="flex items-center gap-2 text-sm font-black text-yellow-500 uppercase tracking-widest group-hover:gap-4 transition-all">
                         En savoir plus <ArrowRight size={16} />
                       </button>
                     </motion.div>
@@ -368,9 +368,9 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ delay: i * 0.1 }}
-                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600/10 hover:border-blue-500/30 transition-all overflow-hidden"
+                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-green-700/10 hover:border-blue-500/30 transition-all overflow-hidden"
                     >
-                      <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500 mb-8">
+                      <div className="w-16 h-16 rounded-2xl bg-green-700/20 flex items-center justify-center text-yellow-500 mb-8">
                         <card.icon size={32} />
                       </div>
                       <h4 className="text-2xl font-black mb-4">{card.title}</h4>
@@ -392,9 +392,9 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ delay: i * 0.1 }}
-                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-blue-600/10 hover:border-blue-500/30 transition-all overflow-hidden"
+                      className="group relative p-8 rounded-[2.5rem] bg-white/5 border border-white/10 hover:bg-green-700/10 hover:border-blue-500/30 transition-all overflow-hidden"
                     >
-                      <div className="w-16 h-16 rounded-2xl bg-blue-600/20 flex items-center justify-center text-blue-500 mb-8">
+                      <div className="w-16 h-16 rounded-2xl bg-green-700/20 flex items-center justify-center text-yellow-500 mb-8">
                         <card.icon size={32} />
                       </div>
                       <h4 className="text-2xl font-black mb-4">{card.title}</h4>
@@ -410,7 +410,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
 
       {/* YAO AI SECTION */}
       <section className="py-32 px-4 relative overflow-hidden" id="yao">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-700/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -418,10 +418,10 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             viewport={{ once: true }}
             className="order-2 lg:order-1"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-black uppercase tracking-[0.2em] mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-700/10 border border-yellow-500/30 text-yellow-500 text-xs font-black uppercase tracking-[0.2em] mb-8">
               <Bot size={16} /> Intelligence Artificielle
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black mb-8 leading-tight">Rencontrez <br /> <span className="text-blue-500 italic">YAO.</span></h2>
+            <h2 className="text-4xl lg:text-5xl font-black mb-8 leading-tight">Rencontrez <br /> <span className="text-yellow-500 italic">YAO.</span></h2>
             <div className="space-y-6">
               {[
                 { title: 'Conseils Personnalisés', desc: 'Yao analyse votre capacité d\'épargne et vous propose les meilleurs groupes.', icon: Brain },
@@ -436,7 +436,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
                   transition={{ delay: i * 0.2 }}
                   className="flex gap-4 p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-500 shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-yellow-500 shrink-0 group-hover:scale-110 transition-transform">
                     <item.icon size={24} />
                   </div>
                   <div>
@@ -463,22 +463,17 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
           >
             <div className="relative">
               <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full animate-pulse" />
-              <div className="relative w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-tr from-blue-600/20 to-indigo-900/20 rounded-full flex items-center justify-center border border-white/10 shadow-[0_0_50px_rgba(37,99,235,0.2)]">
-                {/* Stylized 100F Coin */}
+              <div className="relative w-64 h-64 lg:w-80 lg:h-80 bg-gradient-to-tr from-green-600/20 to-yellow-900/20 rounded-full flex items-center justify-center border border-yellow-500/30 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
+                {/* Logo Officiel Animé */}
                 <motion.div 
                   initial={{ rotateY: 0 }}
                   animate={{ rotateY: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-tr from-slate-300 via-white to-slate-400 shadow-2xl border-4 border-slate-200 flex items-center justify-center overflow-hidden group"
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="relative w-48 h-48 lg:w-56 lg:h-56 rounded-full flex items-center justify-center overflow-hidden group"
                 >
-                  <div className="absolute inset-2 rounded-full border-4 border-yellow-500/50 flex items-center justify-center bg-gradient-to-tr from-yellow-600 via-yellow-400 to-yellow-500 shadow-inner">
-                    <div className="text-center">
-                      <p className="text-3xl lg:text-4xl font-black text-slate-800 leading-none">100</p>
-                      <p className="text-[10px] lg:text-xs font-black text-slate-700 tracking-widest uppercase">FCFA</p>
-                    </div>
-                  </div>
-                  {/* Coin gloss effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shine" />
+                  <img src={logoOfficial} alt="TontineChain Logo" className="w-full h-full object-contain" />
+                  {/* Gloss effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine" />
                 </motion.div>
                 
                 {/* Orbital icons */}
@@ -515,7 +510,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
             viewport={{ once: true }}
             className="text-center max-w-3xl mx-auto mb-20"
           >
-            <h2 className="text-4xl lg:text-5xl font-black mb-6">Zéro compromis sur la <span className="text-blue-500">Sécurité.</span></h2>
+            <h2 className="text-4xl lg:text-5xl font-black mb-6">Zéro compromis sur la <span className="text-yellow-500">Sécurité.</span></h2>
             <p className="text-slate-400 text-lg">Nous utilisons les technologies les plus avancées pour protéger chaque franc que vous épargnez.</p>
           </motion.div>
 
@@ -524,10 +519,10 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="md:col-span-2 md:row-span-2 bg-white/5 border border-white/10 p-8 lg:p-12 rounded-[2.5rem] hover:bg-blue-600/5 transition-colors group relative overflow-hidden"
+              className="md:col-span-2 md:row-span-2 bg-white/5 border border-white/10 p-8 lg:p-12 rounded-[2.5rem] hover:bg-green-700/5 transition-colors group relative overflow-hidden"
             >
-              <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all" />
-              <ShieldCheck className="text-blue-500 mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" size={64} />
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-green-700/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all" />
+              <ShieldCheck className="text-yellow-500 mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500" size={64} />
               <h3 className="text-3xl font-black mb-4">Contrats Intelligents</h3>
               <p className="text-slate-400 leading-relaxed mb-8">Chaque tontine est un Smart Contract autonome sur Polygon. Personne, pas même TontineChain, ne peut détourner les fonds.</p>
               <div className="flex flex-wrap gap-2">
@@ -544,7 +539,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               { title: 'Score Confiance', icon: Star, desc: 'Algorithme anti-fraude.' }
             ].map((item, i) => (
               <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover:border-blue-500/30 transition-all group">
-                <item.icon className="text-blue-500 mb-6 group-hover:-translate-y-1 transition-transform" size={32} />
+                <item.icon className="text-yellow-500 mb-6 group-hover:-translate-y-1 transition-transform" size={32} />
                 <h4 className="text-xl font-black mb-2">{item.title}</h4>
                 <p className="text-slate-500 text-sm">{item.desc}</p>
               </div>
@@ -557,7 +552,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
       <section className="py-24 px-4 bg-[#0b1120]" id="business">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-black mb-4">Un marché gigantesque. <br/><span className="text-blue-500">Un modèle pérenne.</span></h2>
+            <h2 className="text-4xl lg:text-5xl font-black mb-4">Un marché gigantesque. <br/><span className="text-yellow-500">Un modèle pérenne.</span></h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
@@ -593,10 +588,10 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
               transition={{ delay: 0.2 }}
               className="p-8 rounded-3xl bg-white/5 border border-white/10"
             >
-              <h3 className="text-2xl font-black mb-6 flex items-center gap-3"><CreditCard className="text-blue-500" /> Modèle Économique</h3>
+              <h3 className="text-2xl font-black mb-6 flex items-center gap-3"><CreditCard className="text-yellow-500" /> Modèle Économique</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20">
-                  <h4 className="font-black text-blue-500 mb-2">0.5%</h4>
+                <div className="p-4 rounded-2xl bg-green-700/10 border border-yellow-500/30">
+                  <h4 className="font-black text-yellow-500 mb-2">0.5%</h4>
                   <p className="text-sm text-slate-400">Frais de transaction par cycle sur les gros montants.</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20">
@@ -707,7 +702,7 @@ const LandingPage = ({ onNavigateLogin, theme, toggleTheme }) => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-3 mb-8">
               <img src={logoOfficial} alt="TontineChain" className="w-10 h-10 rounded-xl" />
-              <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-blue-500">Chain</span></span>
+              <span className="font-black text-2xl tracking-tighter">Tontine<span className="text-yellow-500">Chain</span></span>
             </div>
             <p className="text-slate-500 leading-relaxed mb-6">
               La tontine 2.0 pour l'Afrique. Épargne, crédit et confiance unifiés dans une application mobile révolutionnaire.
